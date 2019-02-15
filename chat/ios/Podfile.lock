@@ -1,0 +1,37 @@
+PODS:
+  - Cartography (3.0.2)
+  - Chatto (3.3.1)
+  - ChattoAdditions (3.3.1):
+    - Chatto
+  - DittoMeshKit (2.3.1)
+  - Eureka (4.1.1)
+  - RSKPlaceholderTextView (3.1.0)
+
+DEPENDENCIES:
+  - Cartography
+  - Chatto (= 3.3.1)
+  - ChattoAdditions (= 3.3.1)
+  - DittoMeshKit (~> 2.3)
+  - Eureka (= 4.1.1)
+  - RSKPlaceholderTextView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Cartography
+    - Chatto
+    - ChattoAdditions
+    - DittoMeshKit
+    - Eureka
+    - RSKPlaceholderTextView
+
+SPEC CHECKSUMS:
+  Cartography: 231190d7d0b3107ce8d67c54189f059a509b3760
+  Chatto: 24a6c9b0c91b08130466888b8b61563b90191c6f
+  ChattoAdditions: cc74cd3dd371aa3f70e5ab8568a4f383f0c0eb8c
+  DittoMeshKit: 4246d22a0cfd047175e4d64c7018173f6108bda0
+  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
+  RSKPlaceholderTextView: 78dc8dfe343abec377503edf4689a743d23a4318
+
+PODFILE CHECKSUM: df143062dda2ec400ae4475e6126d40fadfece49
+
+COCOAPODS: 1.5.3
