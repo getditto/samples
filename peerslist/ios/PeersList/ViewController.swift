@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         let peer = peers[indexPath.row]
         cell.detailTextLabel?.numberOfLines = 0
-        cell.textLabel?.text = peer.deviceName
+        cell.textLabel?.text = peer.id
         cell.detailTextLabel?.text = """
             Connections: \(peer.connections.joined(separator: ","))
             approximateDistanceInMeters: \(String(describing: peer.approximateDistanceInMeters))m
