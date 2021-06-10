@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         Self.ditto = Ditto()
-        Ditto.deviceName = makeupRandomDeviceName()
+        Self.ditto.deviceName = makeupRandomDeviceName()
         Self.ditto.setAccessLicense(readLicenseToken())
         Self.ditto.startSync()
         

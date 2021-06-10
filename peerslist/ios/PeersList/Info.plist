@@ -55,6 +55,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>Uses Bluetooth to connect and sync with nearby devices</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>Uses Bluetooth to connect and sync with nearby devices</string>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>Uses WiFi to connect and sync with nearby devices</string>
+    <key>NSBonjourServices</key>
+    <array>
+      <string>_http-alt._tcp.</string>
+    </array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

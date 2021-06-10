@@ -1,11 +1,11 @@
 PODS:
-  - DittoObjC (1.0.1)
-  - DittoSwift (1.0.1):
-    - DittoObjC (= 1.0.1)
+  - DittoObjC (1.0.3)
+  - DittoSwift (1.0.3):
+    - DittoObjC (= 1.0.3)
   - Fakery (5.1.0)
 
 DEPENDENCIES:
-  - DittoSwift (~> 1.0.0)
+  - DittoSwift (~> 1.0.3)
   - Fakery
 
 SPEC REPOS:
@@ -15,10 +15,10 @@ SPEC REPOS:
     - Fakery
 
 SPEC CHECKSUMS:
-  DittoObjC: f53e99e31fa801a59a411fbe604f2e7d30ddce96
-  DittoSwift: f9010fe7e8d3e005ebb53145b687f59415f80213
+  DittoObjC: 61b6b963916a41786d3fedc6c526f57dc0c12ae9
+  DittoSwift: 331c110dd660f61619b69293dc0fb84b76ac16cf
   Fakery: a90caff00ca5cacde6c161c3eafc72314a03d34d
 
-PODFILE CHECKSUM: 29692a7224397e6934b2bf2ca02ad550aae1f4aa
+PODFILE CHECKSUM: 87e52a31536d9f6ba9bfa432796e01da06aade44
 
 COCOAPODS: 1.10.1
