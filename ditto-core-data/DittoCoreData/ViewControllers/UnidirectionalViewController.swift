@@ -10,24 +10,7 @@ import Fakery
 import CoreData
 import DittoSwift
 
-class MainViewController: UIViewController {
-
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Model")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-
-    lazy var fetchRequest: NSFetchRequest<Task> = {
-        let request = NSFetchRequest<Task>()
-        request.entity = Task.entity()
-        request.sortDescriptors = [NSSortDescriptor(key: "createdOn", ascending: true)]
-        return request
-    }()
+class UnidirectionalViewController: UIViewController {
 
     lazy var fetchedResultsController: NSFetchedResultsController<Task> = {
         // Initialize Fetch Request
@@ -36,55 +19,63 @@ class MainViewController: UIViewController {
         let sortDescriptor = NSSortDescriptor(key: "createdOn", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         // Initialize Fetched Results Controller
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         // Configure Fetched Results Controller
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
 
-    lazy var ditto: Ditto = {
-        // read license token
-        let path = Bundle.main.path(forResource: "license_token", ofType: "txt") // file path for file "data.txt"
-        let licenseToken = try! String(contentsOfFile: path!, encoding: String.Encoding.utf8)
-        let ditto = Ditto()
-        ditto.setAccessLicense(licenseToken)
-        return ditto
-    }()
-
+    
+    weak var ditto = AppDelegate.ditto
     var dittoLiveQuery: DittoLiveQuery?
 
-    @IBOutlet weak var tableView: UITableView!
+    var tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(tableView)
+        tableView.frame = self.view.bounds
+        tableView.delegate = self
+        tableView.dataSource = self
+
+
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashButtonDidClick)),
+            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonDidClick))
+        ]
+
         // Do any additional setup after loading the view.
-        self.title = "Ditto CoreData"
+        self.title = "Unidirectional"
         // set the delegate to get notified from the fetch controller
         fetchedResultsController.delegate = self;
         // begin the initial fetch
         try! fetchedResultsController.performFetch()
-        ditto.startSync()
         bindIncomingChangesFromDitto()
     }
 
-    @IBAction @objc func addButtonDidClick() {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = self.view.frame
+    }
+
+    @objc func addButtonDidClick() {
         let faker = Faker()
         let body = faker.lorem.sentence()
         let isDone = faker.number.randomBool()
-        try! ditto.store["tasks"].insert([
+        let _ = try? ditto?.store["tasks"].insert([
             "body": body,
             "isDone": isDone,
             "createdOn": Date().timeIntervalSince1970 as Double
         ])
     }
 
-    @IBAction @objc func trashButtonDidClick() {
-        ditto.store["tasks"].findAll().remove()
+    @objc func trashButtonDidClick() {
+        ditto?.store["tasks"].findAll().remove()
     }
 
 }
 
-extension MainViewController: UITableViewDataSource {
+extension UnidirectionalViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.fetchedObjects?.count ?? 0
@@ -109,7 +100,7 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
-extension MainViewController: UITableViewDelegate {
+extension UnidirectionalViewController: UITableViewDelegate {
 
     /**
      This adds swipe to delete functionality
@@ -117,7 +108,7 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let task = fetchedResultsController.fetchedObjects![indexPath.row]
-            ditto.store.collection("tasks").findByID(DittoDocumentID(value: task.id)).remove()
+            ditto?.store.collection("tasks").findByID(DittoDocumentID(value: task.id)).remove()
         }
     }
 
@@ -126,10 +117,8 @@ extension MainViewController: UITableViewDelegate {
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let task = fetchedResultsController.fetchedObjects![indexPath.row]
-        task.isDone = !task.isDone
-        try! fetchedResultsController.managedObjectContext.save()
-        ditto.store.collection("tasks").findByID(DittoDocumentID(value: task.id)).update { doc in
-            doc?["isDone"].set(task.isDone)
+        ditto?.store.collection("tasks").findByID(DittoDocumentID(value: task.id)).update { doc in
+            doc?["isDone"].set(!task.isDone)
         }
     }
 
@@ -138,7 +127,7 @@ extension MainViewController: UITableViewDelegate {
 /**
  These delegate functions are called whenever CoreData's tasks objects are changed
  */
-extension MainViewController: NSFetchedResultsControllerDelegate {
+extension UnidirectionalViewController: NSFetchedResultsControllerDelegate {
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
@@ -169,13 +158,13 @@ extension MainViewController: NSFetchedResultsControllerDelegate {
 /**
  Handle incoming changes from Ditto
  */
-extension MainViewController {
+extension UnidirectionalViewController {
 
     /**
      Incoming changes from Ditto should map to core data
      */
     func bindIncomingChangesFromDitto () {
-        dittoLiveQuery = ditto.store["tasks"].findAll().sort("createdOn", direction: .ascending)
+        dittoLiveQuery = ditto?.store["tasks"].findAll().sort("createdOn", direction: .ascending)
             .observe { docs, event in
                 let context = self.fetchedResultsController.managedObjectContext
                 let tasks = self.fetchedResultsController.fetchedObjects ?? []
@@ -206,25 +195,10 @@ extension MainViewController {
                     task.createdOn = Date(timeIntervalSince1970: doc["createdOn"].doubleValue)
                     task.isDone = doc["isDone"].boolValue
                     context.insert(task)
-                    print("inserting")
                 }
 
                 try! context.save()
             }
-    }
-
-
-}
-
-
-extension Task {
-
-    func isSameValue(as dittoDocument: DittoDocument) -> Bool {
-        return
-            self.id == dittoDocument.id.toString() &&
-            self.body == dittoDocument["body"].stringValue &&
-            self.isDone == dittoDocument["isDone"].boolValue &&
-            self.createdOn?.timeIntervalSince1970 == dittoDocument["createdOn"].doubleValue
     }
 
 

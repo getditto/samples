@@ -6,27 +6,48 @@
 //
 
 import UIKit
+import DittoSwift
+import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+
+    static var persistentContainer: NSPersistentContainer!
+    static var ditto: Ditto!
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        Self.ditto = {
+            // read license token
+            let path = Bundle.main.path(forResource: "license_token", ofType: "txt") // file path for file "data.txt"
+            let licenseToken = try! String(contentsOfFile: path!, encoding: String.Encoding.utf8)
+            let ditto = Ditto()
+            ditto.setAccessLicense(licenseToken)
+            ditto.startSync()
+            return ditto
+        }()
+
+        Self.persistentContainer = {
+            let container = NSPersistentContainer(name: "Model")
+            container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+                if let error = error as NSError? {
+                    fatalError("Unresolved error \(error), \(error.userInfo)")
+                }
+            })
+            return container
+
+        }()
+
+        window = UIWindow()
+        window?.rootViewController = {
+            let navigationController = UINavigationController(rootViewController: StartViewController())
+            return navigationController
+        }()
+        window?.makeKeyAndVisible()
         return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
 
