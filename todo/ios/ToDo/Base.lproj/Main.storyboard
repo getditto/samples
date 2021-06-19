@@ -119,7 +119,7 @@
                                                         <action selector="addButtonDidClick" destination="rbf-b3-725" eventType="touchUpInside" id="p20-WI-8iN"/>
                                                     </connections>
                                                 </button>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TZY-2g-10B">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your new todo text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TZY-2g-10B">
                                                     <rect key="frame" x="20" y="5" width="336" height="46"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -191,15 +191,8 @@
                             <constraint firstItem="o2u-bo-GY9" firstAttribute="bottom" secondItem="z1d-Pj-wi1" secondAttribute="bottom" constant="34" id="dhF-SM-rHF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YcK-jp-F8e">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="irR-3O-9dA">
-                            <connections>
-                                <segue destination="iox-kI-xyS" kind="presentation" id="YT1-AX-O2p"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="YcK-jp-F8e"/>
                     <connections>
-                        <outlet property="plusBarButtonItem" destination="irR-3O-9dA" id="cj4-9o-9Qi"/>
                         <outlet property="tableView" destination="o2u-bo-GY9" id="hgN-1q-Vxi"/>
                     </connections>
                 </viewController>
@@ -231,7 +224,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iox-kI-xyS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cm9-fr-s64">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -242,7 +235,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
