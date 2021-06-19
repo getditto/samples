@@ -8,7 +8,7 @@
 import UIKit
 import DittoSwift
 
-class ViewController: UIViewController, UITableViewDataSource {
+class UIKitExampleViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var plusBarButtonItem: UIBarButtonItem!
@@ -31,19 +31,28 @@ class ViewController: UIViewController, UITableViewDataSource {
         liveQuery = AppDelegate.ditto.store["todos"].findAll().sort("ordinal", direction: .ascending)
             .observe(eventHandler: { docs, event in
                 self.todos = docs.map({ ToDo($0) })
-
             })
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
         return todos.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         let todo = todos[indexPath.row]
         cell.detailTextLabel?.numberOfLines = 0
-        cell.textLabel?.text = todo.text
+        cell.textLabel?.text = todo.body
         return cell
     }
 
