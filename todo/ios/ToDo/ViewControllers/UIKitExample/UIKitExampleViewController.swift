@@ -8,10 +8,11 @@
 import UIKit
 import DittoSwift
 
-class UIKitExampleViewController: UIViewController, UITableViewDataSource {
+class UIKitExampleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var plusBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var textField: UITextField?
 
     var liveQuery: DittoLiveQuery?
     var todos: [ToDo] = []
@@ -22,15 +23,11 @@ class UIKitExampleViewController: UIViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.tableView.rowHeight = UITableView.automaticDimension;
-        self.tableView.estimatedRowHeight = 44.0;
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.title = "To Do"
-
         liveQuery = AppDelegate.ditto.store["todos"].findAll().sort("ordinal", direction: .ascending)
             .observe(eventHandler: { docs, event in
                 self.todos = docs.map({ ToDo($0) })
+                self.tableView.reloadData()
             })
     }
 
@@ -47,18 +44,43 @@ class UIKitExampleViewController: UIViewController, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-
+            let cell = tableView.dequeueReusableCell(withIdentifier: "INSERT_CELL", for: indexPath) as! InsertTableViewCell
+            return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TODO_CELL", for: indexPath) as! ToDoTableViewCell
         let todo = todos[indexPath.row]
-        cell.detailTextLabel?.numberOfLines = 0
-        cell.textLabel?.text = todo.body
+        cell.checkBoxImageView.image = todo.isDone ? UIImage(named: "box_checked"): UIImage(named: "box_empty")
+        cell.bodyLabel?.text = todo.body
+        cell.selectionStyle = .none
         return cell
     }
 
-    @IBAction @objc func plusBarButtonDidClick() {
-        
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Create new todo"
+        }
+        return "Todos"
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let todo = todos[indexPath.row]
+        AppDelegate.ditto.store["todos"].findByID(todo.id).update { mutableDoc in
+            mutableDoc?["isDone"].set(!todo.isDone)
+        }
+    }
+
+
+    @IBAction @objc func addButtonDidClick() {
+        guard let insertCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? InsertTableViewCell else { return }
+        try! AppDelegate.ditto.store["todos"].insert([
+            "body": insertCell.textField.text ?? "",
+            "isDone": false
+        ])
+        insertCell.textField.text = ""
+    }
+
+
 
 }
 

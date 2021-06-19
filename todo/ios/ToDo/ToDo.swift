@@ -8,17 +8,15 @@
 import Foundation
 import DittoSwift
 
-struct ToDo: Ordinal {
+struct ToDo {
 
     let id: String
     let body: String
     let isDone: Bool
-    let ordinal: Float
 
     init(_ document: DittoDocument) {
         id = document.id.value as! String
         body = document["body"].stringValue
         isDone = document["isDone"].boolValue
-        ordinal = document["ordinal"].floatValue
     }
 }
