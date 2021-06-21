@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  PeersList
+//  ToDo
 //
 //  Created by Maximilian Alexander on 5/27/21.
 //
