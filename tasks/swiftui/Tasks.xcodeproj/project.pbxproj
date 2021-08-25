@@ -67,7 +67,8 @@
 		2D43394F26CB2F5C0089E76B /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				2D43396426CB2FCC0089E76B /* SwiftUI */,
+				2D43395426CB2F5C0089E76B /* TasksListView.swift */,
+				2D43396726CB337F0089E76B /* EditTaskView.swift */,
 				2D43395026CB2F5C0089E76B /* AppDelegate.swift */,
 				2D43395226CB2F5C0089E76B /* SceneDelegate.swift */,
 				2D43395626CB2F5F0089E76B /* Assets.xcassets */,
@@ -85,15 +86,6 @@
 				2D43395926CB2F5F0089E76B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		2D43396426CB2FCC0089E76B /* SwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-				2D43395426CB2F5C0089E76B /* TasksListView.swift */,
-				2D43396726CB337F0089E76B /* EditTaskView.swift */,
-			);
-			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		9B0499073FFD09800D93B3FB /* Pods */ = {

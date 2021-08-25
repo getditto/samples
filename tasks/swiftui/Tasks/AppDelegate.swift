@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Self.ditto = Ditto()
+        Self.ditto = Ditto(identity: .development(appName: "live.ditto.tasks"))
 
         return true
     }

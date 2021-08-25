@@ -10,7 +10,7 @@ import UIKit
 import DittoSwift
 
 class TasksTableViewController: UITableViewController {
-    // These hold references to DittoSyncKit for easy access
+    // These hold references to Ditto for easy access
     var ditto: Ditto!
     var store: DittoStore!
     var liveQuery: DittoLiveQuery?
@@ -25,15 +25,15 @@ class TasksTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Create an instance of DittoSyncKit
+        // Create an instance of Ditto
         ditto = Ditto(identity: .development(appName: "live.ditto.tasks"))
 
-        // Set your DittoSyncKit access license
+        // Set your Ditto access license
         // The SDK will not work without this!
         do {
             // set the access token
             try ditto.setLicenseToken("<INSERT ACCESS LICENSE>")
-            // This starts DittoSyncKit's background synchronization
+            // This starts Ditto's background synchronization
             try ditto.tryStartSync()
         } catch(let err) {
             let alert = UIAlertController(title: "Uh oh", message: "Ditto wasn't able to start syncing. That's okay it'll still work as a local database. Here's the error: \n \(err.localizedDescription)", preferredStyle: .alert)
@@ -45,7 +45,7 @@ class TasksTableViewController: UITableViewController {
         // Create some helper variables for easy access
         store = ditto.store
         // We will store data in the "tasks" collection
-        // DittoSyncKit stores data as collections of documents
+        // Ditto stores data as collections of documents
         collection = store.collection("tasks")
 
         // This function will create a "live-query" that will update
@@ -56,7 +56,7 @@ class TasksTableViewController: UITableViewController {
     func setupTaskList() {
         // Query for all tasks and sort by dateCreated
         // Observe changes with a live-query and update the UITableView
-        liveQuery = collection.findAll().sort("dateCreated", direction: .ascending).observe { [weak self] docs, event in
+        liveQuery = collection.findAll().observe { [weak self] docs, event in
             guard let `self` = self else { return }
             switch event {
             case .update(let changes):
@@ -114,7 +114,7 @@ class TasksTableViewController: UITableViewController {
             guard let `self` = self else { return }
             if let text = alert.textFields?[0].text
             {
-                // Insert the data into DittoSyncKit
+                // Insert the data into Ditto
                 let _ = try! self.collection.insert([
                     "body": text,
                     "isCompleted": false
@@ -169,7 +169,7 @@ class TasksTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Retrieve the task at the row swiped
             let task = tasks[indexPath.row]
-            // Delete the task from DittoSyncKit
+            // Delete the task from Ditto
             collection.findByID(task.id).remove()
         }
     }
