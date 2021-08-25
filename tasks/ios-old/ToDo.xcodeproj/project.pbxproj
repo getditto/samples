@@ -13,7 +13,7 @@
 		2D1FD8162660954900710E5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1FD8142660954900710E5D /* Main.storyboard */; };
 		2D1FD8182660954A00710E5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1FD8172660954A00710E5D /* Assets.xcassets */; };
 		2D1FD81B2660954A00710E5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1FD8192660954A00710E5D /* LaunchScreen.storyboard */; };
-		2D1FD8232660967800710E5D /* license_token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D1FD8222660967800710E5D /* license_token.txt */; };
+		2D5D7A82269AA6AF00CE86FC /* license_token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D5D7A81269AA6AF00CE86FC /* license_token.txt */; };
 		2D7C3C842673C66B003BC6DB /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C3C832673C66B003BC6DB /* ToDo.swift */; };
 		2DB7A76C267E431E002A6AFE /* SwiftUIExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7A76B267E431E002A6AFE /* SwiftUIExampleViewController.swift */; };
 		2DB7A770267E4371002A6AFE /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7A76F267E4371002A6AFE /* ToDoListView.swift */; };
@@ -31,7 +31,7 @@
 		2D1FD8172660954A00710E5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D1FD81A2660954A00710E5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D1FD81C2660954A00710E5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2D1FD8222660967800710E5D /* license_token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license_token.txt; sourceTree = "<group>"; };
+		2D5D7A81269AA6AF00CE86FC /* license_token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = license_token.txt; path = ../../../license_token.txt; sourceTree = "<group>"; };
 		2D7C3C832673C66B003BC6DB /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		2DB7A76B267E431E002A6AFE /* SwiftUIExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleViewController.swift; sourceTree = "<group>"; };
 		2DB7A76F267E4371002A6AFE /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		2D1FD80D2660954900710E5D /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
-				2D1FD8222660967800710E5D /* license_token.txt */,
+				2D5D7A81269AA6AF00CE86FC /* license_token.txt */,
 				2D1FD80E2660954900710E5D /* AppDelegate.swift */,
 				2D1FD8102660954900710E5D /* SceneDelegate.swift */,
 				2D7C3C892673DDCB003BC6DB /* ViewControllers */,
@@ -198,7 +198,7 @@
 			files = (
 				2D1FD81B2660954A00710E5D /* LaunchScreen.storyboard in Resources */,
 				2D1FD8182660954A00710E5D /* Assets.xcassets in Resources */,
-				2D1FD8232660967800710E5D /* license_token.txt in Resources */,
+				2D5D7A82269AA6AF00CE86FC /* license_token.txt in Resources */,
 				2D1FD8162660954900710E5D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

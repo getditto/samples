@@ -6,7 +6,7 @@ target 'ToDo' do
   use_frameworks!
 
   # Pods for PeersList
-  pod "DittoSwift", "~>1.0.4"
+  pod "DittoSwift", "~>1.0.6"
   pod "Fakery"
   pod "CombineDitto"
 end
