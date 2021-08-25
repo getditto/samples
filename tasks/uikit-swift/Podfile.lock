@@ -1,0 +1,20 @@
+PODS:
+  - DittoObjC (1.0.8)
+  - DittoSwift (1.0.8):
+    - DittoObjC (= 1.0.8)
+
+DEPENDENCIES:
+  - DittoSwift (>= 1.0.8)
+
+SPEC REPOS:
+  trunk:
+    - DittoObjC
+    - DittoSwift
+
+SPEC CHECKSUMS:
+  DittoObjC: c8e66e103fcce2ef574e670764de1757ddef3a92
+  DittoSwift: 372cb133c1206e90353c24e001721acb3440d822
+
+PODFILE CHECKSUM: 1db5ae65e9d12b47c2068e0e0b89ce3a8d2cebd9
+
+COCOAPODS: 1.10.1
