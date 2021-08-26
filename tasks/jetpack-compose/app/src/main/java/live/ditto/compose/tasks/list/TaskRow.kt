@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -24,12 +24,14 @@ import java.util.*
 @Composable
 fun TaskRow(
     task: Task,
-    onToggleButton: ((task: Task) -> Unit)? = null,
+    onToggle: ((task: Task) -> Unit)? = null,
     onClickBody: ((task: Task) -> Unit)? = null) {
 
     val iconId =
         if (task.isCompleted) R.drawable.ic_baseline_circle_24 else R.drawable.ic_outline_circle_24
     val color = if (task.isCompleted) R.color.purple_200 else R.color.gray
+    var textDecoration = if (task.isCompleted) TextDecoration.LineThrough else
+        TextDecoration.None
     Row(
         Modifier
             .fillMaxWidth()
@@ -45,11 +47,12 @@ fun TaskRow(
             modifier = Modifier
                 .padding(end = 16.dp)
                 .size(24.dp, 24.dp)
-                .clickable { onToggleButton?.invoke(task) },
+                .clickable { onToggle?.invoke(task) },
             alignment = Alignment.CenterEnd
         )
         Text(
             text = task.body,
+            textDecoration = textDecoration,
             fontSize = 16.sp,
             modifier = Modifier
                 .alignByBaseline()
@@ -58,11 +61,12 @@ fun TaskRow(
     }
 }
 
-@Preview(device = Devices.PIXEL_3, showSystemUi = true)
+@Preview(showBackground = true)
 @Composable
 fun TaskRowPreview() {
     Column() {
         TaskRow(task = Task(UUID.randomUUID().toString(), "Get Milk", true))
-        TaskRow(task = Task(UUID.randomUUID().toString(), "Get Oats", false))
+        TaskRow(task = Task(UUID.randomUUID().toString(), "Do Homework", false))
+        TaskRow(task = Task(UUID.randomUUID().toString(), "Take out trash", true))
     }
 }

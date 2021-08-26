@@ -15,12 +15,4 @@ data class Task(
     ) {
 
     }
-
-    fun toMap(): Map<String, Any> {
-        return mapOf(
-            "_id" to _id,
-            "body" to body,
-            "isCompleted" to isCompleted
-        )
-    }
 }

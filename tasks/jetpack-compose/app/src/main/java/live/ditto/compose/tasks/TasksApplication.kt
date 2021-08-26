@@ -2,7 +2,6 @@ package live.ditto.compose.tasks
 
 import android.app.Application
 import live.ditto.Ditto
-import live.ditto.DittoDependencies
 import live.ditto.DittoIdentity
 import live.ditto.android.DefaultAndroidDittoDependencies
 
