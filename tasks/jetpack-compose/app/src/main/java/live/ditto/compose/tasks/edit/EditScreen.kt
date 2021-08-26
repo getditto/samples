@@ -20,7 +20,6 @@ fun EditScreen(navController: NavController, taskId: String?) {
     val editScreenViewModel: EditScreenViewModel = viewModel();
     editScreenViewModel.setupWithTask(taskId = taskId)
 
-    val scaffoldState = rememberScaffoldState()
     val topBarTitle = if (taskId == null) "New Task" else "Edit Task"
 
     val body: String by editScreenViewModel.body.observeAsState("")
@@ -34,7 +33,6 @@ fun EditScreen(navController: NavController, taskId: String?) {
                 backgroundColor = colorResource(id = R.color.purple_700)
             )
         },
-        scaffoldState = scaffoldState,
         content = {
             EditForm(
                 canDelete = canDelete,
