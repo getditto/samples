@@ -28,7 +28,7 @@ fun TasksListScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("Tasks Jetpack Compose") },
-                backgroundColor = colorResource(id = R.color.purple_700)
+                backgroundColor = colorResource(id = R.color.blue_700)
             )
         },
         floatingActionButton = {
