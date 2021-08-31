@@ -1,7 +1,6 @@
 ﻿using System;
 using DittoSDK;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Tasks
 {
@@ -16,7 +15,20 @@ namespace Tasks
         public static void Main(params string[] args)
         {
             ditto = new Ditto(identity: DittoIdentity.Development(appName: "live.ditto.tasks"));
-            // ditto.SetLicenseToken("my token");
+
+            try
+            {
+                ditto.SetLicenseToken("<REPlACE_ME>");
+                ditto.StartSync();
+            }
+            catch (DittoException ex)
+            {
+                Console.WriteLine("There was an error starting Ditto.");
+                Console.WriteLine("Here's the following error");
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine("Ditto cannot start sync but don't worry.");
+                Console.WriteLine("Ditto will still work as a local database.");
+            }
 
             Console.WriteLine("Welcome to Ditto's Task App");
 
