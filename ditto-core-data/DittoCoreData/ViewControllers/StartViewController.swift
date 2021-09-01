@@ -23,6 +23,9 @@ class StartViewController: UIViewController, UITableViewDataSource, UITableViewD
         Option(title: "Bidirectional",
                details: "Edit Core Data and Ditto will move data around",
                controllerType: BidirectionalViewController.self),
+        Option(title: "Codable Binding",
+               details: "Safe Codable Binding",
+               controllerType: UnidirectionalCodableBindingViewController.self),
     ]
 
     override func viewDidLoad() {

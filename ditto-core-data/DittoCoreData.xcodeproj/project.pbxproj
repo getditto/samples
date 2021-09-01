@@ -12,10 +12,11 @@
 		2D6D29C3267C0BA300C84717 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6D29C2267C0BA300C84717 /* Assets.xcassets */; };
 		2D6D29C6267C0BA300C84717 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D6D29C4267C0BA300C84717 /* LaunchScreen.storyboard */; };
 		2D6D29D0267C0D9D00C84717 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D6D29CE267C0D9D00C84717 /* Model.xcdatamodeld */; };
-		2D6D29D6267CF7F500C84717 /* license_token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D6D29D5267CF7F500C84717 /* license_token.txt */; };
 		2D6D29DA267D47BF00C84717 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6D29D9267D47BF00C84717 /* StartViewController.swift */; };
 		2D6D29DD267D4A1000C84717 /* BidirectionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6D29DC267D4A1000C84717 /* BidirectionalViewController.swift */; };
 		2D6D29DF267D50D200C84717 /* Task+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6D29DE267D50D200C84717 /* Task+Extensions.swift */; };
+		2DB7A79C26826965002A6AFE /* UnidirectionalCodableBindingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7A79B26826965002A6AFE /* UnidirectionalCodableBindingViewController.swift */; };
+		2DB7A79E26826AF6002A6AFE /* license_token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2DB7A79D26826AF6002A6AFE /* license_token.txt */; };
 		9B098AE09F67EB2839BA7F0E /* Pods_DittoCoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E005924CE9F3F48BC2445C /* Pods_DittoCoreData.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,10 +28,11 @@
 		2D6D29C5267C0BA300C84717 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D6D29C7267C0BA300C84717 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D6D29CF267C0D9D00C84717 /* Task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Task.xcdatamodel; sourceTree = "<group>"; };
-		2D6D29D5267CF7F500C84717 /* license_token.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = license_token.txt; sourceTree = "<group>"; };
 		2D6D29D9267D47BF00C84717 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		2D6D29DC267D4A1000C84717 /* BidirectionalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalViewController.swift; sourceTree = "<group>"; };
 		2D6D29DE267D50D200C84717 /* Task+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Extensions.swift"; sourceTree = "<group>"; };
+		2DB7A79B26826965002A6AFE /* UnidirectionalCodableBindingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnidirectionalCodableBindingViewController.swift; sourceTree = "<group>"; };
+		2DB7A79D26826AF6002A6AFE /* license_token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = license_token.txt; path = ../../license_token.txt; sourceTree = "<group>"; };
 		74E005924CE9F3F48BC2445C /* Pods_DittoCoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DittoCoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE648F5E76E0943F0ADDA0FD /* Pods-DittoCoreData.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DittoCoreData.release.xcconfig"; path = "Target Support Files/Pods-DittoCoreData/Pods-DittoCoreData.release.xcconfig"; sourceTree = "<group>"; };
 		E22ECB44A267E7505ECD5275 /* Pods-DittoCoreData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DittoCoreData.debug.xcconfig"; path = "Target Support Files/Pods-DittoCoreData/Pods-DittoCoreData.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,13 +71,13 @@
 		2D6D29B8267C0BA100C84717 /* DittoCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				2DB7A79D26826AF6002A6AFE /* license_token.txt */,
 				2D6D29CD267C0D7300C84717 /* CoreData */,
 				2D6D29B9267C0BA100C84717 /* AppDelegate.swift */,
 				2D6D29DB267D4A0100C84717 /* ViewControllers */,
 				2D6D29C2267C0BA300C84717 /* Assets.xcassets */,
 				2D6D29C4267C0BA300C84717 /* LaunchScreen.storyboard */,
 				2D6D29C7267C0BA300C84717 /* Info.plist */,
-				2D6D29D5267CF7F500C84717 /* license_token.txt */,
 			);
 			path = DittoCoreData;
 			sourceTree = "<group>";
@@ -95,6 +97,7 @@
 				2D6D29BD267C0BA100C84717 /* UnidirectionalViewController.swift */,
 				2D6D29D9267D47BF00C84717 /* StartViewController.swift */,
 				2D6D29DC267D4A1000C84717 /* BidirectionalViewController.swift */,
+				2DB7A79B26826965002A6AFE /* UnidirectionalCodableBindingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -177,7 +180,7 @@
 			files = (
 				2D6D29C6267C0BA300C84717 /* LaunchScreen.storyboard in Resources */,
 				2D6D29C3267C0BA300C84717 /* Assets.xcassets in Resources */,
-				2D6D29D6267CF7F500C84717 /* license_token.txt in Resources */,
+				2DB7A79E26826AF6002A6AFE /* license_token.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +237,7 @@
 				2D6D29DA267D47BF00C84717 /* StartViewController.swift in Sources */,
 				2D6D29BE267C0BA100C84717 /* UnidirectionalViewController.swift in Sources */,
 				2D6D29BA267C0BA100C84717 /* AppDelegate.swift in Sources */,
+				2DB7A79C26826965002A6AFE /* UnidirectionalCodableBindingViewController.swift in Sources */,
 				2D6D29DF267D50D200C84717 /* Task+Extensions.swift in Sources */,
 				2D6D29DD267D4A1000C84717 /* BidirectionalViewController.swift in Sources */,
 			);

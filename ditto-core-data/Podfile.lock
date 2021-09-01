@@ -1,24 +1,28 @@
 PODS:
+  - CodableWrappers (2.0.0)
   - DittoObjC (1.0.4)
   - DittoSwift (1.0.4):
     - DittoObjC (= 1.0.4)
   - Fakery (5.1.0)
 
 DEPENDENCIES:
+  - CodableWrappers
   - DittoSwift (>= 1.0.4)
   - Fakery
 
 SPEC REPOS:
   trunk:
+    - CodableWrappers
     - DittoObjC
     - DittoSwift
     - Fakery
 
 SPEC CHECKSUMS:
+  CodableWrappers: 878fa8e5a418e0a8545f4f5cab60ab4561248fcd
   DittoObjC: 2b43a649452c955284365dbc714369cef18e4fca
   DittoSwift: 68612d60faf2816fda12ff01ed849ec88571f84b
   Fakery: a90caff00ca5cacde6c161c3eafc72314a03d34d
 
-PODFILE CHECKSUM: 989dfd1e4b9425491114c45f9ccc124e38465d2b
+PODFILE CHECKSUM: dd26faf58b8aaf176e52cf8ca3f7f7c51b9e4e7d
 
 COCOAPODS: 1.10.1
