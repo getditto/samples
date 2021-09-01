@@ -37,7 +37,6 @@ namespace Tasks
             });
 
             ListCommands();
-            ListTasks();
 
             while (!isAskedToExit)
             {
@@ -68,7 +67,10 @@ namespace Tasks
                             .Remove();
                         break;
                     case { } when command.StartsWith("--list"):
-                        ListTasks();
+                        tasks.ForEach(task =>
+                        {
+                            Console.WriteLine(task.ToString());
+                        });
                         break;
                     case { } when command.StartsWith("--exit"):
                         Console.WriteLine("Good bye!");
@@ -80,14 +82,6 @@ namespace Tasks
                         break;
                 }
             }
-        }
-
-        public static void ListTasks()
-        {
-            tasks.ForEach(task =>
-            {
-                Console.WriteLine(task.ToString());
-            });
         }
 
         public static void ListCommands()
