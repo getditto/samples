@@ -18,7 +18,7 @@ namespace Tasks
 
             try
             {
-                ditto.SetLicenseToken("<REPlACE_ME>");
+                ditto.SetLicenseToken("<REPLACE_ME>");
                 ditto.TryStartSync();
             }
             catch (DittoException ex)
