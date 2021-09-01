@@ -19,7 +19,7 @@ namespace Tasks
             try
             {
                 ditto.SetLicenseToken("<REPlACE_ME>");
-                ditto.StartSync();
+                ditto.TryStartSync();
             }
             catch (DittoException ex)
             {
@@ -106,8 +106,6 @@ namespace Tasks
             Console.WriteLine("   List the current tasks");
             Console.WriteLine("--exit");
             Console.WriteLine("   Exits the program");
-            Console.WriteLine("--help");
-            Console.WriteLine("   Lists the commands");
             Console.WriteLine("************* Commands *************");
         }
     }
