@@ -16,9 +16,6 @@ class TasksTableViewController: UITableViewController {
     var liveQuery: DittoLiveQuery?
     var collection: DittoCollection!
 
-    // We need to format the task creation date into a UTC string
-    var dateFormatter = ISO8601DateFormatter()
-
     // This is the UITableView data source
     var tasks: [DittoDocument] = []
 
@@ -54,7 +51,7 @@ class TasksTableViewController: UITableViewController {
     }
 
     func setupTaskList() {
-        // Query for all tasks and sort by dateCreated
+        // Query for all tasks
         // Observe changes with a live-query and update the UITableView
         liveQuery = collection.findAll().observe { [weak self] docs, event in
             guard let `self` = self else { return }
