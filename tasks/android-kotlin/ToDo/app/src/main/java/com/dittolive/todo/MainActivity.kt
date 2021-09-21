@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.task_view.view.*
 import live.ditto.*
 import live.ditto.android.DefaultAndroidDittoSyncKitDependencies
 import java.time.Instant
-import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogListener {
     private lateinit var recyclerView: RecyclerView
@@ -86,7 +85,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         // Listen for clicks to mark tasks [in]complete
         tasksAdapter.onItemClick = { task ->
             ditto.store.collection("tasks").findByID(task.id).update { newTask ->
-                newTask!!["isComplete"].set(!newTask["isComplete"].booleanValue)
+                newTask!!["isCompleted"].set(!newTask["isCompleted"].booleanValue)
             }
         }
 
@@ -101,8 +100,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
     override fun onDialogSave(dialog: DialogFragment, task:String) {
         // Add the task to Ditto
-        val currentDateString = DateTimeFormatter.ISO_INSTANT.format(Instant.now())
-        this.collection!!.insert(mapOf("text" to task, "isComplete" to false, "dateCreated" to currentDateString))
+        this.collection!!.insert(mapOf("body" to task, "isCompleted" to false))
     }
 
     override fun onDialogCancel(dialog: DialogFragment) { }
@@ -117,7 +115,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         this.collection = this.ditto!!.store.collection("tasks")
 
         // We use observe to create a live query with a subscription to sync this query with other devices
-        this.liveQuery = collection!!.findAll().sort("dateCreated", DittoSortDirection.Ascending).observe { docs, event ->
+        this.liveQuery = collection!!.findAll().observe { docs, event ->
             val adapter = (this.viewAdapter as TasksAdapter)
             when (event) {
                 is DittoLiveQueryEvent.Update -> {
@@ -164,8 +162,8 @@ class TasksAdapter: RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
-        holder.itemView.taskTextView.text = task["text"].stringValue
-        holder.itemView.taskCheckBox.isChecked = task["isComplete"].booleanValue
+        holder.itemView.taskTextView.text = task["body"].stringValue
+        holder.itemView.taskCheckBox.isChecked = task["isCompleted"].booleanValue
         holder.itemView.setOnClickListener {
             // NOTE: Cannot use position as this is not accurate based on async updates
             onItemClick?.invoke(tasks[holder.adapterPosition])
