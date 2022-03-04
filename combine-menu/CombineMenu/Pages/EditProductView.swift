@@ -56,10 +56,10 @@ class EditProductViewModel: ObservableObject {
 
     func save() {
         try! ditto.store["products"].upsert([
-            "_id": productIdToEdit,
+            "_id": productIdToEdit ?? UUID().uuidString,
             "name": name,
             "detail": detail,
-            "categoryId": selectedCategory?._id
+            "categoryId": self.selectedCategory?._id
         ])
     }
 
