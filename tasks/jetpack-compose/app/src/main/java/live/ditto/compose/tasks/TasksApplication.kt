@@ -15,7 +15,7 @@ class TasksApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)
-        val identity = DittoIdentity.Development(appName = "live.ditto.tasks", dependencies = androidDependencies);
+        val identity = DittoIdentity.Development(appID = "live.ditto.tasks", dependencies = androidDependencies);
         ditto = Ditto(androidDependencies, identity)
     }
 

@@ -19,6 +19,23 @@ namespace Tasks
             try
             {
                 ditto.SetLicenseToken("<REPLACE_ME>");
+                DittoTransportConfig transportConfig = new DittoTransportConfig();
+
+                // Enable Local Area Network Connections
+                transportConfig.EnableAllPeerToPeer();
+
+                // Listen for incoming connections on port 4000
+                transportConfig.Listen.Tcp.Enabled = true;
+                transportConfig.Listen.Tcp.InterfaceIp = "0.0.0.0";
+                transportConfig.Listen.Tcp.Port = 4000;
+
+                // Connect explicitly to a remote device on 
+                transportConfig.Connect.TcpServers.Add("135.1.5.5:12345");
+                // you can add as many TcpServers as you would like.
+                transportConfig.Connect.TcpServers.Add("185.1.5.5:12345");
+
+                ditto.SetTransportConfig(transportConfig);
+
                 ditto.TryStartSync();
             }
             catch (DittoException ex)

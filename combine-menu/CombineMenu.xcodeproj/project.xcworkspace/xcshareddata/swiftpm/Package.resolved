@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Ditto",
+        "repositoryURL": "https://github.com/getditto/DittoSwiftPackage",
+        "state": {
+          "branch": null,
+          "revision": "07cf2000fed914300d8294855e9165f1980c0643",
+          "version": "1.1.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

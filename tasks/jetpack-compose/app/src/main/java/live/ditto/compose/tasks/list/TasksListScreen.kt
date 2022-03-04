@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,16 +28,17 @@ fun TasksListScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Tasks Jetpack Compose") },
+                title = { Text("Tasks", color = Color.White) },
                 backgroundColor = colorResource(id = R.color.blue_700)
             )
         },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                icon = { Icon(Icons.Filled.Add, "") },
-                text = { Text(text = "New Task") },
+                icon = { Icon(Icons.Filled.Add, "", tint = Color.White) },
+                text = { Text(text = "New Task", color = Color.White) },
                 onClick = { navController.navigate("tasks/edit") },
-                elevation = FloatingActionButtonDefaults.elevation(8.dp)
+                elevation = FloatingActionButtonDefaults.elevation(8.dp),
+                backgroundColor = colorResource(id = R.color.blue_500)
             )
         },
         floatingActionButtonPosition = FabPosition.End,
