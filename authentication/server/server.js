@@ -20,7 +20,6 @@ function checkToken (token) {
 
 app.post('/', async (req, res) => {
   const token = req.body.token;
-  console.log('got token', req.body.token)
   try {
     const { userId } = await checkToken(token)
     res.json({
