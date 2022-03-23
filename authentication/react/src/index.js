@@ -15,10 +15,10 @@ import { init } from "@dittolive/ditto"
     <React.StrictMode>
 
       <Auth0Provider
-        domain="dev-0zipncfu.us.auth0.com"
-        clientId="QMzdtpHd70NApVsMpbJ7m3BMMmhHlHj3"
+        domain=""
+        clientId=""
         redirectUri={window.location.origin}
-        audience="https://dev-0zipncfu.us.auth0.com/api/v2/"
+        audience=""
         scope="read:current_user update:current_user_metadata"
       >
         <App />

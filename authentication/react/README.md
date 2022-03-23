@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 1. First run `npm install`
 2. Add your appId to `src/ditto.js`
+3. Enter your Auth0 credentials to `src/index.js` and `src/App.js`
 3. Run `npm start`
 
 ## Access Token

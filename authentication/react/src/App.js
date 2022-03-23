@@ -3,6 +3,8 @@ import './App.css';
 import { useAuth0 } from "@auth0/auth0-react";
 import Ditto from "./ditto"
 
+const domain = "YOUR AUTH0 DOMAIN";
+
 let ditto
 function App() {
   const { user, loginWithRedirect, getAccessTokenSilently, isAuthenticated, logout } = useAuth0();
@@ -12,7 +14,6 @@ function App() {
   useEffect(() => {
     let liveQuery
     async function refreshToken () {
-      const domain = "dev-0zipncfu.us.auth0.com";
       const accessToken = await getAccessTokenSilently({
         audience: `https://${domain}/api/v2/`,
         scope: "read:current_user",
