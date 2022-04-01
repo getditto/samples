@@ -14,14 +14,13 @@ struct TasksApp: App {
     @State var isPresentingAlert = false
     @State var errorMessage = ""
 
-    var ditto = Ditto(identity: .development(appName: "live.ditto.tasks"))
+    var ditto = Ditto(identity: .onlinePlaygroundV2(appID: "YOUR_APP_ID_HERE"))
 
     var body: some Scene {
         WindowGroup {
             TasksListScreen(ditto: ditto)
                 .onAppear(perform: {
                     do {
-                        try ditto.setLicenseToken("<REPLACE_ME>")
                         try ditto.tryStartSync()
                     } catch (let err){
                         isPresentingAlert = true
