@@ -92,11 +92,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DE79F1B26D8B2F6003F9F80 /* Build configuration list for PBXNativeTarget "Tasks" */;
 			buildPhases = (
-				32FD51BD9FB30262D1587266 /* [CP] Check Pods Manifest.lock */,
 				2DE79F0826D8B2F5003F9F80 /* Sources */,
 				2DE79F0926D8B2F5003F9F80 /* Frameworks */,
 				2DE79F0A26D8B2F5003F9F80 /* Resources */,
-				8569C84941FB57BDEC79741B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
