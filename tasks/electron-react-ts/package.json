@@ -36,7 +36,7 @@
   "scripts": {
     "start": "npm run build && electron ./build/main.js",
     "build": "NODE_ENV=production webpack",
-    "lint": "eslint --ext .tsx,.ts src && tsc --noEmit && prettier --check src public"
+    "lint": "eslint --ext .tsx,.ts src && tsc --noEmit && prettier --check ."
   },
   "eslintConfig": {
     "extends": [
