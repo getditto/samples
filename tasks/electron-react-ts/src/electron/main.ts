@@ -8,12 +8,13 @@ function createWindow() {
     width: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: false,
       nodeIntegration: true,
     },
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.normalize('../index.html'))
+  mainWindow.loadFile(path.normalize('index.html'))
 }
 
 // This method will be called when Electron has finished

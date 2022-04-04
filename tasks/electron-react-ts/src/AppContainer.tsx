@@ -4,7 +4,7 @@ import React from 'react'
 import App from './App'
 
 const APP_ID = 'YOUR_APP_ID_HERE'
-const PATH = '/ditto-tasks'
+const PATH = 'ditto-tasks'
 
 const AppContainer = () => {
   const createDittoInstance = () => {
