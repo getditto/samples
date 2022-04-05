@@ -34,7 +34,7 @@
     "webpack-cli": "^4.9.2"
   },
   "scripts": {
-    "start": "npm run build && electron ./build/main.js",
+    "start": "npm run build && electron --enable-logging ./build/main.js",
     "build": "NODE_ENV=production webpack",
     "lint": "eslint --ext .tsx,.ts src && tsc --noEmit && prettier --check ."
   },
