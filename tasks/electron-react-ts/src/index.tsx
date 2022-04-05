@@ -10,6 +10,6 @@ if (!container) {
 
 const root = ReactDOMClient.createRoot(container)
 
-// Rewrap in `<React.StrictMode>` when this get fixed:
+// Rewrap in `<React.StrictMode>` when this gets fixed:
 // https://github.com/getditto/react-ditto/issues/22
 root.render(<AppContainer />)
