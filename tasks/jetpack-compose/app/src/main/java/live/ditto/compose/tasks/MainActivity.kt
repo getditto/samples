@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import live.ditto.DittoError
 import live.ditto.compose.tasks.edit.EditScreen
 import live.ditto.compose.tasks.list.TasksListScreen
+import live.ditto.transports.DittoSyncPermissions
 import java.util.*
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +38,17 @@ class MainActivity : ComponentActivity() {
         setContent {
             Root()
         }
+
+        requestMissingPermissions()
     }
+
+    private fun requestMissingPermissions() {
+        val missingPermissions = DittoSyncPermissions(this).missingPermissions()
+        if (missingPermissions.isNotEmpty()) {
+            this.requestPermissions(missingPermissions, 0)
+        }
+    }
+
 }
 
 
