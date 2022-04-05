@@ -31,6 +31,8 @@ const App = () => {
       // t.peerToPeer.lan.isEnabled = true
     })
     ditto.startSync()
+
+    return () => ditto.stopSync()
   }, [ditto])
 
   const updateText = (e: React.ChangeEvent<HTMLInputElement>) =>
