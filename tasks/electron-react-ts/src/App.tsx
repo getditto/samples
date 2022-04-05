@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 
 const COLLECTION = 'tasks'
+const OFFLINE_LICENSE_TOKEN = '<REPLACE_ME>'
 
 type Task = { _id?: DocumentIDValue; body: string; isCompleted: boolean }
 
@@ -17,7 +18,19 @@ const App = () => {
   })
 
   useEffect(() => {
-    ditto?.startSync()
+    if (!ditto) {
+      return
+    }
+
+    ditto.setOfflineOnlyLicenseToken(OFFLINE_LICENSE_TOKEN)
+    ditto.updateTransportConfig((t) => {
+      t.setAllPeerToPeerEnabled(true)
+      // Or selectively enable only some P2P tranports:
+      // t.peerToPeer.awdl.isEnabled = true
+      // t.peerToPeer.bluetoothLE.isEnabled = true
+      // t.peerToPeer.lan.isEnabled = true
+    })
+    ditto.startSync()
   }, [ditto])
 
   const updateText = (e: React.ChangeEvent<HTMLInputElement>) =>
