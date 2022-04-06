@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.task_view.view.*
-import live.ditto.*
+import live.ditto.transports.DittoSyncPermissions
 import live.ditto.android.DefaultAndroidDittoSyncKitDependencies
 import java.time.Instant
 
@@ -96,6 +96,8 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         // This will check if the app has location permissions
         // to fully enable Bluetooth
         checkLocationPermission()
+
+        checkDittoPermission()
     }
 
     override fun onDialogSave(dialog: DialogFragment, task:String) {
@@ -133,6 +135,13 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
                     }
                 }
             }
+        }
+    }
+
+    fun checkDittoPermission() {
+        val missing = DittoSyncPermissions(this).missingPermissions()
+        if (missing.isNotEmpty()) {
+            this.requestPermissions(missing, 0)
         }
     }
 
