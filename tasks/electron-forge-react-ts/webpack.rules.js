@@ -1,11 +1,4 @@
 module.exports = [
-  // {
-  //   test: /\.node$/,
-  //   loader: "node-ext-loader",
-  //   options: {
-  //     name: "main_window/[name].[ext]",
-  //   },
-  // },
   {
     // We're specifying native_modules in the test because the asset relocator loader generates a
     // "fake" .node file which is really a cjs file.
@@ -23,16 +16,6 @@ module.exports = [
       },
     },
   },
-  // {
-  //   test: /\.tsx?$/,
-  //   exclude: /(node_modules|\.webpack)/,
-  //   use: {
-  //     loader: 'ts-loader',
-  //     options: {
-  //       transpileOnly: true,
-  //     },
-  //   },
-  // },
   {
     test: /\.tsx?$/,
     exclude: /node_modules/,
