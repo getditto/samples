@@ -100,7 +100,7 @@
   },
   "dependencies": {
     "@dittolive/ditto": "^1.1.6-experimental.electron-forge-support.1",
-    "@dittolive/react-ditto": "^0.6.1",
+    "@dittolive/react-ditto": "^0.6.2",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
