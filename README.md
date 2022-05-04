@@ -2,11 +2,11 @@
 
 In this repo we have 5 sample projects
 
-1. An iOS Peer to Peer Chat.
-2. Peer to Peer Syncing Maintenance Application.
-3. A Peer to Peer Share ToDo List Application.
-4. A list/tableview app to show nearby connected peers. 
-5. An application that demonstrates integration with Auth0.
+1. A Peer to Peer Share ToDo List Application.
+2. A list/tableview app to show nearby connected peers. 
+3. An application that demonstrates integration with Auth0.
+4. An example using DittoCombine
+5. An iOS app that uses Core Data
 
 --
 
