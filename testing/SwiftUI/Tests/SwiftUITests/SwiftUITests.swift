@@ -8,8 +8,8 @@ final class SwiftUITests: XCTestCase {
     var ditto2: DittoInstance!
     
     override func setUp() {
-        self.ditto1 = DittoInstance(appID: "bus-test-app")
-        self.ditto2 = DittoInstance(appID: "bus-test-app")
+        self.ditto1 = DittoInstance(appID: "test-app")
+        self.ditto2 = DittoInstance(appID: "test-app")
     }
     
     func testExample() throws {
