@@ -19,16 +19,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.task_view.view.*
+import live.ditto.*
+import live.ditto.android.DefaultAndroidDittoDependencies
 import live.ditto.transports.DittoSyncPermissions
-import live.ditto.android.DefaultAndroidDittoSyncKitDependencies
-import java.time.Instant
 
 class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
-    private var ditto: DittoSyncKit? = null
+    private var ditto: Ditto? = null
     private var collection: DittoCollection? = null
     private var liveQuery: DittoLiveQuery? = null
 
@@ -51,16 +51,18 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         // Create an instance of DittoSyncKit
-        val androidDependencies = DefaultAndroidDittoSyncKitDependencies(applicationContext)
-        val ditto = DittoSyncKit(androidDependencies)
+        val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)
+        val ditto = Ditto(androidDependencies, DittoIdentity.OnlinePlaygroundV2(
+            androidDependencies,
+            "f2b5f038-6d00-433a-9176-6e84011da136",
+            "545717fe-6ffc-4e9f-ab47-7b500430a6ce",
+            enableDittoCloudSync = true)
+        )
+
         this.ditto = ditto
 
-        // Set your DittoSyncKit access license
-        // The SDK will not work without this!
-        ditto.setAccessLicense("<INSERT ACCESS LICENSE>")
-
         // This starts DittoSyncKit's background synchronization
-        ditto.start()
+        ditto.tryStartSync()
 
         // Add swipe to delete
         val swipeHandler = object : SwipeToDeleteCallback(this) {
@@ -102,7 +104,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
     override fun onDialogSave(dialog: DialogFragment, task:String) {
         // Add the task to Ditto
-        this.collection!!.insert(mapOf("body" to task, "isCompleted" to false))
+        this.collection!!.upsert(mapOf("body" to task, "isCompleted" to false))
     }
 
     override fun onDialogCancel(dialog: DialogFragment) { }
@@ -152,7 +154,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
             != PackageManager.PERMISSION_GRANTED) {
             // For this app we will prompt the user for this permission every time if it is missing
             // We ignore the result - Ditto will automatically notice when the permission is granted
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0);
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
         }
     }
 }
