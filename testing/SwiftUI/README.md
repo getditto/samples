@@ -1,3 +1,5 @@
-# SwiftUI
+# Ditto Testing Example
 
-A description of this package.
+An example for testing Ditto in SwiftUI.
+
+See [the docs](https://ditto.live/guides/testing/iOS) for more information.
