@@ -1,22 +1,16 @@
 package live.ditto.dittotesting
 
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import live.ditto.Ditto
-import live.ditto.DittoDependencies
-import live.ditto.DittoIdentity
 import live.ditto.dittotests.DittoTestBase
-
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.junit.runner.RunWith
-
-import org.junit.Assert.*
+import java.io.File
 
 class ExampleDittoTest: DittoTestBase() {
     @Test
     fun twoDittos() {
-        val ditto1 = getDitto(dependencies)
-        val ditto2 = getDitto(dependencies)
+        val ditto1 = getDitto(dependenciesWithCustomDirectory(File(getWorkDir(), "ditto1")))
+        val ditto2 = getDitto(dependenciesWithCustomDirectory(File(getWorkDir(), "ditto2")))
 
         ditto1.tryStartSync()
         ditto2.tryStartSync()
