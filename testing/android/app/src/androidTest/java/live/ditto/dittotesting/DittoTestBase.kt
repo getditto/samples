@@ -54,3 +54,104 @@ open class DittoTestBase {
         return CustomDirectoryAndroidDittoDependencies(dependencies, customDir)
     }
 }
+
+const val LOGCAT_HEADER = "\n==================== Logcat Output ===================="
+const val STACKTRACE_HEADER = "\n===================== Stacktrace ====================="
+const val ORIGINAL_CLASS_HEADER = "\nOriginal class: "
+
+class CaptureLogcatOnTestFailureRule : TestRule {
+    override fun apply(statement: Statement, description: Description): Statement {
+        return object : Statement() {
+            override fun evaluate() {
+                try {
+                    // Runs the statement as given by the TestRunner
+                    statement.evaluate()
+                } catch (originalThrowable: Throwable) {
+                    if (originalThrowable is AssumptionViolatedException) {
+                        // Test runners know to skip this type of failure
+                        throw originalThrowable
+                    }
+
+                    val logcatMessage = getRelevantLogsAfterTestStart(description.methodName).toString()
+
+                    // We put out own custom message into the throwable, making sure to keep the
+                    // original message in place.
+                    val originalMsg = originalThrowable.localizedMessage
+                    val originalClass = originalThrowable.javaClass.name
+                    val thrownMessage = "$originalMsg $ORIGINAL_CLASS_HEADER $originalClass $LOGCAT_HEADER $logcatMessage $STACKTRACE_HEADER"
+
+                    // Create a throwable with the same stacktrace as the actual failure. By using
+                    // the original stacktrace this logcat addition is a transparent process to
+                    // anyone reading the test failure report.
+                    val modifiedThrowable = Throwable(thrownMessage)
+
+                    // Since our Throwable doesn't know about the original error, we have to give it
+                    // that information via our custom message and pass it a stacktrace explicitly.
+                    modifiedThrowable.stackTrace = originalThrowable.stackTrace
+                    throw modifiedThrowable
+                }
+            }
+        }
+    }
+}
+
+fun getRelevantLogsAfterTestStart(testName: String): StringBuilder {
+    val builder = StringBuilder()
+
+    // The process id is used to filter the messages. This TestRunner and the test itself run in the
+    // same process.
+    val currentProcessId = android.os.Process.myPid().toString()
+
+    // A snippet of text that uniquely determines where the relevant logs start in the logcat.
+    val testStartMessage = "TestRunner: started: $testName"
+
+    // Flag that, when true, starts the recording of every line from the buffer to the string
+    // builder.
+    var isRecording = false
+
+    // Our logcat command
+    //
+    // -d states for the command to completely dump to our buffer, then return
+    // -v threadtime sets the output log format
+    val command = listOf("logcat", "-d", "-v", "threadtiime").toTypedArray()
+
+    var bufferedReader: BufferedReader? = null
+    try {
+        val process = Runtime.getRuntime().exec(command)
+        bufferedReader = BufferedReader(InputStreamReader(process.inputStream))
+
+        bufferedReader.forEachLine { line ->
+            if (line.contains(currentProcessId)) {
+                if (line.contains(testStartMessage)) {
+                    isRecording = true
+                }
+                if (isRecording) {
+                    builder.append(line)
+                    builder.append("\n")
+                }
+            }
+        }
+    } catch (ex: IOException) {
+        Log.e("DittoTestBase", "Failed to run logcat command: ${ex.localizedMessage}")
+    } finally {
+        if (bufferedReader != null) {
+            try {
+                bufferedReader.close()
+            } catch (ex: IOException) {
+                Log.e("DittoTestBase", "Failed to close buffered reader: ${ex.localizedMessage}")
+            }
+        }
+    }
+
+    // Once the logcat is cleared, the next run of this logcat reader will have a much shorter
+    // buffer to deal with, resulting in a faster read time.
+    clearLogcat()
+    return builder
+}
+
+// TODO: Unsure if this is what this is supposed to do...
+fun clearLogcat() {
+    val command = listOf("logcat", "-b", "all", "-c").toTypedArray()
+    val process = Runtime.getRuntime().exec(command)
+    process.waitFor()
+}
