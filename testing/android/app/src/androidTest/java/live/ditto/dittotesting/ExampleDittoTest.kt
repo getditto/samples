@@ -15,14 +15,16 @@ class ExampleDittoTest: DittoTestBase() {
 
         val coll1 = ditto1.store.collection("cars")
         val coll2 = ditto2.store.collection("cars")
-        coll1.upsert(mapOf(
+        val docId = coll1.upsert(mapOf(
             "make" to "toyota",
             "mileage" to 160000
         ))
-        val liveQuery = coll2.findAll().observe { docs, event ->
-            assertEquals(docs.count(), 1)
-            ditto1.stopSync()
-            ditto2.stopSync()
+        val liveQuery = coll2.findByID(docId).observe { doc, event ->
+            if (!event.isInitial) {
+                assertEquals(doc!!["make"], "toyota")
+                ditto1.stopSync()
+                ditto2.stopSync()
+            }
         }
     }
 }
