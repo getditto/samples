@@ -10,6 +10,8 @@ final class SwiftUITests: XCTestCase {
     override func setUp() {
         self.ditto1 = DittoInstance(appID: "test-app")
         self.ditto2 = DittoInstance(appID: "test-app")
+        try! self.ditto1.ditto?.tryStartSync()
+        try! self.ditto2.ditto?.tryStartSync()
     }
     
     func testExample() throws {
@@ -61,7 +63,6 @@ public class DittoInstance {
         )
         let testLicense = "YOUR_LICENSE_HERE"
         try! self.ditto!.setOfflineOnlyLicenseToken(testLicense)
-        try! self.ditto?.tryStartSync()
     }
     
     public func stop() {
