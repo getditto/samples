@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     /**
      This variable needs to be held if you want to keep observing peer information.
      */
-    var observer: DittoPeersObserver?
+    var observer: DittoObserver?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +38,12 @@ class ViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         let peer = peers[indexPath.row]
         cell.detailTextLabel?.numberOfLines = 0
-        cell.textLabel?.text = peer.id
+        cell.textLabel?.text = peer.deviceName
+        let distance =  peer.approximateDistanceInMeters
         cell.detailTextLabel?.text = """
+            id: \(peer.id)
             Connections: \(peer.connections.joined(separator: ","))
-            approximateDistanceInMeters: \(String(describing: peer.approximateDistanceInMeters))m
+            approximateDistanceInMeters: \(distance != nil ? String(describing: distance) : "??")
             """
         return cell
     }

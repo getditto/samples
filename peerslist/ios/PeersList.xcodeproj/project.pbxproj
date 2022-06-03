@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01B526C5284985A60022CD0E /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 01B526C4284985A60022CD0E /* DittoObjC */; };
-		01B526C7284985A60022CD0E /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 01B526C6284985A60022CD0E /* DittoSwift */; };
-		01B526CA284986FD0022CD0E /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 01B526C9284986FD0022CD0E /* Fakery */; };
+		01D13A022849951E004E319A /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 01D13A012849951E004E319A /* Fakery */; };
+		01D13A05284995D9004E319A /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 01D13A04284995D9004E319A /* DittoObjC */; };
+		01D13A07284995D9004E319A /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 01D13A06284995D9004E319A /* DittoSwift */; };
 		2D1FD80F2660954900710E5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1FD80E2660954900710E5D /* AppDelegate.swift */; };
 		2D1FD8112660954900710E5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1FD8102660954900710E5D /* SceneDelegate.swift */; };
 		2D1FD8132660954900710E5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1FD8122660954900710E5D /* ViewController.swift */; };
@@ -36,9 +36,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01B526CA284986FD0022CD0E /* Fakery in Frameworks */,
-				01B526C7284985A60022CD0E /* DittoSwift in Frameworks */,
-				01B526C5284985A60022CD0E /* DittoObjC in Frameworks */,
+				01D13A07284995D9004E319A /* DittoSwift in Frameworks */,
+				01D13A022849951E004E319A /* Fakery in Frameworks */,
+				01D13A05284995D9004E319A /* DittoObjC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D1FD81F2660954A00710E5D /* Build configuration list for PBXNativeTarget "PeersList" */;
 			buildPhases = (
-				900EAE6FAD0E4AC00E811D2B /* [CP] Check Pods Manifest.lock */,
 				2D1FD8072660954900710E5D /* Sources */,
 				2D1FD8082660954900710E5D /* Frameworks */,
 				2D1FD8092660954900710E5D /* Resources */,
@@ -94,9 +93,9 @@
 			);
 			name = PeersList;
 			packageProductDependencies = (
-				01B526C4284985A60022CD0E /* DittoObjC */,
-				01B526C6284985A60022CD0E /* DittoSwift */,
-				01B526C9284986FD0022CD0E /* Fakery */,
+				01D13A012849951E004E319A /* Fakery */,
+				01D13A04284995D9004E319A /* DittoObjC */,
+				01D13A06284995D9004E319A /* DittoSwift */,
 			);
 			productName = PeersList;
 			productReference = 2D1FD80B2660954900710E5D /* PeersList.app */;
@@ -126,8 +125,8 @@
 			);
 			mainGroup = 2D1FD8022660954900710E5D;
 			packageReferences = (
-				01B526C3284985A60022CD0E /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
-				01B526C8284986FD0022CD0E /* XCRemoteSwiftPackageReference "Fakery" */,
+				01D13A002849951E004E319A /* XCRemoteSwiftPackageReference "Fakery" */,
+				01D13A03284995D9004E319A /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
 			);
 			productRefGroup = 2D1FD80C2660954900710E5D /* Products */;
 			projectDirPath = "";
@@ -151,31 +150,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		900EAE6FAD0E4AC00E811D2B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PeersList-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2D1FD8072660954900710E5D /* Sources */ = {
@@ -388,7 +362,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		01B526C3284985A60022CD0E /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
+		01D13A002849951E004E319A /* XCRemoteSwiftPackageReference "Fakery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vadymmarkov/Fakery";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		01D13A03284995D9004E319A /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
 			requirement = {
@@ -396,31 +378,23 @@
 				kind = branch;
 			};
 		};
-		01B526C8284986FD0022CD0E /* XCRemoteSwiftPackageReference "Fakery" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/vadymmarkov/Fakery";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		01B526C4284985A60022CD0E /* DittoObjC */ = {
+		01D13A012849951E004E319A /* Fakery */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01B526C3284985A60022CD0E /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			package = 01D13A002849951E004E319A /* XCRemoteSwiftPackageReference "Fakery" */;
+			productName = Fakery;
+		};
+		01D13A04284995D9004E319A /* DittoObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01D13A03284995D9004E319A /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
 			productName = DittoObjC;
 		};
-		01B526C6284985A60022CD0E /* DittoSwift */ = {
+		01D13A06284995D9004E319A /* DittoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01B526C3284985A60022CD0E /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			package = 01D13A03284995D9004E319A /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
 			productName = DittoSwift;
-		};
-		01B526C9284986FD0022CD0E /* Fakery */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 01B526C8284986FD0022CD0E /* XCRemoteSwiftPackageReference "Fakery" */;
-			productName = Fakery;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
