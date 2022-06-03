@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        Self.ditto = Ditto()
+        Self.ditto = Ditto(identity: .offlinePlayground(appID: "f2b5f038-6d00-433a-9176-6e84011da136")
         Self.ditto.deviceName = makeupRandomDeviceName()
-        Self.ditto.setAccessLicense(readLicenseToken())
-        Self.ditto.startSync()
+        try! Self.ditto.setOfflineOnlyLicenseToken(readLicenseToken())
+        try! Self.ditto.tryStartSync()
         
         return true
     }

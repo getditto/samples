@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01B526C5284985A60022CD0E /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 01B526C4284985A60022CD0E /* DittoObjC */; };
+		01B526C7284985A60022CD0E /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 01B526C6284985A60022CD0E /* DittoSwift */; };
+		01B526CA284986FD0022CD0E /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 01B526C9284986FD0022CD0E /* Fakery */; };
 		2D1FD80F2660954900710E5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1FD80E2660954900710E5D /* AppDelegate.swift */; };
 		2D1FD8112660954900710E5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1FD8102660954900710E5D /* SceneDelegate.swift */; };
 		2D1FD8132660954900710E5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1FD8122660954900710E5D /* ViewController.swift */; };
@@ -14,11 +17,9 @@
 		2D1FD8182660954A00710E5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1FD8172660954A00710E5D /* Assets.xcassets */; };
 		2D1FD81B2660954A00710E5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1FD8192660954A00710E5D /* LaunchScreen.storyboard */; };
 		2D1FD8232660967800710E5D /* license_token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D1FD8222660967800710E5D /* license_token.txt */; };
-		B3B622E7D9B9EC8AE700F070 /* Pods_PeersList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D290D7DBE2E8EF570D0CFF1 /* Pods_PeersList.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D290D7DBE2E8EF570D0CFF1 /* Pods_PeersList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeersList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1FD80B2660954900710E5D /* PeersList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeersList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1FD80E2660954900710E5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D1FD8102660954900710E5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,8 +29,6 @@
 		2D1FD81A2660954A00710E5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D1FD81C2660954A00710E5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1FD8222660967800710E5D /* license_token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license_token.txt; sourceTree = "<group>"; };
-		515025E9C864154A03668ED0 /* Pods-PeersList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeersList.release.xcconfig"; path = "Target Support Files/Pods-PeersList/Pods-PeersList.release.xcconfig"; sourceTree = "<group>"; };
-		DCFD5F835FFA607FAC61F3A9 /* Pods-PeersList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeersList.debug.xcconfig"; path = "Target Support Files/Pods-PeersList/Pods-PeersList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,37 +36,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3B622E7D9B9EC8AE700F070 /* Pods_PeersList.framework in Frameworks */,
+				01B526CA284986FD0022CD0E /* Fakery in Frameworks */,
+				01B526C7284985A60022CD0E /* DittoSwift in Frameworks */,
+				01B526C5284985A60022CD0E /* DittoObjC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		047BCD0D6529E5AECE08EC8A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DCFD5F835FFA607FAC61F3A9 /* Pods-PeersList.debug.xcconfig */,
-				515025E9C864154A03668ED0 /* Pods-PeersList.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		168A704A2734AB75CD613C15 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0D290D7DBE2E8EF570D0CFF1 /* Pods_PeersList.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2D1FD8022660954900710E5D = {
 			isa = PBXGroup;
 			children = (
 				2D1FD80D2660954900710E5D /* PeersList */,
 				2D1FD80C2660954900710E5D /* Products */,
-				047BCD0D6529E5AECE08EC8A /* Pods */,
-				168A704A2734AB75CD613C15 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,13 +87,17 @@
 				2D1FD8072660954900710E5D /* Sources */,
 				2D1FD8082660954900710E5D /* Frameworks */,
 				2D1FD8092660954900710E5D /* Resources */,
-				27024A681E0E58BC58DCB53E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PeersList;
+			packageProductDependencies = (
+				01B526C4284985A60022CD0E /* DittoObjC */,
+				01B526C6284985A60022CD0E /* DittoSwift */,
+				01B526C9284986FD0022CD0E /* Fakery */,
+			);
 			productName = PeersList;
 			productReference = 2D1FD80B2660954900710E5D /* PeersList.app */;
 			productType = "com.apple.product-type.application";
@@ -139,6 +125,10 @@
 				Base,
 			);
 			mainGroup = 2D1FD8022660954900710E5D;
+			packageReferences = (
+				01B526C3284985A60022CD0E /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
+				01B526C8284986FD0022CD0E /* XCRemoteSwiftPackageReference "Fakery" */,
+			);
 			productRefGroup = 2D1FD80C2660954900710E5D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -163,23 +153,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		27024A681E0E58BC58DCB53E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PeersList/Pods-PeersList-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PeersList/Pods-PeersList-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PeersList/Pods-PeersList-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		900EAE6FAD0E4AC00E811D2B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -355,7 +328,6 @@
 		};
 		2D1FD8202660954A00710E5D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCFD5F835FFA607FAC61F3A9 /* Pods-PeersList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -375,7 +347,6 @@
 		};
 		2D1FD8212660954A00710E5D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 515025E9C864154A03668ED0 /* Pods-PeersList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -415,6 +386,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		01B526C3284985A60022CD0E /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		01B526C8284986FD0022CD0E /* XCRemoteSwiftPackageReference "Fakery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vadymmarkov/Fakery";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		01B526C4284985A60022CD0E /* DittoObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01B526C3284985A60022CD0E /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			productName = DittoObjC;
+		};
+		01B526C6284985A60022CD0E /* DittoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01B526C3284985A60022CD0E /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			productName = DittoSwift;
+		};
+		01B526C9284986FD0022CD0E /* Fakery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01B526C8284986FD0022CD0E /* XCRemoteSwiftPackageReference "Fakery" */;
+			productName = Fakery;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2D1FD8032660954900710E5D /* Project object */;
 }
