@@ -40,10 +40,9 @@ namespace Tasks
             string appId = DittoHandler.Ditto.appId;
             string workingDir = url.Path;
 
-            DittoIdentity identity = DittoIdentity.OfflinePlayground(appID: appId, workingDir: workingDir);
+            DittoIdentity identity = DittoIdentity.OnlinePlayground(appID: appId, workingDir: workingDir);
 
             ditto = new Ditto(identity, workingDir);
-            ditto.SetOfflineOnlyLicenseToken(DittoHandler.Ditto.OfflineLicenseToken);
 
             ditto.DeviceName = UIDevice.CurrentDevice.Name;
 
