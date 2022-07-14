@@ -47,7 +47,6 @@ namespace Tasks
 		{
 			base.ViewWillAppear(animated);
 
-			TableView.BackgroundColor = UIColor.White;
 			TableView.Source = tasksTableSource;
 		}
 
@@ -132,4 +131,3 @@ namespace Tasks
 
 	}
 }
-
