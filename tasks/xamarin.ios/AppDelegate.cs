@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 using DittoSDK;
 using System;
@@ -19,8 +19,6 @@ namespace Tasks
         [Export ("application:didFinishLaunchingWithOptions:")]
         public bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
-            DittoLogger.SetLoggingEnabled(true);
-            DittoLogger.SetMinimumLogLevel(DittoLogLevel.Verbose);
 
             NSFileManager fileManager = new NSFileManager();
             NSUrl url = fileManager.GetUrl(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User, null, true, out NSError error);
@@ -40,7 +38,8 @@ namespace Tasks
             string appId = DittoHandler.Ditto.appId;
             string workingDir = url.Path;
 
-            DittoIdentity identity = DittoIdentity.OnlinePlayground(appID: appId, workingDir: workingDir);
+            DittoIdentity identity = DittoIdentity.OnlinePlaygroundV2(appID: appId, token: "REPLACE_ME"
+, false, workingDir: workingDir);
 
             ditto = new Ditto(identity, workingDir);
 
