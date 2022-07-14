@@ -32,9 +32,9 @@ namespace Tasks
 
 
         public TasksTableSource(Task[] taskList)
-		{
+	{
             this.tasks = taskList;
-		}
+	}
 
         public TasksTableSource()
         {
@@ -61,8 +61,6 @@ namespace Tasks
                 cell.Accessory = UITableViewCellAccessory.None;
 
             }
-            cell.BackgroundColor = UIColor.White;
-            cell.TextLabel.TextColor = UIColor.Black;
 
             var tapGesture = new UITapGestureRecognizer();
             tapGesture.AddTarget(() =>
@@ -100,26 +98,6 @@ namespace Tasks
         {
             this.tasks = tasks.ToArray();
         }
-
-        //public override void WillDisplayHeaderView(UITableView tableView, UIView headerView, nint section)
-        //{
-        //    if (headerView is UITableViewHeaderFooterView)
-        //    {
-        //        UITableViewHeaderFooterView v = headerView as UITableViewHeaderFooterView;
-        //        v.TextLabel.TextColor = UIColor.Black;
-        //        v.BackgroundColor = UIColor.White;
-        //        v.TextLabel.Font = UIFont.BoldSystemFontOfSize(32);
-        //    }
-        //}
-
-        //public override UIView GetViewForHeader(UITableView tableView, nint section)
-        //{
-        //    var header = tableView.DequeueReusableHeaderFooterView();
-        //    header = new UITableViewHeaderFooterView(new NSString("TestHeaderIdentifier"));
-        //    header.TextLabel.Text = "Inventory ";
-
-        //    return header;
-        //}
 
         public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
         {
