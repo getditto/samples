@@ -1,28 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react'
 import Ditto from './ditto'
 
-const ditto = Ditto()
+let ditto 
 
 function App() {
+  let [status, setStatus] = useState({isAuthenticated: false})
 
+  useEffect(() => {
+    ditto = Ditto()
+    let observer = ditto.auth.observeStatus(status => {
+      setStatus(status)
+    })
+    return () => {
+      observer.stop()
+    }
+  }, [])
+  
+  function login () {
+    ditto.auth.loginWithToken("jellybeans", "provider")
+  }
+
+  function logout () {
+    ditto.auth.logout()
+  }
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!status.isAuthenticated && <button onClick={login}>Login</button>}
+      {status.isAuthenticated && <div>
+        <h2>
+          Hello {status.userID}
+        </h2>
+        <button onClick={logout}>Logout</button> 
+      </div>
+      }
     </div>
   );
 }

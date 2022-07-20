@@ -52,7 +52,7 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
             try
             {
                 ditto.SetOfflineOnlyLicenseToken(license);
-                ditto.TryStartSync();
+                ditto.StartSync();
             }
             catch (DittoException ex)
             {

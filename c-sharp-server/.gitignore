@@ -3,3 +3,4 @@
 *.crt
 bin
 obj
+ditto

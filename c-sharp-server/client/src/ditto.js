@@ -1,11 +1,12 @@
-import {init, Ditto, TransportConfig} from '@dittolive/ditto'
+import {Ditto, TransportConfig} from '@dittolive/ditto'
 
-async function getditto () {
-    await init()
+let ditto 
+
+function getditto () {
+    if (ditto) return ditto
     const authHandler = {
         authenticationRequired: async function (authenticator) {
-            console.log("Login request.");
-            await authenticator.loginWithToken("jellybeans", "provider");
+            console.log(`Auth required`)
         },
         authenticationExpiringSoon: function (authenticator, secondsRemaining) {
             console.log(`Auth token expiring in ${secondsRemaining} seconds`)
@@ -20,12 +21,13 @@ async function getditto () {
         customAuthURL: "http://127.0.0.1:45002"
     }
 
-    const ditto = new Ditto(identity, 'ditto')
+    ditto = new Ditto(identity, 'ditto')
 
     const config = new TransportConfig()
     config.connect.websocketURLs.push('ws://127.0.0.1:45002')
     ditto.setTransportConfig(config)
     ditto.tryStartSync()
+    return ditto
 }
 
 export default getditto

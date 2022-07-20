@@ -19,7 +19,7 @@ function App() {
         scope: "read:current_user",
       });
       
-      ditto = new Ditto(accessToken)
+      ditto = Ditto(accessToken)
       liveQuery = ditto.store.collection('cars').findAll().observe((tickets) => {
         setCars(tickets.length)
       })
