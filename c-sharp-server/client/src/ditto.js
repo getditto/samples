@@ -17,13 +17,13 @@ async function getditto () {
         appID: "f87f6d8c-1b51-46e2-83d6-d97825ebab71",
         authHandler: authHandler,
         enableDittoCloudSync: false,
-        customAuthURL: "https://127.0.0.1:45002"
+        customAuthURL: "http://127.0.0.1:45002"
     }
 
     const ditto = new Ditto(identity, 'ditto')
 
     const config = new TransportConfig()
-    config.connect.websocketURLs.push('wss://127.0.0.1:45002')
+    config.connect.websocketURLs.push('ws://127.0.0.1:45002')
     ditto.setTransportConfig(config)
     ditto.tryStartSync()
 }

@@ -1,2 +1,5 @@
 *.pem
 *.key
+*.crt
+bin
+obj
