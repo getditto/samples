@@ -35,7 +35,7 @@ class EditScreenViewModel: ObservableObject {
             })
         } else {
             // the user is attempting to insert
-            try! ditto.store["tasks"].insert([
+            try! ditto.store["tasks"].upsert([
                 "body": body,
                 "isCompleted": isCompleted
             ])

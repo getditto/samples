@@ -14,14 +14,14 @@ struct TasksApp: App {
     @State var isPresentingAlert = false
     @State var errorMessage = ""
 
-    var ditto = Ditto(identity: .onlinePlaygroundV2(appID: "YOUR_APP_ID_HERE"))
+    var ditto = Ditto(identity: .onlinePlayground(appID: "YOUR_APP_ID_HERE", token: "YOUR_TOKEN_HERE"))
 
     var body: some Scene {
         WindowGroup {
             TasksListScreen(ditto: ditto)
                 .onAppear(perform: {
                     do {
-                        try ditto.tryStartSync()
+                        try ditto.startSync()
                     } catch (let err){
                         isPresentingAlert = true
                         errorMessage = err.localizedDescription
