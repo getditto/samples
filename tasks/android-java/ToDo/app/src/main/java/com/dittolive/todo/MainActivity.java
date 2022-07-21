@@ -38,16 +38,17 @@ import java.util.List;
 import java.util.Map;
 
 import live.ditto.*;
-import live.ditto.android.DefaultAndroidDittoSyncKitDependencies;
+import live.ditto.android.DefaultAndroidDittoDependencies;
 
 public class MainActivity extends AppCompatActivity implements NewTaskDialogFragment.NewTaskDialogListener, TasksAdapter.ItemClickListener {
     private RecyclerView recyclerView = null;
     private RecyclerView.Adapter viewAdapter = null;
     private RecyclerView.LayoutManager viewManager = null;
 
-    private DittoSyncKit ditto = null;
+    private Ditto ditto = null;
     private DittoCollection collection = null;
     private DittoLiveQuery liveQuery = null;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
 
         // Setup the layout
         this.viewManager = new LinearLayoutManager(this);
-        final TasksAdapter tasksAdapter = new TasksAdapter(getApplicationContext());
+        this.context = getApplicationContext();
+        final TasksAdapter tasksAdapter = new TasksAdapter(context);
         tasksAdapter.setClickListener(this);
         this.viewAdapter = tasksAdapter;
 
@@ -70,23 +72,27 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
         this.recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         // Create an instance of DittoSyncKit
-        DefaultAndroidDittoSyncKitDependencies androidDependencies = new DefaultAndroidDittoSyncKitDependencies(getApplicationContext());
-        final DittoSyncKit ditto = new DittoSyncKit(androidDependencies);
+        DittoDependencies androidDependencies = new DefaultAndroidDittoDependencies(this.context);
+        DittoIdentity identity = new DittoIdentity.OnlinePlayground(androidDependencies, "REPLACE_ME_WITH_YOUR_APP_ID", "YOUR_PLAYGROUND_TOKEN_HERE");
+        Ditto ditto = new Ditto(androidDependencies, identity);
+
         this.ditto = ditto;
 
         // Set your DittoSyncKit access license
         // The SDK will not work without this!
-        ditto.setAccessLicense("<INSERT ACCESS LICENSE>");
-
-        // This starts DittoSyncKit's background synchronization
-        ditto.start();
+        try {
+            // This starts DittoSyncKit's background synchronization
+            ditto.startSync();
+        } catch (DittoError e) {
+            e.printStackTrace();
+        }
 
         // Add swipe to delete
         SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(this) {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                 DittoDocument task = tasksAdapter.tasks().get(viewHolder.getAdapterPosition());
-                ditto.getStore().collection("tasks").findByID(task.id).remove();
+                ditto.store.collection("tasks").findByID(task.id).remove();
             }
         };
 
@@ -117,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
 
     void setupTaskList() {
         // We will create a long-running live query to keep UI up-to-date
-        this.collection = this.ditto.getStore().collection("tasks");
+        this.collection = this.ditto.store.collection("tasks");
 
         final TasksAdapter adapter = (TasksAdapter) this.viewAdapter;
         final Activity activity = this;
@@ -160,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
         // On Android, parts of Bluetooth LE and WiFi Direct require location permission
         // Ditto will operate without it but data sync may be impossible in certain scenarios
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // For this app we will prompt the user for this permission every time if it is missing
             // We ignore the result - Ditto will automatically notice when the permission is granted
             String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
             ActivityCompat.requestPermissions(this, permissions, 0);
@@ -178,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
         content.put("text", task);
         content.put("isComplete", false);
         content.put("dateCreated", currentDateString);
-        this.collection.insert(content);
+        this.collection.upsert(content);
     }
 
     @Override
@@ -196,11 +201,15 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
             @Override
             public void update(@NotNull DittoMutableDocument doc) {
                 DittoMutableDocument mutableDoc = (DittoMutableDocument) doc;
-                mutableDoc.get("isComplete").set(!mutableDoc.get("isComplete").getBooleanValue());
+                try {
+                    mutableDoc.get("isComplete").set(!mutableDoc.get("isComplete").getBooleanValue());
+                } catch (DittoError e) {
+                    e.printStackTrace();
+                }
             }
         }
 
-        ditto.getStore().collection("tasks").findByID(task.id).update(new DocumentUpdater());
+        ditto.store.collection("tasks").findByID(task.id).update(new DocumentUpdater());
     }
 }
 
