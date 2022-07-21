@@ -32,7 +32,7 @@ class EditScreenViewModel: ViewModel() {
         if (_id == null) {
             // save
             TasksApplication.ditto!!.store["tasks"]
-                .insert(mapOf(
+                .upsert(mapOf(
                     "body" to body.value,
                     "isCompleted" to isCompleted.value
                 ))
