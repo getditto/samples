@@ -1,7 +1,6 @@
 import Foundation
 import Combine
 import DittoSwift
-import CombineDitto
 
 final class DittoManager {
 
@@ -26,14 +25,14 @@ final class DittoManager {
         if !isPreview {
             var transportConfig = DittoTransportConfig()
             transportConfig.enableAllPeerToPeer()
-            ditto.setTransportConfig(config: transportConfig)
-            try! ditto.tryStartSync()
+            ditto.transportConfig = transportConfig
+            try! ditto.startSync()
         }
     }
 
     var categories: AnyPublisher<[Category], Never> {
         return ditto.store.collection("categories").findAll()
-            .publisher()
+            .liveQueryPublisher()
             .map({ snapshot in
                 return snapshot.documents.map({
                     try! $0.typed(as: Category.self).value
@@ -44,7 +43,7 @@ final class DittoManager {
 
     var products: AnyPublisher<[Product], Never> {
         return ditto.store.collection("products").findAll()
-            .publisher()
+            .liveQueryPublisher()
             .map { snapshot in
                 return snapshot.documents.map {
                     try! $0.typed(as: Product.self).value
@@ -55,7 +54,7 @@ final class DittoManager {
 
     func productsBy(categoryName: String) -> AnyPublisher<[Product], Never> {
         return ditto.store.collection("products").find("categoryName == '\(categoryName)'")
-            .publisher()
+            .liveQueryPublisher()
             .map { snapshot in
                 return snapshot.documents.map {
                     try! $0.typed(as: Product.self).value
@@ -65,7 +64,7 @@ final class DittoManager {
     }
 
     var categoryWithProducts: AnyPublisher<[CategoryWithProducts], Never> {
-        return ditto.store.collection("categories").findAll().publisher()
+        return ditto.store.collection("categories").findAll().liveQueryPublisher()
             .map { snapshot in
                 return snapshot.documents.compactMap { [weak self] in
                     guard let self = self else { return nil }
