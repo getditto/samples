@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
 
         val ditto = TasksApplication.ditto
         try {
-            ditto!!.setLicenseToken("<REPLACE_ME>")
-            ditto!!.tryStartSync()
+            ditto!!.setOfflineOnlyLicenseToken("<REPLACE_ME>")
+            ditto!!.startSync()
         } catch (e: DittoError) {
             Toast.makeText(
                 this@MainActivity,

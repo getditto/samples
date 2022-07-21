@@ -26,9 +26,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::taskUpdated, this, &MainWindow::updateTaskInList, Qt::QueuedConnection);
     connect(this, &MainWindow::taskMoved, this, &MainWindow::moveTaskInList, Qt::QueuedConnection);
 
-    ditto.set_access_license("<INSERT ACCESS LICENSE>");
-    ditto.start();
-    ditto::Collection collection = ditto.get_store()->collection("tasks");
+    ditto.set_offline_only_license_token("<INSERT ACCESS LICENSE>");
+    ditto.start_sync();
+    ditto::Collection collection = ditto.get_store().collection("tasks");
 
     live_query = collection.find_all().sort("dateCreated", true).observe(ditto::LiveQueryEventHandler{
         [collection, this](std::vector<ditto::Document> docs, ditto::LiveQueryEvent event) {
@@ -104,7 +104,7 @@ void MainWindow::addTask() {
     QString text = QInputDialog::getText(this, tr("Add task"), "", QLineEdit::Normal, tr("A task"), &ok);
     if (ok && !text.isEmpty()) {
         auto dateStr = QDateTime::currentDateTimeUtc().toString("yyyy-MM-dd hh:mm:ss.zzz");
-        ditto::DocumentId docID = ditto.get_store()->collection("tasks").insert({
+        ditto::DocumentId docID = ditto.get_store().collection("tasks").upsert({
             {"dateCreated", dateStr.toStdString()},
             {"isComplete", false},
             {"text", text.toStdString()}
@@ -118,13 +118,13 @@ void MainWindow::removeSelected() {
     if (selectedSize != 1) { return; }
     QListWidgetItem *selected = selectedItems.first();
     std::string taskId = selected->data(Qt::UserRole).toString().toStdString();
-    ditto.get_store()->collection("tasks").find_by_id(taskId).remove();
+    ditto.get_store().collection("tasks").find_by_id(taskId).remove();
 }
 
 void MainWindow::onTasksListWidgetItemChanged(QListWidgetItem *changed) {
     std::string taskId = changed->data(Qt::UserRole).toString().toStdString();
     bool taskComplete = changed->checkState();
-    ditto.get_store()->collection("tasks").find_by_id(taskId).update([taskComplete](ditto::MutableDocument &doc) {
+    ditto.get_store().collection("tasks").find_by_id(taskId).update([taskComplete](ditto::MutableDocument &doc) {
         doc["isComplete"].set(taskComplete);
     });
 }

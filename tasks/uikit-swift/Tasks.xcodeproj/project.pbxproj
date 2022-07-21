@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EFD925C526A110E931402B26 /* Pods_Tasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D7B3FD5821EC42F52FD104 /* Pods_Tasks.framework */; };
+		01FB746A2889EBAB00EE2C74 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 01FB74692889EBAB00EE2C74 /* DittoObjC */; };
+		01FB746C2889EBAB00EE2C74 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 01FB746B2889EBAB00EE2C74 /* DittoSwift */; };
 		F92C84B62332A24600FD7E79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C84B52332A24600FD7E79 /* AppDelegate.swift */; };
 		F92C84BB2332A24600FD7E79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92C84B92332A24600FD7E79 /* Main.storyboard */; };
 		F92C84BD2332A24700FD7E79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92C84BC2332A24700FD7E79 /* Assets.xcassets */; };
@@ -16,9 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		223EC2C91E1BDEF885DF2454 /* Pods-Tasks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tasks.debug.xcconfig"; path = "Target Support Files/Pods-Tasks/Pods-Tasks.debug.xcconfig"; sourceTree = "<group>"; };
-		87D7B3FD5821EC42F52FD104 /* Pods_Tasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2D942DCC8B6DADAFAA4BA28 /* Pods-Tasks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tasks.release.xcconfig"; path = "Target Support Files/Pods-Tasks/Pods-Tasks.release.xcconfig"; sourceTree = "<group>"; };
 		F92C84B22332A24600FD7E79 /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F92C84B52332A24600FD7E79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F92C84BA2332A24600FD7E79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,37 +31,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFD925C526A110E931402B26 /* Pods_Tasks.framework in Frameworks */,
+				01FB746A2889EBAB00EE2C74 /* DittoObjC in Frameworks */,
+				01FB746C2889EBAB00EE2C74 /* DittoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		33C4C68CD01512899DBFD10E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				223EC2C91E1BDEF885DF2454 /* Pods-Tasks.debug.xcconfig */,
-				F2D942DCC8B6DADAFAA4BA28 /* Pods-Tasks.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		B86BDCF81E94C38ED5B82687 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				87D7B3FD5821EC42F52FD104 /* Pods_Tasks.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F92C84A92332A24600FD7E79 = {
 			isa = PBXGroup;
 			children = (
 				F92C84B42332A24600FD7E79 /* Tasks */,
 				F92C84B32332A24600FD7E79 /* Products */,
-				33C4C68CD01512899DBFD10E /* Pods */,
-				B86BDCF81E94C38ED5B82687 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,17 +75,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F92C84C42332A24700FD7E79 /* Build configuration list for PBXNativeTarget "Tasks" */;
 			buildPhases = (
-				333D6B74C64DE73ED103C896 /* [CP] Check Pods Manifest.lock */,
 				F92C84AE2332A24600FD7E79 /* Sources */,
 				F92C84AF2332A24600FD7E79 /* Frameworks */,
 				F92C84B02332A24600FD7E79 /* Resources */,
-				1715BB93AB42AAE26D645938 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Tasks;
+			packageProductDependencies = (
+				01FB74692889EBAB00EE2C74 /* DittoObjC */,
+				01FB746B2889EBAB00EE2C74 /* DittoSwift */,
+			);
 			productName = Tasks;
 			productReference = F92C84B22332A24600FD7E79 /* Tasks.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +116,9 @@
 				Base,
 			);
 			mainGroup = F92C84A92332A24600FD7E79;
+			packageReferences = (
+				01FB74682889EBAB00EE2C74 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
+			);
 			productRefGroup = F92C84B32332A24600FD7E79 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -155,48 +140,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1715BB93AB42AAE26D645938 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Tasks/Pods-Tasks-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Tasks/Pods-Tasks-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tasks/Pods-Tasks-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		333D6B74C64DE73ED103C896 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Tasks-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F92C84AE2332A24600FD7E79 /* Sources */ = {
@@ -348,7 +291,6 @@
 		};
 		F92C84C52332A24700FD7E79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 223EC2C91E1BDEF885DF2454 /* Pods-Tasks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -369,7 +311,6 @@
 		};
 		F92C84C62332A24700FD7E79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2D942DCC8B6DADAFAA4BA28 /* Pods-Tasks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -409,6 +350,31 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		01FB74682889EBAB00EE2C74 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 3.0.0;
+				minimumVersion = "2.0.0-alpha1";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		01FB74692889EBAB00EE2C74 /* DittoObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01FB74682889EBAB00EE2C74 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			productName = DittoObjC;
+		};
+		01FB746B2889EBAB00EE2C74 /* DittoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01FB74682889EBAB00EE2C74 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			productName = DittoSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F92C84AA2332A24600FD7E79 /* Project object */;
 }

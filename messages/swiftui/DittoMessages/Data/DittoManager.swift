@@ -18,7 +18,7 @@ class DittoManager {
     init() {
         ditto = Ditto()
         try! ditto.setOfflineOnlyLicenseToken("REPLACE_ME")
-        try! ditto.tryStartSync()
+        try! ditto.startSync()
     }
 
     func me() -> AnyPublisher<User?, Never> {
