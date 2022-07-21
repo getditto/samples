@@ -62,7 +62,7 @@ class UnidirectionalViewController: UIViewController {
         let faker = Faker()
         let body = faker.lorem.sentence()
         let isDone = faker.number.randomBool()
-        let _ = try? ditto?.store["tasks"].insert([
+        let _ = try? ditto?.store["tasks"].upsert([
             "body": body,
             "isDone": isDone,
             "createdOn": Date().timeIntervalSince1970 as Double

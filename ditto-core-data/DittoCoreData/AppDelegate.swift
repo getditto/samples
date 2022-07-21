@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let path = Bundle.main.path(forResource: "license_token", ofType: "txt") // file path for file "data.txt"
             let licenseToken = try! String(contentsOfFile: path!, encoding: String.Encoding.utf8)
             let ditto = Ditto()
-            ditto.setAccessLicense(licenseToken)
-            ditto.startSync()
+            try! ditto.setOfflineOnlyLicenseToken(licenseToken)
+            try! ditto.startSync()
             return ditto
         }()
 

@@ -130,11 +130,12 @@ extension BidirectionalViewController: NSFetchedResultsControllerDelegate {
         case .insert:
 
             let insertedTask = anObject as! Task
-            try! AppDelegate.ditto.store["tasks"].insert([
+            try! AppDelegate.ditto.store["tasks"].upsert([
+                "id": DittoDocumentID(value: insertedTask.id),
                 "body": insertedTask.body,
                 "isDone": insertedTask.isDone,
                 "createdOn": insertedTask.createdOn!.timeIntervalSince1970,
-            ], id: DittoDocumentID(value: insertedTask.id))
+            ])
 
             tableView.insertRows(at: [newIndexPath!], with: .automatic)
         case .delete:

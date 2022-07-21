@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012063342889F33100AE1AB1 /* CodableWrappers in Frameworks */ = {isa = PBXBuildFile; productRef = 012063332889F33100AE1AB1 /* CodableWrappers */; };
+		0120633A2889F36B00AE1AB1 /* DeepDiff in Frameworks */ = {isa = PBXBuildFile; productRef = 012063392889F36B00AE1AB1 /* DeepDiff */; };
+		0120633D2889F3BD00AE1AB1 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 0120633C2889F3BD00AE1AB1 /* DittoObjC */; };
+		0120633F2889F3BD00AE1AB1 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0120633E2889F3BD00AE1AB1 /* DittoSwift */; };
+		01FB747F2889F2FB00EE2C74 /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 01FB747E2889F2FB00EE2C74 /* Fakery */; };
 		2D6D29BA267C0BA100C84717 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6D29B9267C0BA100C84717 /* AppDelegate.swift */; };
 		2D6D29BE267C0BA100C84717 /* UnidirectionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6D29BD267C0BA100C84717 /* UnidirectionalViewController.swift */; };
 		2D6D29C3267C0BA300C84717 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6D29C2267C0BA300C84717 /* Assets.xcassets */; };
@@ -17,7 +22,6 @@
 		2D6D29DF267D50D200C84717 /* Task+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6D29DE267D50D200C84717 /* Task+Extensions.swift */; };
 		2DB7A79C26826965002A6AFE /* UnidirectionalCodableBindingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7A79B26826965002A6AFE /* UnidirectionalCodableBindingViewController.swift */; };
 		2DB7A79E26826AF6002A6AFE /* license_token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2DB7A79D26826AF6002A6AFE /* license_token.txt */; };
-		9B098AE09F67EB2839BA7F0E /* Pods_DittoCoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E005924CE9F3F48BC2445C /* Pods_DittoCoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,9 +37,6 @@
 		2D6D29DE267D50D200C84717 /* Task+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Extensions.swift"; sourceTree = "<group>"; };
 		2DB7A79B26826965002A6AFE /* UnidirectionalCodableBindingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnidirectionalCodableBindingViewController.swift; sourceTree = "<group>"; };
 		2DB7A79D26826AF6002A6AFE /* license_token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = license_token.txt; path = ../../license_token.txt; sourceTree = "<group>"; };
-		74E005924CE9F3F48BC2445C /* Pods_DittoCoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DittoCoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE648F5E76E0943F0ADDA0FD /* Pods-DittoCoreData.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DittoCoreData.release.xcconfig"; path = "Target Support Files/Pods-DittoCoreData/Pods-DittoCoreData.release.xcconfig"; sourceTree = "<group>"; };
-		E22ECB44A267E7505ECD5275 /* Pods-DittoCoreData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DittoCoreData.debug.xcconfig"; path = "Target Support Files/Pods-DittoCoreData/Pods-DittoCoreData.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +44,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B098AE09F67EB2839BA7F0E /* Pods_DittoCoreData.framework in Frameworks */,
+				0120633F2889F3BD00AE1AB1 /* DittoSwift in Frameworks */,
+				01FB747F2889F2FB00EE2C74 /* Fakery in Frameworks */,
+				0120633A2889F36B00AE1AB1 /* DeepDiff in Frameworks */,
+				012063342889F33100AE1AB1 /* CodableWrappers in Frameworks */,
+				0120633D2889F3BD00AE1AB1 /* DittoObjC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +60,6 @@
 			children = (
 				2D6D29B8267C0BA100C84717 /* DittoCoreData */,
 				2D6D29B7267C0BA100C84717 /* Products */,
-				671CC5D3CC08FE4DB7A72792 /* Pods */,
-				BDD7F132645E41091674C000 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,23 +105,6 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		671CC5D3CC08FE4DB7A72792 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E22ECB44A267E7505ECD5275 /* Pods-DittoCoreData.debug.xcconfig */,
-				BE648F5E76E0943F0ADDA0FD /* Pods-DittoCoreData.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		BDD7F132645E41091674C000 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				74E005924CE9F3F48BC2445C /* Pods_DittoCoreData.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,17 +112,22 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D6D29CA267C0BA300C84717 /* Build configuration list for PBXNativeTarget "DittoCoreData" */;
 			buildPhases = (
-				AB5AC49B4CE493E1356229CC /* [CP] Check Pods Manifest.lock */,
 				2D6D29B2267C0BA100C84717 /* Sources */,
 				2D6D29B3267C0BA100C84717 /* Frameworks */,
 				2D6D29B4267C0BA100C84717 /* Resources */,
-				D32F489A448D027E98366F2A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DittoCoreData;
+			packageProductDependencies = (
+				01FB747E2889F2FB00EE2C74 /* Fakery */,
+				012063332889F33100AE1AB1 /* CodableWrappers */,
+				012063392889F36B00AE1AB1 /* DeepDiff */,
+				0120633C2889F3BD00AE1AB1 /* DittoObjC */,
+				0120633E2889F3BD00AE1AB1 /* DittoSwift */,
+			);
 			productName = DittoCoreData;
 			productReference = 2D6D29B6267C0BA100C84717 /* DittoCoreData.app */;
 			productType = "com.apple.product-type.application";
@@ -164,6 +155,12 @@
 				Base,
 			);
 			mainGroup = 2D6D29AD267C0BA100C84717;
+			packageReferences = (
+				01FB747D2889F2FB00EE2C74 /* XCRemoteSwiftPackageReference "Fakery" */,
+				012063322889F33100AE1AB1 /* XCRemoteSwiftPackageReference "CodableWrappers" */,
+				012063382889F36B00AE1AB1 /* XCRemoteSwiftPackageReference "DeepDiff" */,
+				0120633B2889F3BD00AE1AB1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
+			);
 			productRefGroup = 2D6D29B7267C0BA100C84717 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -185,48 +182,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		AB5AC49B4CE493E1356229CC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DittoCoreData-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D32F489A448D027E98366F2A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DittoCoreData/Pods-DittoCoreData-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DittoCoreData/Pods-DittoCoreData-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DittoCoreData/Pods-DittoCoreData-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2D6D29B2267C0BA100C84717 /* Sources */ = {
@@ -375,7 +330,6 @@
 		};
 		2D6D29CB267C0BA300C84717 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E22ECB44A267E7505ECD5275 /* Pods-DittoCoreData.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -395,7 +349,6 @@
 		};
 		2D6D29CC267C0BA300C84717 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE648F5E76E0943F0ADDA0FD /* Pods-DittoCoreData.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -435,6 +388,69 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		012063322889F33100AE1AB1 /* XCRemoteSwiftPackageReference "CodableWrappers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GottaGetSwifty/CodableWrappers.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		012063382889F36B00AE1AB1 /* XCRemoteSwiftPackageReference "DeepDiff" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onmyway133/DeepDiff.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		0120633B2889F3BD00AE1AB1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "2.0.0-alpha1";
+			};
+		};
+		01FB747D2889F2FB00EE2C74 /* XCRemoteSwiftPackageReference "Fakery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vadymmarkov/Fakery";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		012063332889F33100AE1AB1 /* CodableWrappers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 012063322889F33100AE1AB1 /* XCRemoteSwiftPackageReference "CodableWrappers" */;
+			productName = CodableWrappers;
+		};
+		012063392889F36B00AE1AB1 /* DeepDiff */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 012063382889F36B00AE1AB1 /* XCRemoteSwiftPackageReference "DeepDiff" */;
+			productName = DeepDiff;
+		};
+		0120633C2889F3BD00AE1AB1 /* DittoObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0120633B2889F3BD00AE1AB1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			productName = DittoObjC;
+		};
+		0120633E2889F3BD00AE1AB1 /* DittoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0120633B2889F3BD00AE1AB1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			productName = DittoSwift;
+		};
+		01FB747E2889F2FB00EE2C74 /* Fakery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01FB747D2889F2FB00EE2C74 /* XCRemoteSwiftPackageReference "Fakery" */;
+			productName = Fakery;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2D6D29CE267C0D9D00C84717 /* Model.xcdatamodeld */ = {
