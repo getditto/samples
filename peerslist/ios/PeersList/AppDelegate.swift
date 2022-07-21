@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Self.ditto = Ditto()
         Self.ditto.deviceName = makeupRandomDeviceName()
-        Self.ditto.setAccessLicense(readLicenseToken())
-        Self.ditto.startSync()
+        try! Self.ditto.setOfflineOnlyLicenseToken(readLicenseToken())
+        try! Self.ditto.startSync()
         
         return true
     }

@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     /**
      This variable needs to be held if you want to keep observing peer information.
      */
-    var observer: DittoPeersObserver?
+    var observer: DittoObserver?
 
     override func viewDidLoad() {
         super.viewDidLoad()
