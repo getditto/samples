@@ -23,15 +23,15 @@ class TasksTableViewController: UITableViewController {
         super.viewDidLoad()
 
         // Create an instance of Ditto
-        ditto = Ditto(identity: .development(appName: "live.ditto.tasks"))
+        ditto = Ditto()
 
         // Set your Ditto access license
         // The SDK will not work without this!
         do {
             // set the access token
-            try ditto.setLicenseToken("<INSERT ACCESS LICENSE>")
+            try ditto.setOfflineOnlyLicenseToken("o2d1c2VyX2lkbnJhZUBkaXR0by5saXZlZmV4cGlyeXgYMjAyMi0wOC0yMVQwNjo1OTo1OS45OTlaaXNpZ25hdHVyZXhYNkhOVlFEblFpQnFta3hjbzZEZGkra1VSV01yWkJERXdRZG5aa3E3c0dBSFBYYk9kbHVOMFlVbzMxWkR4dmlkK2lHS05VTldPM2duazZPUzhOc3F5Z1E9PQ==")
             // This starts Ditto's background synchronization
-            try ditto.tryStartSync()
+            try ditto.startSync()
         } catch(let err) {
             let alert = UIAlertController(title: "Uh oh", message: "Ditto wasn't able to start syncing. That's okay it'll still work as a local database. Here's the error: \n \(err.localizedDescription)", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -112,7 +112,7 @@ class TasksTableViewController: UITableViewController {
             if let text = alert.textFields?[0].text
             {
                 // Insert the data into Ditto
-                let _ = try! self.collection.insert([
+                let _ = try! self.collection.upsert([
                     "body": text,
                     "isCompleted": false
                 ])
