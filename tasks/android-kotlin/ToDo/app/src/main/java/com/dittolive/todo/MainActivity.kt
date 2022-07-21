@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
         // Create an instance of DittoSyncKit
         val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)
-        val ditto = Ditto(androidDependencies, DittoIdentity.OnlinePlaygroundV2(
+        val ditto = Ditto(androidDependencies, DittoIdentity.OnlinePlayground(
             androidDependencies,
             "f2b5f038-6d00-433a-9176-6e84011da136",
             "545717fe-6ffc-4e9f-ab47-7b500430a6ce",
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         this.ditto = ditto
 
         // This starts DittoSyncKit's background synchronization
-        ditto.tryStartSync()
+        ditto.startSync()
 
         // Add swipe to delete
         val swipeHandler = object : SwipeToDeleteCallback(this) {
