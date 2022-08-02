@@ -93,7 +93,7 @@ class ProfileViewModel: ObservableObject {
             )
 
             let ditto = Ditto(identity: identity)
-            try! ditto.tryStartSync()
+            try! ditto.startSync()
             
             self.ditto = ditto
             let liveQuery = ditto.store.collection("cars").findAll().observe { docs, event in
