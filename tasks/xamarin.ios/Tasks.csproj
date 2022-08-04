@@ -95,5 +95,8 @@
         <Compile Include="TasksTableSource.cs" />
         <Compile Include="Task.cs" />
     </ItemGroup>
+    <ItemGroup>
+      <InterfaceDefinition Include="Main.storyboard" />
+    </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
