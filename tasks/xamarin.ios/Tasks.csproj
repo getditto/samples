@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <RuntimeIdentifiers>win</RuntimeIdentifiers>
+  </PropertyGroup>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+        <ProjectGuid>{1C191353-B544-4E51-8EC1-262B586FEEA6}</ProjectGuid>
+        <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <TemplateGuid>{edc1b0fa-90cd-4038-8fad-98fe74adb368}</TemplateGuid>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>Tasks</RootNamespace>
+        <AssemblyName>Tasks</AssemblyName>
+        <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+        <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+        <ProvisioningType>automatic</ProvisioningType>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>portable</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+        <DefineConstants>DEBUG</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <MtouchArch>x86_64</MtouchArch>
+        <MtouchLink>None</MtouchLink>
+        <MtouchDebug>true</MtouchDebug>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <MtouchLink>None</MtouchLink>
+        <MtouchArch>x86_64</MtouchArch>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>portable</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\iPhone\Debug</OutputPath>
+        <DefineConstants>DEBUG</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <MtouchArch>ARM64</MtouchArch>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <CodesignKey>iPhone Developer</CodesignKey>
+        <MtouchDebug>true</MtouchDebug>
+        <MtouchLink>None</MtouchLink>
+<MtouchInterpreter>-all</MtouchInterpreter>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\iPhone\Release</OutputPath>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <MtouchArch>ARM64</MtouchArch>
+        <CodesignKey>iPhone Developer</CodesignKey>
+        <MtouchLink>SdkOnly</MtouchLink>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Core" />
+        <Reference Include="Xamarin.iOS" />
+        <Reference Include="System.Numerics" />
+        <Reference Include="System.Numerics.Vectors" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+      <PackageReference Include="Ditto.Xamarin.iOS" Version="1.1.8-alpha2" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Resources\" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Info.plist" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Main.cs" />
+        <Compile Include="AppDelegate.cs" />
+        <Compile Include="SceneDelegate.cs" />
+        <Compile Include="DittoHandler.cs" />
+        <Compile Include="TasksTableViewController.cs" />
+        <Compile Include="TasksTableViewController.designer.cs">
+          <DependentUpon>TasksTableViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="TasksTableSource.cs" />
+        <Compile Include="Task.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <InterfaceDefinition Include="Main.storyboard" />
+    </ItemGroup>
+    <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
