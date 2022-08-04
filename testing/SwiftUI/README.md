@@ -2,4 +2,4 @@
 
 An example for testing Ditto in SwiftUI.
 
-See [the docs](https://ditto.live/guides/testing/iOS) for more information.
+See [the docs](https://docs.ditto.live/ios/quick-tips/testing/) for more information.
