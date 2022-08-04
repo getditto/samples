@@ -116,7 +116,13 @@ class ProfileViewModel: ObservableObject {
                 }
         }
     }
-        
+    
+    func addCar () {
+        try! ditto!.store.collection("cars").upsert([
+            "_id": "boop",
+            "make": "Toyota"
+        ])
+    }
 }
 
 struct ContentView: View {
@@ -132,7 +138,8 @@ struct ContentView: View {
             Text("Error!")
         case .loaded(let user):
             Text(user.name ?? "Unknown")
-            Button("Logout", action: viewModel.logout)
+            Button("Logout", action: viewModel.logout).padding()
+            Button("Add car", action: viewModel.addCar).padding()
             
         }
     
