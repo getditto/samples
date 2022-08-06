@@ -14,12 +14,10 @@ namespace Tasks
         public UIWindow Window { get; set; }
 
         internal Ditto ditto;
-        private static DittoPeersObserver peersObserver;
 
         [Export ("application:didFinishLaunchingWithOptions:")]
         public bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
-
             NSFileManager fileManager = new NSFileManager();
             NSUrl url = fileManager.GetUrl(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User, null, true, out NSError error);
             if (error != null)
@@ -35,32 +33,19 @@ namespace Tasks
                 Console.WriteLine($"Error creating ditto directory: {error.LocalizedDescription}");
             }
 
-            string appId = DittoHandler.Ditto.appId;
             string workingDir = url.Path;
 
-            DittoIdentity identity = DittoIdentity.OnlinePlaygroundV2(appID: appId, token: "REPLACE_ME"
+            DittoIdentity identity = DittoIdentity.OnlinePlaygroundV2(appID: "7b373411-e54e-4675-9d3d-e6dbd2eb023a", "3b26c58c-92b7-4b2f-9ab3-2a5e7f639560"
 , false, workingDir: workingDir);
 
             ditto = new Ditto(identity, workingDir);
-
-            ditto.DeviceName = UIDevice.CurrentDevice.Name;
 
             var transportConfig = new DittoTransportConfig();
             transportConfig.EnableAllPeerToPeer();
             Console.WriteLine($"Initial transport config: {transportConfig}");
             ditto.SetTransportConfig(transportConfig);
 
-            peersObserver = ditto.ObservePeers(peers =>
-            {
-                Console.WriteLine($"Peers connected: {peers.Count}");
-                foreach (DittoRemotePeer peer in peers)
-                {
-                    Console.WriteLine($"Peer: {peer.DeviceName} {peer.NetworkId} {String.Join(", ", peer.Connections)} {peer.Rssi} {peer.ApproximateDistanceInMeters}");
-                }
-            });
-
             ditto.TryStartSync();
-
 
             return true;
         }
@@ -84,5 +69,7 @@ namespace Tasks
         }
     }
 }
+
+
 
 
