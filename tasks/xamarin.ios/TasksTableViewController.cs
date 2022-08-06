@@ -1,5 +1,4 @@
 using System;
-
 using Foundation;
 using UIKit;
 using DittoSDK;
@@ -54,36 +53,16 @@ namespace Tasks
 		{
 			liveQuery = ditto.Store["tasks"].FindAll().Observe((docs, _event) =>
 			{
-				updateMessages(docs.ToArray());
+				tasks = docs.ConvertAll(d => new Task(d));
+				tasksTableSource.updateTasks(tasks);
+
+				InvokeOnMainThread(() =>
+				{
+					TableView.ReloadData();
+				});
+
 			});
 		}
-
-		public void updateMessages(DittoDocument[] docs)
-		{
-			if (tasks != null)
-			{
-				tasks.Clear();
-			}
-
-            foreach (var doc in docs)
-            {
-                doc.Value.TryGetValue("_id", out var id);
-                doc.Value.TryGetValue("body", out var body);
-                doc.Value.TryGetValue("isCompleted", out var isCompleted);
-
-
-                var newTask = new Task { _id = id.ToString(), body = body.ToString(), isCompleted = (bool)isCompleted };
-
-                tasks.Add(newTask);
-            }
-
-            tasksTableSource.updateTasks(tasks);
-
-            InvokeOnMainThread(() =>
-            {
-                TableView.ReloadData();
-            });
-        }
 
 		partial void didClickAddTask(UIBarButtonItem sender)
 		{
@@ -106,7 +85,7 @@ namespace Tasks
 		}
 
 		public void addTask(string text)
-        {
+		{
 
 			var dict = new Dictionary<string, object>
 			{
@@ -115,19 +94,6 @@ namespace Tasks
 			};
 
 			var docId = this.collection.Insert(dict);
-
-            var docs = this.collection.FindAll().Exec();
-			List<string> myArray = new List<string>();
-            foreach (var doc in docs)
-            {
-				var id = doc["_id"].StringValue;
-				myArray.Add(id);
-				
-            }
-			myArray.Sort();
-
-        }
-
-
+		}
 	}
 }
