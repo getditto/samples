@@ -87,7 +87,6 @@
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
         <Compile Include="SceneDelegate.cs" />
-        <Compile Include="DittoHandler.cs" />
         <Compile Include="TasksTableViewController.cs" />
         <Compile Include="TasksTableViewController.designer.cs">
           <DependentUpon>TasksTableViewController.cs</DependentUpon>
