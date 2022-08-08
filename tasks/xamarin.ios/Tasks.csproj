@@ -75,7 +75,7 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
-      <PackageReference Include="Ditto.Xamarin.iOS" Version="1.1.8-alpha2" />
+      <PackageReference Include="Ditto.Xamarin.iOS" Version="2.0.1-experimental.xamarin.ios" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
