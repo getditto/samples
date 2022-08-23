@@ -35,8 +35,7 @@ namespace Tasks
 
             string workingDir = url.Path;
 
-            DittoIdentity identity = DittoIdentity.OnlinePlayground(appID: "REPLACE_ME", "REPLACE_ME"
-, false, workingDir: workingDir);
+            DittoIdentity identity = DittoIdentity.OnlinePlayground(appID: "REPLACE_ME", "REPLACE_ME", false, workingDir: workingDir);
 
             ditto = new Ditto(identity, workingDir);
 
