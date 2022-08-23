@@ -93,7 +93,7 @@ namespace Tasks
 				{"isCompleted", false}
 			};
 
-			var docId = this.collection.Insert(dict);
+			var docId = this.collection.Upsert(dict);
 		}
 	}
 }

@@ -35,7 +35,7 @@ namespace Tasks
 
             string workingDir = url.Path;
 
-            DittoIdentity identity = DittoIdentity.OnlinePlaygroundV2(appID: "REPLACE_ME", "REPLACE_ME"
+            DittoIdentity identity = DittoIdentity.OnlinePlayground(appID: "REPLACE_ME", "REPLACE_ME"
 , false, workingDir: workingDir);
 
             ditto = new Ditto(identity, workingDir);
@@ -43,9 +43,9 @@ namespace Tasks
             var transportConfig = new DittoTransportConfig();
             transportConfig.EnableAllPeerToPeer();
             Console.WriteLine($"Initial transport config: {transportConfig}");
-            ditto.SetTransportConfig(transportConfig);
+            ditto.TransportConfig = transportConfig;
 
-            ditto.TryStartSync();
+            ditto.StartSync();
 
             return true;
         }

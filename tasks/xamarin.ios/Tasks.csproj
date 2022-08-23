@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <RuntimeIdentifiers>win</RuntimeIdentifiers>
+        <RuntimeIdentifier>osx</RuntimeIdentifier>
+        <NuGetRuntimeIdentifier>osx</NuGetRuntimeIdentifier>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -75,7 +77,9 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
-      <PackageReference Include="Ditto.Xamarin.iOS" Version="2.0.1-experimental.xamarin.ios" />
+      <PackageReference Include="Ditto">
+        <Version>2.0.1</Version>
+      </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
