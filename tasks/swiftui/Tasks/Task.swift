@@ -10,18 +10,21 @@ import DittoSwift
 struct Task {
     let _id: String
     let body: String
+    let isDeleted: Bool
     let isCompleted: Bool
 
     init(document: DittoDocument) {
         _id = document["_id"].stringValue
         body = document["body"].stringValue
         isCompleted = document["isCompleted"].boolValue
+        isDeleted = document["isDeleted"].boolValue
     }
 
     init(body: String, isCompleted: Bool) {
         self._id = UUID().uuidString
         self.body = body
         self.isCompleted = isCompleted
+        self.isDeleted = false
     }
 }
 
