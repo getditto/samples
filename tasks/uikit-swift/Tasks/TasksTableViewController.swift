@@ -21,24 +21,16 @@ class TasksTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Create an instance of Ditto
-        ditto = Ditto()
+        ditto = Ditto(identity: .onlinePlayground(appID: "YOUR_appID_HERE", token: "YOUR_TOKEN_HERE"))
 
-        // Set your Ditto access license
-        // The SDK will not work without this!
+        // This starts Ditto's background synchronization
         do {
-            // set the access token
-            try ditto.setOfflineOnlyLicenseToken("YOUR_TOKEN_HERE")
-            // This starts Ditto's background synchronization
             try ditto.startSync()
-        } catch(let err) {
-            let alert = UIAlertController(title: "Uh oh", message: "Ditto wasn't able to start syncing. That's okay it'll still work as a local database. Here's the error: \n \(err.localizedDescription)", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        } catch (let err){
+            print(err.localizedDescription)
         }
-
-
         // Create some helper variables for easy access
         store = ditto.store
         // We will store data in the "tasks" collection
@@ -92,6 +84,8 @@ class TasksTableViewController: UITableViewController {
             default: break
             }
         }
+        
+        collection.find("isDeleted == true").evict()
     }
 
     @IBAction func didClickAddTask(_ sender: UIBarButtonItem) {
@@ -167,7 +161,9 @@ class TasksTableViewController: UITableViewController {
             // Retrieve the task at the row swiped
             let task = tasks[indexPath.row]
             // Delete the task from Ditto
-            collection.findByID(task.id).remove()
+            ditto.store["tasks"].findByID(task.id).update { doc in
+                doc?["isDeleted"].set(true)
+            }
         }
     }
 
