@@ -20,10 +20,12 @@ class TasksListScreenViewModel: ObservableObject {
     init(ditto: Ditto) {
         self.ditto = ditto
         self.liveQuery = ditto.store["tasks"]
-            .findAll()
-            .observe(eventHandler: {  docs, _ in
+            .find("!isDeleted")
+            .observe(eventHandler: {  docs, event in
+                print(event.description)
                 self.tasks = docs.map({ Task(document: $0) })
             })
+        ditto.store["tasks"].find("isDeleted == true").evict()
     }
 
     func toggle(task: Task) {

@@ -106,8 +106,10 @@ namespace Tasks
                 case UITableViewCellEditingStyle.Delete:
 
                     var task = tasks[indexPath.Row];
-                    collection.FindById(task._id).Remove();
-
+                    collection.FindById(task._id).Update((mutableDoc) => {
+                        if (mutableDoc == null) return;
+                        mutableDoc["isDeleted"].Set(true);
+                    });
                     break;
                 case UITableViewCellEditingStyle.None:
                     Console.WriteLine("CommitEditingStyle:None called");

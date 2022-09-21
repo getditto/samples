@@ -33,18 +33,22 @@ class EditScreenViewModel: ObservableObject {
                 mutableDoc?["isCompleted"].set(self.isCompleted)
                 mutableDoc?["body"].set(self.body)
             })
-        } else {
-            // the user is attempting to insert
+        }else {
+            // the user is attempting to upsert
             try! ditto.store["tasks"].upsert([
                 "body": body,
-                "isCompleted": isCompleted
+                "isCompleted": isCompleted,
+                "isDeleted": false
             ])
         }
     }
 
     func delete() {
         guard let _id = _id else { return }
-        ditto.store["tasks"].findByID(_id).remove()
+        ditto.store["tasks"].findByID(_id).update { doc in
+            doc?["isDeleted"].set(true)
+        }
+//        ditto.store["tasks"].findByID(_id).evict()
     }
 
 }

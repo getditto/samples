@@ -10,7 +10,7 @@ class TasksListScreenViewModel: ViewModel() {
     val tasks: MutableLiveData<List<Task>> = MutableLiveData(emptyList())
 
     val liveQuery = TasksApplication.ditto!!.store["tasks"]
-        .findAll().observe { docs, _ ->
+        .find("!isDeleted").observe { docs, _ ->
             tasks.postValue(docs.map { Task(it) })
         }
 

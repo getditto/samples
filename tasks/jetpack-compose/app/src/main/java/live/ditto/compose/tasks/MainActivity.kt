@@ -39,6 +39,7 @@ class MainActivity : ComponentActivity() {
             Root()
         }
 
+        ditto!!.store["tasks"].find("isDeleted == true").evict()
         requestMissingPermissions()
     }
 

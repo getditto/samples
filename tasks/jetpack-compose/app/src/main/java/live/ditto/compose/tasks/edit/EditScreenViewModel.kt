@@ -47,8 +47,11 @@ class EditScreenViewModel: ViewModel() {
         }
     }
 
+    // 4.
     fun delete() {
-        TasksApplication.ditto!!.store["tasks"].findByID(DittoDocumentID(_id!!))
-            .remove()
+        TasksApplication.ditto!!.store["tasks"].upsert(mapOf(
+            "_id" to _id!!,
+            "isDeleted" to true
+        ))
     }
 }

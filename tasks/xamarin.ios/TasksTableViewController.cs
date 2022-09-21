@@ -51,7 +51,7 @@ namespace Tasks
 
 		public void setupTaskList()
 		{
-			liveQuery = ditto.Store["tasks"].FindAll().Observe((docs, _event) =>
+			liveQuery = ditto.Store["tasks"].Find("!isDeleted").Observe((docs, _event) =>
 			{
 				tasks = docs.ConvertAll(d => new Task(d));
 				tasksTableSource.updateTasks(tasks);
@@ -62,6 +62,8 @@ namespace Tasks
 				});
 
 			});
+
+			ditto.Store["tasks"].Find("isDeleted == true").Evict();
 		}
 
 		partial void didClickAddTask(UIBarButtonItem sender)

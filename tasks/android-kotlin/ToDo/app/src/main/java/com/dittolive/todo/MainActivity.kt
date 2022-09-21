@@ -138,6 +138,8 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
                 }
             }
         }
+
+        ditto!!.store.collection("tasks").find("isDeleted == true").evict()
     }
 
     fun checkDittoPermission() {
