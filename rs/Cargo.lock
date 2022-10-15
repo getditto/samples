@@ -114,9 +114,9 @@ dependencies = [
 
 [[package]]
 name = "dittolive-ditto"
-version = "2.0.7"
+version = "2.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f4aa148f532071946b0ac3f3ac1c2482c89b1e04edfe8c12b00eec053e165ba"
+checksum = "92501c930773941f7686f548475e4ca18b2a33979ae574cce4661653b1f3972e"
 dependencies = [
  "chrono",
  "crossbeam-utils",
@@ -138,9 +138,9 @@ dependencies = [
 
 [[package]]
 name = "dittolive-ditto-sys"
-version = "2.0.7"
+version = "2.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "db742bd9fe1f8a1ce0b3cc2b3f2bba69eb12e261e03e704fe2e5f528ebebe0d2"
+checksum = "9749ad533b5a377f31a42617a08e83163c2e07c9ed4dcf74a3b2cc6f000cd3a2"
 dependencies = [
  "cratesio-placeholder-package",
  "macro_rules_attribute",
@@ -479,6 +479,7 @@ name = "rs"
 version = "0.1.0"
 dependencies = [
  "dittolive-ditto",
+ "dittolive-ditto-sys",
  "structopt",
 ]
 
