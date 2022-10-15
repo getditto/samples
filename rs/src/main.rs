@@ -22,6 +22,7 @@ fn main() -> Result<(), DittoError> {
 
     let ditto = Ditto::builder()
         .with_root(Arc::new(PersistentRoot::from_current_exe()?))
+        .with_minimum_log_level(LogLevel::Verbose)
         .with_identity(|ditto_root| {
             let app_id = AppId::from_str(&args.app_id).unwrap();
             let shared_token = args.shared_token;
