@@ -2,6 +2,7 @@ use dittolive_ditto::{identity::*, prelude::*};
 use std::sync::mpsc::channel;
 use std::{self, str::FromStr, sync::Arc};
 use structopt::StructOpt;
+use serde_json::json;
 
 #[derive(StructOpt)]
 struct Args {
@@ -51,6 +52,11 @@ fn main() -> Result<(), DittoError> {
     let collection = store.collection(&args.collection)?;
 
     let _lq = collection.find_all().observe(event_handler)?;
+    let res = collection.upsert(json!({
+        "hello": "world"
+    }));
+
+    println!("Inserted document with id={}", res.unwrap());
 
     loop {
         let (documents, event) = receiver.recv().unwrap();

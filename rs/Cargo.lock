@@ -480,6 +480,7 @@ version = "0.1.0"
 dependencies = [
  "dittolive-ditto",
  "dittolive-ditto-sys",
+ "serde_json",
  "structopt",
 ]
 
