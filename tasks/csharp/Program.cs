@@ -14,11 +14,11 @@ namespace Tasks
 
         public static void Main(params string[] args)
         {
-            ditto = new Ditto(identity: DittoIdentity.Development(appName: "live.ditto.tasks"));
+            ditto = new Ditto(identity: DittoIdentity.OfflinePlayground());
 
             try
             {
-                ditto.SetLicenseToken("<REPLACE_ME>");
+                ditto.SetOfflineOnlyLicenseToken("<REPLACE_ME>");
                 DittoTransportConfig transportConfig = new DittoTransportConfig();
 
                 // Enable Local Area Network Connections
@@ -34,9 +34,9 @@ namespace Tasks
                 // you can add as many TcpServers as you would like.
                 transportConfig.Connect.TcpServers.Add("185.1.5.5:12345");
 
-                ditto.SetTransportConfig(transportConfig);
+                ditto.TransportConfig = transportConfig;
 
-                ditto.TryStartSync();
+                ditto.StartSync();
             }
             catch (DittoException ex)
             {
@@ -66,9 +66,9 @@ namespace Tasks
                 switch (command)
                 {
                     
-                    case string s when command.StartsWith("--insert"):
-                        string taskBody = s.Replace("--insert ", "");
-                        ditto.Store["tasks"].Insert(new Task(taskBody, false).ToDictionary());
+                    case string s when command.StartsWith("--upsert"):
+                        string taskBody = s.Replace("--upsert ", "");
+                        ditto.Store["tasks"].Upsert(new Task(taskBody, false).ToDictionary());
                         break;
                     case string s when command.StartsWith("--toggle"):
                         string _idToToggle = s.Replace("--toggle ", "");
@@ -109,9 +109,9 @@ namespace Tasks
         public static void ListCommands()
         {
             Console.WriteLine("************* Commands *************");
-            Console.WriteLine("--insert my new task");
-            Console.WriteLine("   Inserts a task");
-            Console.WriteLine("   Example: \"--insert Get Milk\"");
+            Console.WriteLine("--upsert my new task");
+            Console.WriteLine("   Upsert a task");
+            Console.WriteLine("   Example: \"--upsert Get Milk\"");
             Console.WriteLine("--toggle myTaskTd");
             Console.WriteLine("   Toggles the isComplete property to the opposite value");
             Console.WriteLine("   Example: \"--toggle 1234abc\"");

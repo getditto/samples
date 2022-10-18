@@ -47,7 +47,7 @@ int main()
 
     try
     {
-        ditto->try_start_sync();
+        ditto->start_sync();
     }
     catch (const DittoError &err)
     {
