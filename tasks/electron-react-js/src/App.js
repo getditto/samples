@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 
 const COLLECTION = 'tasks'
-const OFFLINE_LICENSE_TOKEN = '<REPLACE_ME>'
+const OFFLINE_LICENSE_TOKEN = '<replace me>'
 
 const App = () => {
   const [text, setText] = useState('')
   const { ditto, documents: tasks } = usePendingCursorOperation({
     collection: COLLECTION,
   })
-  const { insert, removeByID, updateByID } = useMutations({
+  const { upsert, removeByID, updateByID } = useMutations({
     collection: COLLECTION,
   })
 
@@ -36,7 +36,7 @@ const App = () => {
 
   const addTask = (e) => {
     e.preventDefault()
-    insert({ value: { body: text, isCompleted: false } })
+    upsert({ value: { body: text, isCompleted: false } })
     setText('')
   }
 
@@ -45,7 +45,7 @@ const App = () => {
       _id: taskId,
       updateClosure: (mutableDoc) => {
         if (mutableDoc) {
-          mutableDoc.isCompleted = !mutableDoc.isCompleted
+          mutableDoc.at("isCompleted").set(!mutableDoc.value.isCompleted)
         }
       },
     })
@@ -68,16 +68,16 @@ const App = () => {
       </form>
       <ul>
         {tasks.map((task) => (
-          <li key={task._id}>
+          <li key={task.id.value}>
             <input
               type="checkbox"
-              checked={task.isCompleted}
-              onChange={toggleIsCompleted(task._id)}
+              checked={task.value.isCompleted}
+              onChange={toggleIsCompleted(task.id.value)}
             />
-            <span className={task.isCompleted ? 'completed' : ''}>
-              {task.body} <code>(ID: {task._id})</code>
+            <span className={task.value.isCompleted ? 'completed' : ''}>
+              {task.value.body} <code>(ID: {task.id.value})</code>
             </span>
-            <button type="button" onClick={removeTask(task._id)}>
+            <button type="button" onClick={removeTask(task.id.value)}>
               Remove
             </button>
           </li>
