@@ -37,14 +37,6 @@ fn main() -> Result<(), DittoError> {
                 custom_auth_url,
             )
         })?
-        .with_transport_config(|_identity| {
-            let mut config = TransportConfig::new();
-            config
-                .connect
-                .websocket_urls
-                .insert(format!("wss://{}.cloud.ditto.live", args.app_id));
-            config
-        })?
         .build()?;
 
     ditto.start_sync().unwrap();
