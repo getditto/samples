@@ -101,6 +101,6 @@ struct EditScreen: View {
 
 struct EditScreen_Previews: PreviewProvider {
     static var previews: some View {
-        EditScreen(ditto: Ditto(), task: Task(body: "Get Milk", isCompleted: true))
+        EditScreen(ditto: Ditto(), task: Task(body: "Get Milk", isCompleted: true, invitationIds: []))
     }
 }

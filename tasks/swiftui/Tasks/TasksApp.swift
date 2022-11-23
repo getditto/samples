@@ -13,8 +13,7 @@ struct TasksApp: App {
 
     @State var isPresentingAlert = false
     @State var errorMessage = ""
-
-    var ditto = Ditto(identity: .onlinePlayground(appID: "YOUR_APP_ID_HERE", token: "YOUR_TOKEN_HERE"))
+    var ditto = Ditto(identity: .offlinePlayground(appID: "app.tasks.test"))
 
     var body: some Scene {
         WindowGroup {

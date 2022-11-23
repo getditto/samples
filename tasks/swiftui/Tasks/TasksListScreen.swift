@@ -27,12 +27,27 @@ class TasksListScreenViewModel: ObservableObject {
             })
         ditto.store["tasks"].find("isDeleted == true").evict()
     }
-
+    
+    public static func randomFakeFirstName() -> String {
+        let firstNameList = ["Henry", "William", "Geoffrey", "Jim", "Yvonne", "Jamie", "Leticia", "Priscilla", "Sidney", "Nancy", "Edmund", "Bill", "Megan"]
+        return firstNameList.randomElement()!
+    }
+    
     func toggle(task: Task) {
         self.ditto.store["tasks"].findByID(task._id)
             .update { mutableDoc in
                 guard let mutableDoc = mutableDoc else { return }
                 mutableDoc["isCompleted"].set(!mutableDoc["isCompleted"].boolValue)
+            }
+    }
+    
+    func clickedInvite(task: Task) {
+        self.ditto.store["tasks"].findByID(task._id)
+            .update { mutableDoc in
+                guard let mutableDoc = mutableDoc else { return }
+                var invitations = mutableDoc["invitationIds"].arrayValue
+                invitations.append(TasksListScreenViewModel.randomFakeFirstName())
+                mutableDoc["invitationIds"].set(invitations)
             }
     }
 
@@ -64,7 +79,8 @@ struct TasksListScreen: View {
                 ForEach(viewModel.tasks) { task in
                     TaskRow(task: task,
                         onToggle: { task in viewModel.toggle(task: task) },
-                        onClickBody: { task in viewModel.clickedBody(task: task) }
+                        onClickBody: { task in viewModel.clickedBody(task: task) },
+                        onClickInvite: { task in viewModel.clickedInvite(task: task)}
                     )
                 }
             }
