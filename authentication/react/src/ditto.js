@@ -17,7 +17,7 @@ export default function get(token) {
       authHandler: authHandler
     }
     ditto = new Ditto(identity, '/ditto')
-    ditto.tryStartSync()
+    ditto.startSync()
   }
   return ditto
 }
