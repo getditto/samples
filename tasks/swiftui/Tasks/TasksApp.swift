@@ -16,7 +16,6 @@ struct TasksApp: App {
     
     public static var firstNameList = ["Henry", "William", "Geoffrey", "Jim", "Yvonne", "Jamie", "Leticia", "Priscilla", "Sidney", "Nancy", "Edmund", "Bill", "Megan"]
 
-
     var body: some Scene {
         WindowGroup {
             TasksListScreen()

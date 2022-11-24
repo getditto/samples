@@ -56,9 +56,8 @@ class TasksListScreenViewModel: ObservableObject {
         DittoManager.shared.ditto.store["tasks"].findByID(task._id)
             .update { mutableDoc in
                 guard let mutableDoc = mutableDoc else { return }
-                var invitations = mutableDoc["invitationIds"].dictionaryValue
-                invitations[TasksListScreenViewModel.randomFakeFirstName()] = true
-                mutableDoc["invitationIds"].set(invitations)
+                var userId = TasksListScreenViewModel.randomFakeFirstName()
+                mutableDoc["invitationIds"][userId] = true
             }
     }
 
