@@ -38,7 +38,7 @@ struct TaskRow: View {
                     }
             }
             Spacer()
-            Text(task.invitationIds.reduce("", { x, y in
+            Text(task.invitationIds.keys.reduce("", { x, y in
                 x +  (y ?? "") + ", "
             })).foregroundColor(Color.gray)
             
@@ -52,9 +52,9 @@ struct TaskRow: View {
 struct TaskRow_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            TaskRow(task: Task(body: "Get Milk", isCompleted: true, invitationIds: ["Susan", "John"]))
-            TaskRow(task: Task(body: "Do Homework", isCompleted: false, invitationIds: []))
-            TaskRow(task: Task(body: "Take out trash", isCompleted: true, invitationIds: []))
+            TaskRow(task: Task(body: "Get Milk", isCompleted: true, invitationIds: ["Susan": true, "John": true]))
+            TaskRow(task: Task(body: "Do Homework", isCompleted: false, invitationIds: [:]))
+            TaskRow(task: Task(body: "Take out trash", isCompleted: true, invitationIds: [:]))
         }
     }
 }

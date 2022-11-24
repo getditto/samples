@@ -11,30 +11,41 @@ import DittoSwift
 class TasksListScreenViewModel: ObservableObject {
     @Published var tasks = [Task]()
     @Published var isPresentingEditScreen: Bool = false
-
+    @Published var isPresentingNameScreen: Bool = false
+    @Published var userId: String = ""
+    
     private(set) var taskToEdit: Task? = nil
 
-    let ditto: Ditto
     var liveQuery: DittoLiveQuery?
 
-    init(ditto: Ditto) {
-        self.ditto = ditto
-        self.liveQuery = ditto.store["tasks"]
-            .find("!isDeleted")
+    init() {
+        if (liveQuery == nil) {
+            createQuery()
+        }
+    }
+    
+    public func createQuery() {
+        var query = "(!isDeleted)"
+        if (userId != "") {
+            query += "&& invitationIds.\(userId) == true"
+        }
+            
+        self.liveQuery = DittoManager.shared.ditto.store["tasks"]
+            .find(query)
             .observe(eventHandler: {  docs, event in
                 print(event.description)
                 self.tasks = docs.map({ Task(document: $0) })
+                print(self.tasks)
             })
-        ditto.store["tasks"].find("isDeleted == true").evict()
+        DittoManager.shared.ditto.store["tasks"].find("isDeleted == true").evict()
     }
     
     public static func randomFakeFirstName() -> String {
-        let firstNameList = ["Henry", "William", "Geoffrey", "Jim", "Yvonne", "Jamie", "Leticia", "Priscilla", "Sidney", "Nancy", "Edmund", "Bill", "Megan"]
-        return firstNameList.randomElement()!
+        return TasksApp.firstNameList.randomElement()!
     }
     
     func toggle(task: Task) {
-        self.ditto.store["tasks"].findByID(task._id)
+        DittoManager.shared.ditto.store["tasks"].findByID(task._id)
             .update { mutableDoc in
                 guard let mutableDoc = mutableDoc else { return }
                 mutableDoc["isCompleted"].set(!mutableDoc["isCompleted"].boolValue)
@@ -42,11 +53,11 @@ class TasksListScreenViewModel: ObservableObject {
     }
     
     func clickedInvite(task: Task) {
-        self.ditto.store["tasks"].findByID(task._id)
+        DittoManager.shared.ditto.store["tasks"].findByID(task._id)
             .update { mutableDoc in
                 guard let mutableDoc = mutableDoc else { return }
-                var invitations = mutableDoc["invitationIds"].arrayValue
-                invitations.append(TasksListScreenViewModel.randomFakeFirstName())
+                var invitations = mutableDoc["invitationIds"].dictionaryValue
+                invitations[TasksListScreenViewModel.randomFakeFirstName()] = true
                 mutableDoc["invitationIds"].set(invitations)
             }
     }
@@ -60,18 +71,16 @@ class TasksListScreenViewModel: ObservableObject {
         taskToEdit = nil
         isPresentingEditScreen = true
     }
+    
+    func clickedGear() {
+        taskToEdit = nil
+        isPresentingNameScreen = true
+    }
 }
 
 struct TasksListScreen: View {
 
-    let ditto: Ditto
-
-    @ObservedObject var viewModel: TasksListScreenViewModel
-
-    init(ditto: Ditto) {
-        self.ditto = ditto
-        self.viewModel = TasksListScreenViewModel(ditto: ditto)
-    }
+    @StateObject var viewModel = TasksListScreenViewModel()
 
     var body: some View {
         NavigationView {
@@ -90,8 +99,20 @@ struct TasksListScreen: View {
             }, label: {
                 Image(systemName: "plus")
             }))
+            .navigationBarItems(trailing: Button(action: {
+                viewModel.clickedGear()
+            }, label: {
+                Image(systemName: "gear")
+            }))
             .sheet(isPresented: $viewModel.isPresentingEditScreen, content: {
-                EditScreen(ditto: ditto, task: viewModel.taskToEdit)
+                EditScreen(task: viewModel.taskToEdit, userId: viewModel.userId).onDisappear {
+                    viewModel.createQuery()
+                }
+            })
+            .sheet(isPresented: $viewModel.isPresentingNameScreen, content: {
+                NameScreen(viewModel: viewModel).onDisappear {
+                    viewModel.createQuery()
+                }
             })
         }
     }
@@ -99,6 +120,6 @@ struct TasksListScreen: View {
 
 struct TasksListScreen_Previews: PreviewProvider {
     static var previews: some View {
-        TasksListScreen(ditto: Ditto())
+        TasksListScreen()
     }
 }
