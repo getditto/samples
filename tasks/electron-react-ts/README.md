@@ -16,4 +16,4 @@ If the Bluetooth Low Energy P2P transport is enabled, the application might cras
 
 ## Bluetooth Low Energy on Linux
 
-Please refer to [the docs](https://docs.ditto.live/installation/linux) for instructions on how to enable Bluetooth Low Energy on Linux.
+Please refer to [the docs](https://docs.ditto.live/raspberrypi/installation) for instructions on how to enable Bluetooth Low Energy on Linux.
