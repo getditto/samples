@@ -9,6 +9,7 @@ namespace Tasks
         string _id;
         string body;
         bool isCompleted;
+        bool isDeleted;
 
         public Task(string _id, string body, bool isCompleted)
         {
@@ -22,6 +23,7 @@ namespace Tasks
             this._id = Guid.NewGuid().ToString();
             this.body = body;
             this.isCompleted = isCompleted;
+            this.isDeleted = false;
         }
 
         public Task(DittoDocument document)
@@ -29,11 +31,12 @@ namespace Tasks
             this._id = document["_id"].StringValue;
             this.body = document["body"].StringValue;
             this.isCompleted = document["isCompleted"].BooleanValue;
+            this.isDeleted = document["isDeleted"].BooleanValue;
         }
 
         public override string ToString()
         {
-            return $"Task _id: {_id}, body: {body}, isCompleted: {isCompleted}";
+            return $"Task _id: {_id}, body: {body}, isCompleted: {isCompleted}, isDeleted: {isDeleted}";
         }
 
         public Dictionary<string, object> ToDictionary()
@@ -43,6 +46,7 @@ namespace Tasks
                 { "_id", _id },
                 { "body", body },
                 { "isCompleted", isCompleted },
+                { "isDeleted", isDeleted },
             };
         }
     }
