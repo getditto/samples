@@ -9,6 +9,7 @@ namespace Tasks
         static Ditto ditto;
         static bool isAskedToExit = false;
         static List<Task> tasks = new List<Task>();
+        static DittoSubscription subscription;
         static DittoLiveQuery liveQuery;
 
 
@@ -49,7 +50,8 @@ namespace Tasks
 
             Console.WriteLine("Welcome to Ditto's Task App");
 
-            liveQuery = ditto.Store["tasks"].Find("!isDeleted").Observe((docs, _event) => {
+            subscription = ditto.Store["tasks"].Find("!isDeleted").Subscribe();
+            liveQuery = ditto.Store["tasks"].Find("!isDeleted").ObserveLocal((docs, _event) => {
                 tasks = docs.ConvertAll(document => new Task(document));
             });
 
