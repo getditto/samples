@@ -13,13 +13,13 @@ class EditScreenViewModel: ObservableObject {
     @Published var canDelete: Bool = false
     @Published var body: String = ""
     @Published var isCompleted: Bool = false
+    var userId: String = ""
 
     private let _id: String?
-    private let ditto: Ditto
 
-    init(ditto: Ditto, task: Task?) {
+    init(task: Task?, userId: String) {
         self._id = task?._id
-        self.ditto = ditto
+        self.userId = userId
 
         canDelete = task != nil
         body = task?.body ?? ""
@@ -29,23 +29,29 @@ class EditScreenViewModel: ObservableObject {
     func save() {
         if let _id = _id {
             // the user is attempting to update
-            ditto.store["tasks"].findByID(_id).update({ mutableDoc in
+            DittoManager.shared.ditto.store["tasks"].findByID(_id).update({ mutableDoc in
                 mutableDoc?["isCompleted"].set(self.isCompleted)
                 mutableDoc?["body"].set(self.body)
             })
         }else {
             // the user is attempting to upsert
-            try! ditto.store["tasks"].upsert([
+            var task: [String : Any] = [
                 "body": body,
                 "isCompleted": isCompleted,
-                "isDeleted": false
-            ])
+                "isDeleted": false,
+                "invitationIds": [:]
+            ]
+            
+            if (userId != "") {
+                task["invitationIds"] = [userId: true]
+            }
+            try! DittoManager.shared.ditto.store["tasks"].upsert(task)
         }
     }
 
     func delete() {
         guard let _id = _id else { return }
-        ditto.store["tasks"].findByID(_id).update { doc in
+        DittoManager.shared.ditto.store["tasks"].findByID(_id).update { doc in
             doc?["isDeleted"].set(true)
         }
 //        ditto.store["tasks"].findByID(_id).evict()
@@ -58,8 +64,8 @@ struct EditScreen: View {
     @Environment(\.presentationMode) private var presentationMode
     @ObservedObject var viewModel: EditScreenViewModel
 
-    init(ditto: Ditto, task: Task?) {
-        viewModel = EditScreenViewModel(ditto: ditto, task: task)
+    init(task: Task?, userId: String) {
+        viewModel = EditScreenViewModel(task: task, userId: userId)
     }
 
     var body: some View {
@@ -101,6 +107,6 @@ struct EditScreen: View {
 
 struct EditScreen_Previews: PreviewProvider {
     static var previews: some View {
-        EditScreen(ditto: Ditto(), task: Task(body: "Get Milk", isCompleted: true))
+        EditScreen(task: Task(body: "Get Milk", isCompleted: true, invitationIds: [:]), userId: "")
     }
 }

@@ -13,15 +13,15 @@ struct TasksApp: App {
 
     @State var isPresentingAlert = false
     @State var errorMessage = ""
-
-    var ditto = Ditto(identity: .onlinePlayground(appID: "YOUR_APP_ID_HERE", token: "YOUR_TOKEN_HERE"))
+    
+    public static var firstNameList = ["Henry", "William", "Geoffrey", "Jim", "Yvonne", "Jamie", "Leticia", "Priscilla", "Sidney", "Nancy", "Edmund", "Bill", "Megan"]
 
     var body: some Scene {
         WindowGroup {
-            TasksListScreen(ditto: ditto)
+            TasksListScreen()
                 .onAppear(perform: {
                     do {
-                        try ditto.startSync()
+                        try DittoManager.shared.ditto.startSync()
                     } catch (let err){
                         isPresentingAlert = true
                         errorMessage = err.localizedDescription

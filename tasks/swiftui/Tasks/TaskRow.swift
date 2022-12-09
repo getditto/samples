@@ -13,6 +13,8 @@ struct TaskRow: View {
 
     var onToggle: ((_ task: Task) -> Void)?
     var onClickBody: ((_ task: Task) -> Void)?
+    var onClickInvite: ((_ task: Task) -> Void)?
+
 
     var body: some View {
         HStack {
@@ -35,7 +37,14 @@ struct TaskRow: View {
                         onClickBody?(task)
                     }
             }
-
+            Spacer()
+            Text(task.invitationIds.keys.reduce("", { x, y in
+                x +  (y ?? "") + ", "
+            })).foregroundColor(Color.gray)
+            
+            Text("+").onTapGesture {
+                onClickInvite?(task)
+            }
         }
     }
 }
@@ -43,9 +52,9 @@ struct TaskRow: View {
 struct TaskRow_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            TaskRow(task: Task(body: "Get Milk", isCompleted: true))
-            TaskRow(task: Task(body: "Do Homework", isCompleted: false))
-            TaskRow(task: Task(body: "Take out trash", isCompleted: true))
+            TaskRow(task: Task(body: "Get Milk", isCompleted: true, invitationIds: ["Susan": true, "John": true]))
+            TaskRow(task: Task(body: "Do Homework", isCompleted: false, invitationIds: [:]))
+            TaskRow(task: Task(body: "Take out trash", isCompleted: true, invitationIds: [:]))
         }
     }
 }
