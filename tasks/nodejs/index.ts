@@ -1,19 +1,18 @@
 
-import { init, Ditto } from '@dittolive/ditto'
+import { init, Ditto, IdentityOnlinePlayground, Document } from '@dittolive/ditto'
 import * as readline from 'readline/promises'
 import { stdin as input, stdout as output } from 'node:process';
 
 let ditto
 let subscription
 let liveQuery
-let tasks = []
+let tasks: Document[] = []
 
 async function main () {
   await init()
 
-  const identity = { type: 'onlinePlayground', appID: 'b11a1267-8d3c-4a24-bd98-3772fe28d298', token: 'c13f160a-606d-435b-85eb-c716b6aa76d3'}
+  const identity: IdentityOnlinePlayground = { type: 'onlinePlayground', appID: 'YOUR_APP_ID', token: 'YOUR_TOKEN' }
   ditto = new Ditto(identity)
-
 
   subscription = ditto.store.collection("tasks").find("isDeleted == false").subscribe()
   liveQuery = ditto.store.collection("tasks").find("isDeleted == false").observeLocal((docs, event) => {
@@ -58,7 +57,7 @@ async function main () {
         })
       }
       if (answer.startsWith("--list")) {
-        console.log(tasks.map(task => task.value))
+        console.log(tasks.map((task) => task.value))
       }
       if (answer.startsWith("--delete")) {
         let id = answer.replace("--delete ", "")
