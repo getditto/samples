@@ -28,6 +28,7 @@ class UnidirectionalViewController: UIViewController {
     
     weak var ditto = AppDelegate.ditto
     var dittoLiveQuery: DittoLiveQuery?
+    var subscription: DittoSubscription?
 
     var tableView = UITableView()
 
@@ -164,8 +165,9 @@ extension UnidirectionalViewController {
      Incoming changes from Ditto should map to core data
      */
     func bindIncomingChangesFromDitto () {
+        dittoSubscription = ditto?.store["tasks"].findAll().subscribe()
         dittoLiveQuery = ditto?.store["tasks"].findAll().sort("createdOn", direction: .ascending)
-            .observe { docs, event in
+            .observeLocal { docs, event in
                 let context = self.fetchedResultsController.managedObjectContext
                 let tasks = self.fetchedResultsController.fetchedObjects ?? []
 

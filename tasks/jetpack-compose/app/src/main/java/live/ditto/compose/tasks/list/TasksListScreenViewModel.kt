@@ -9,8 +9,10 @@ import live.ditto.compose.tasks.data.Task
 class TasksListScreenViewModel: ViewModel() {
     val tasks: MutableLiveData<List<Task>> = MutableLiveData(emptyList())
 
+    val subscription = TasksApplication.ditto!!.store["tasks"]
+        .find("!isDeleted").subscribe()
     val liveQuery = TasksApplication.ditto!!.store["tasks"]
-        .find("!isDeleted").observe { docs, _ ->
+        .find("!isDeleted").observeLocal { docs, _ ->
             tasks.postValue(docs.map { Task(it) })
         }
 
@@ -26,5 +28,6 @@ class TasksListScreenViewModel: ViewModel() {
     override fun onCleared() {
         super.onCleared()
         liveQuery.stop()
+        subscription.stop()
     }
 }

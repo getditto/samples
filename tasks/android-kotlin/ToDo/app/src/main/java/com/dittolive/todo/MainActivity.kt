@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
     private var ditto: Ditto? = null
     private var collection: DittoCollection? = null
     private var liveQuery: DittoLiveQuery? = null
+    private var subscription: DittoSubscription? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,9 +118,12 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
     fun setupTaskList() {
         // We will create a long-running live query to keep UI up-to-date
         this.collection = this.ditto!!.store.collection("tasks")
-
+        
         // We use observe to create a live query with a subscription to sync this query with other devices
-        this.liveQuery = collection!!.findAll().observe { docs, event ->
+        this.subscription = collection!!.find("isDeleted == false").subscribe()
+
+        // We listen to changes to all data locally
+        this.liveQuery = collection!!.findAll().observeLocal { docs, event ->
             val adapter = (this.viewAdapter as TasksAdapter)
             when (event) {
                 is DittoLiveQueryEvent.Update -> {
