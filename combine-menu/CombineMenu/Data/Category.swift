@@ -5,15 +5,15 @@
 //  Created by Maximilian Alexander on 3/3/22.
 //
 
+import DittoSwift
 import Foundation
 
-struct Category: Codable {
-    var _id: String
+struct Category: Identifiable, Equatable, Hashable {
+    var id: String
     var name: String
-}
-
-extension Category: Identifiable {
-    var id: String {
-        return self._id
+    
+    init(document: DittoDocument) {
+        self.id = document["_id"].stringValue
+        self.name = document["name"].stringValue
     }
 }
