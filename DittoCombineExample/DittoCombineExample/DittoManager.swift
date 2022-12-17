@@ -1,6 +1,6 @@
-import Foundation
 import Combine
 import DittoSwift
+import Foundation
 
 final class DittoManager {
 
@@ -11,9 +11,10 @@ final class DittoManager {
     private var cancellables = Set<AnyCancellable>()
 
     private init() {
-        let identity = DittoIdentity.offlinePlayground(appID: "live.ditto.skyservice")
-        ditto = Ditto(identity: identity)
-        try! ditto.setLicenseToken("")
+        ditto = Ditto()
+        try! ditto.setOfflineOnlyLicenseToken(
+            "o2d1c2VyX2lkdTExODE0NDU2ODIwNjc3NjI1MjAxN2ZleHBpcnl4GDIwMjMtMDEtMTVUMjA6MjM6MDAuMzg0WmlzaWduYXR1cmV4WGt5REdkbkhid3RqWjl1Nk5uTllhM1g1K1ZMc2ZWU1RTOUR5Q1p4TlVYUXhWRzM1RENWWHJBWWd0N3NUTEZVbmtmWEJsMXhoL1JOeWRZZXVZeEV0L1NnPT0="
+        )
     }
 
     deinit {
@@ -35,7 +36,8 @@ final class DittoManager {
             .liveQueryPublisher()
             .map({ snapshot in
                 return snapshot.documents.map({
-                    try! $0.typed(as: Category.self).value
+//                    try! $0.typed(as: Category.self).value
+                    Category(document: $0)
                 })
             })
             .eraseToAnyPublisher()
@@ -46,7 +48,8 @@ final class DittoManager {
             .liveQueryPublisher()
             .map { snapshot in
                 return snapshot.documents.map {
-                    try! $0.typed(as: Product.self).value
+//                    try! $0.typed(as: Product.self).value
+                    Product(document: $0)
                 }
             }
             .eraseToAnyPublisher()
@@ -57,7 +60,8 @@ final class DittoManager {
             .liveQueryPublisher()
             .map { snapshot in
                 return snapshot.documents.map {
-                    try! $0.typed(as: Product.self).value
+//                    try! $0.typed(as: Product.self).value
+                    Product(document: $0)
                 }
             }
             .eraseToAnyPublisher()
@@ -68,11 +72,11 @@ final class DittoManager {
             .map { snapshot in
                 return snapshot.documents.compactMap { [weak self] in
                     guard let self = self else { return nil }
-                    let category = try! $0.typed(as: Category.self).value
+                    let category = Category(document: $0)//try! $0.typed(as: Category.self).value
                     let products = self.ditto.store.collection("products").find("categoryName == '\(category.name)'").exec()
                     return CategoryWithProducts(
                         category: category,
-                        products: products.map { try! $0.typed(as: Product.self).value }
+                        products: products.map { Product(document: $0) } //try! $0.typed(as: Product.self).value }
                     )
                 }
             }
@@ -82,11 +86,26 @@ final class DittoManager {
     func setDummyData() {
         let categories = ditto.store.collection("categories").findAll().exec()
         guard categories.isEmpty else { return /* set dummy only first time */ }
-
-        try! ditto.store.collection("categories").upsert(Category(name: "drinks"))
-        try! ditto.store.collection("categories").upsert(Category(name: "snacks"))
-
-        try! ditto.store.collection("products").upsert(Product(name: "milk", categoryName: "drinks"))
-        try! ditto.store.collection("products").upsert(Product(name: "chocolate", categoryName: "snacks"))
+        //orig
+//        try! ditto.store.collection("categories").upsert(Category(name: "drinks"))
+//        try! ditto.store.collection("categories").upsert(Category(name: "snacks"))
+//
+//        try! ditto.store.collection("products").upsert(Product(name: "milk", categoryName: "drinks"))
+//        try! ditto.store.collection("products").upsert(Product(name: "chocolate", categoryName: "snacks"))
+        try! ditto.store.collection("categories").upsert(
+            ["name": "drinks"] as [String: Any?]
+        )
+        
+        try! ditto.store.collection("categories").upsert(
+            ["name": "snacks"] as [String: Any?]
+        )
+        
+        try! ditto.store.collection("products").upsert(
+            ["name": "drinks", "categoryName": "drinks"] as [String: Any?]
+        )
+        
+        try! ditto.store.collection("products").upsert(
+            ["name": "chocolate", "categoryName": "snacks"] as [String: Any?]
+        )
     }
 }
