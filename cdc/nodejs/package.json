@@ -1,11 +1,12 @@
 {
-  "name": "royal-caribbean",
+  "name": "nodejs-cdc-example",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines" : { "node" : ">=16.0.0 <18.0.0" },
+  "engines": { "node" : ">=16.0.0 <18.0.0" },
   "scripts": {
     "watch": "tsc -w",
+    "start": "node index.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
