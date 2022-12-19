@@ -4,8 +4,8 @@ import LZ4Codec from 'kafkajs-lz4';
 
 CompressionCodecs[CompressionTypes.LZ4] = new LZ4Codec().codec;
 
-const topic = process.env.TOPIC;
-const kafkaHost =  process.env.CLOUD_ENDPOINT;
+const topic = process.env.TOPIC || '';
+const kafkaHost =  process.env.CLOUD_ENDPOINT || '';
 
 const kafka = new Kafka({
   clientId: 'my-consumer',
