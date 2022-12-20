@@ -18,7 +18,7 @@ Once the environment variables are set, convert the .p12 files to the required `
 ```
 ❯ openssl pkcs12 -in cluster.p12 -out cluster.crt.pem -nokeys
 ❯ openssl x509 -in cluster.crt.pem -out cluster.crt
-❯ openssl pkcs12 -in user.p12 -out -clcerts
+❯ openssl pkcs12 -in user.p12 -out user.crt -clcerts
 ❯ openssl pkcs12 -in user.p12 -out user.key.pem -nocerts
 ❯ openssl pkey -in user.key.pem -out user.key
 ```
