@@ -23,7 +23,7 @@ let editProductTitleKey = "Edit Product"
 let createProductTitleKey = "Create Product"
 
 let categorySectionKey = "Category"
-let selectCategoryTitleKey = "Select Category"
+let categoriesTitleKey = "Categories"
 let addCategoryTitleKey = "Add Category"
 
 let circleFillImgKey = "circle.fill"

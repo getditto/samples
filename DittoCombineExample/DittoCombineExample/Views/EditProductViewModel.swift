@@ -18,8 +18,8 @@ class EditProductViewModel: ObservableObject {
     var navigationTitle: String
     var saveButtonText: String
 
-    var productIdToEdit: String?
-    var categoryIdForProductToAdd: String?
+    var editingProductId: String?
+    var editingCategoryId: String?
     private let ditto = DittoManager.shared.ditto
 
     private var productsCollection: DittoCollection {
@@ -31,8 +31,8 @@ class EditProductViewModel: ObservableObject {
     }
     
     init(productIdToEdit: String?, categoryIdForProductToAdd: String?) {
-        self.productIdToEdit = productIdToEdit
-        self.categoryIdForProductToAdd = categoryIdForProductToAdd
+        self.editingProductId = productIdToEdit
+        self.editingCategoryId = categoryIdForProductToAdd
 
         self.navigationTitle = productIdToEdit != nil ? editProductTitleKey: createProductTitleKey
         self.saveButtonText = productIdToEdit != nil ? saveChangesTitleKey: createProductTitleKey
@@ -68,7 +68,7 @@ class EditProductViewModel: ObservableObject {
                 dbIdKey: selectedCat.id,
                 nameKey: selectedCat.name] as [String : Any?]
             )
-        } else if let categoryId = categoryIdForProductToAdd {
+        } else if let categoryId = editingCategoryId {
             // create selectedCategory for use in product insertion below
             selectedCategory = Category(name: categoryId)
             
@@ -77,13 +77,13 @@ class EditProductViewModel: ObservableObject {
                 nameKey: categoryId] as [String: Any?]
             )
         } else {
-            print("ERROR: NIL selectedCategory AND empty categoryIdForProductToAdd -> RETURN")
+            print("ERROR: NIL selectedCategory AND empty editingCategoryId -> RETURN")
             return
         }
         
         
         try! productsCollection.upsert([
-            dbIdKey: productIdToEdit ?? UUID().uuidString,
+            dbIdKey: editingProductId ?? UUID().uuidString,
             nameKey: productName,
             categoryIdKey: selectedCategory!.id] as [String: Any?]
         )

@@ -10,7 +10,7 @@ struct ProductsListView: View {
                 ForEach(viewModel.categorizedProducts) { categorizedProducts in
                     Section(categorizedProducts.category.name) {
                         ForEach(categorizedProducts.products) { product in
-                            ProductListItemView(product) //productName: product.name, productDescription: product.detail)
+                            ProductListItemView(product)
                                 .onTapGesture {
                                     viewModel.presentProductEdit(
                                         productIdToEdit: product.id,
@@ -18,9 +18,6 @@ struct ProductsListView: View {
                                     )
                                 }
                         }
-//                        .onDelete { indexSet in
-//                            viewModel.deleteProduct(categorizedProducts: categorizedProducts, indexSet: indexSet)
-//                        }
                     }
                 }
             }
@@ -34,7 +31,7 @@ struct ProductsListView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Menu {
                     if !viewModel.categorizedProducts.isEmpty {
-                        Text(selectCategoryTitleKey)
+                        Text(categoriesTitleKey)
                         ForEach(viewModel.categorizedProducts) { cat in
                             Button(cat.category.name) {
                                 viewModel.presentProductEdit(
@@ -59,8 +56,8 @@ struct ProductsListView: View {
             viewModel.clearEditingData()
         }, content: {
             EditProductView(
-                productIdToEdit: viewModel.productIdToEdit,
-                categoryIdForProductToAdd: viewModel.categoryIdForProductToAdd
+                productIdToEdit: viewModel.editingProductId,
+                categoryIdForProductToAdd: viewModel.editingCategoryId
             )
         })
         .navigationTitle("Products")

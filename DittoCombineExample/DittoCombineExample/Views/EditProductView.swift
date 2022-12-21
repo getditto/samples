@@ -25,27 +25,19 @@ struct EditProductView: View {
         NavigationView {
             Form {
                 Section(categorySectionKey) {
-                    // new category textfield and handling
+                    // new Category textfield and handling
                     if viewModel.selectedCategory == nil {
                         TextField(requiredKey, text: $newCategoryName)
                             .textInputAutocapitalization(.never)
                             .disableAutocorrection(true)
                             .onChange(of: newCategoryName) { text in
-                                viewModel.categoryIdForProductToAdd = text
+                                viewModel.editingCategoryId = text
                             }
                     } else {
-                        // list existing categories
-                        ForEach(viewModel.categories) { category in
-                            HStack {
-                                Image(
-                                    systemName: viewModel.selectedCategory?.id == category.id ?
-                                    circleFillImgKey : circleOpenImgKey
-                                )
-                                Text(category.name)
-                            }
-                            .onTapGesture {
-                                viewModel.changeSelectedCategory(category)
-                            }
+                        // selected Category
+                        HStack {
+                            Image(systemName: circleFillImgKey)
+                            Text(viewModel.selectedCategory!.name)
                         }
                     }
                 }

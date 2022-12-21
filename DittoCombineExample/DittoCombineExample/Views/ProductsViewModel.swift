@@ -15,8 +15,8 @@ class ProductsViewModel: ObservableObject {
     
     private let ditto = DittoManager.shared.ditto
     @Published var isPresentingProductView = false
-    var productIdToEdit: String?
-    var categoryIdForProductToAdd: String?
+    var editingProductId: String?
+    var editingCategoryId: String?
 
     private var productsCollection: DittoCollection {
         return ditto.store[productsKey]
@@ -60,13 +60,13 @@ class ProductsViewModel: ObservableObject {
 
     func presentProductEdit(productIdToEdit: String?, categoryIdForProductToAdd: String?) {
         isPresentingProductView = true
-        self.productIdToEdit = categoryIdForProductToAdd
-        self.categoryIdForProductToAdd = categoryIdForProductToAdd
+        self.editingProductId = productIdToEdit
+        self.editingCategoryId = categoryIdForProductToAdd
     }
 
     func clearEditingData() {
-        productIdToEdit = nil
-        categoryIdForProductToAdd = nil
+        editingProductId = nil
+        editingCategoryId = nil
         isPresentingProductView = false
     }
     
