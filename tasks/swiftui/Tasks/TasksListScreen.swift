@@ -17,6 +17,7 @@ class TasksListScreenViewModel: ObservableObject {
     private(set) var taskToEdit: Task? = nil
 
     var liveQuery: DittoLiveQuery?
+    var subscription: DittoSubscription?
 
     init() {
         if (liveQuery == nil) {
@@ -30,9 +31,12 @@ class TasksListScreenViewModel: ObservableObject {
             query += "&& invitationIds.\(userId) == true"
         }
             
+        self.subscription = DittoManager.shared.ditto.store["tasks"]
+            .find(query).subscribe()
+        
         self.liveQuery = DittoManager.shared.ditto.store["tasks"]
             .find(query)
-            .observe(eventHandler: {  docs, event in
+            .observeLocal(eventHandler: {  docs, event in
                 print(event.description)
                 self.tasks = docs.map({ Task(document: $0) })
                 print(self.tasks)
