@@ -10,7 +10,7 @@
     <None Remove="Microsoft.Extensions.Configuration.CommandLine" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Ditto" Version="1.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="5.0.0" />
+    <PackageReference Include="Ditto" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="7.0.0" />
   </ItemGroup>
 </Project>
