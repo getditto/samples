@@ -10,6 +10,7 @@ namespace Tasks
 	{
 		private const string collectionName = "tasks";
 		private DittoLiveQuery liveQuery;
+		private DittoSubscription subscription;
 		List<Task> tasks = new List<Task>();
 		private TasksTableSource tasksTableSource = new TasksTableSource();
 
@@ -51,7 +52,8 @@ namespace Tasks
 
 		public void setupTaskList()
 		{
-			liveQuery = ditto.Store["tasks"].Find("!isDeleted").Observe((docs, _event) =>
+			subscription = ditto.Store["tasks"].Find("!isDeleted").Subscribe();
+			liveQuery = ditto.Store["tasks"].Find("!isDeleted").ObserveLocal((docs, _event) =>
 			{
 				tasks = docs.ConvertAll(d => new Task(d));
 				tasksTableSource.updateTasks(tasks);
