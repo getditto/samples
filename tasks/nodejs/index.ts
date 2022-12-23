@@ -13,6 +13,7 @@ async function main () {
 
   const identity: IdentityOnlinePlayground = { type: 'onlinePlayground', appID: 'YOUR_APP_ID', token: 'YOUR_TOKEN' }
   ditto = new Ditto(identity)
+  ditto.startSync()
 
   subscription = ditto.store.collection("tasks").find("isDeleted == false").subscribe()
   liveQuery = ditto.store.collection("tasks").find("isDeleted == false").observeLocal((docs, event) => {
