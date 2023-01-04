@@ -5,7 +5,10 @@ import SwiftUI
 struct DittoCombineExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ProductsListView()
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
