@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14239544294D7FA500B1ECB8 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14239542294D7FA500B1ECB8 /* EditProductView.swift */; };
+		14239545294D7FA500B1ECB8 /* EditProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14239543294D7FA500B1ECB8 /* EditProductViewModel.swift */; };
+		14239549294D7FCF00B1ECB8 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14239547294D7FCF00B1ECB8 /* MenuViewModel.swift */; };
+		1423954A294D7FCF00B1ECB8 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14239548294D7FCF00B1ECB8 /* MenuView.swift */; };
 		2DF807CD27D158F30078B274 /* CombineMenuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF807CC27D158F30078B274 /* CombineMenuApp.swift */; };
-		2DF807CF27D158F30078B274 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF807CE27D158F30078B274 /* MenuView.swift */; };
 		2DF807D127D158F40078B274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF807D027D158F40078B274 /* Assets.xcassets */; };
 		2DF807D427D158F40078B274 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF807D327D158F40078B274 /* Preview Assets.xcassets */; };
 		2DF807DC27D159340078B274 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 2DF807DB27D159340078B274 /* DittoObjC */; };
@@ -17,21 +20,23 @@
 		2DF807E227D159880078B274 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF807E127D159880078B274 /* Category.swift */; };
 		2DF807E427D159AA0078B274 /* CategorizedProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF807E327D159AA0078B274 /* CategorizedProducts.swift */; };
 		2DF807E827D15A0F0078B274 /* ProductListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF807E727D15A0F0078B274 /* ProductListItemView.swift */; };
-		2DF807EA27D181460078B274 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF807E927D181460078B274 /* EditProductView.swift */; };
 		2DF807EE27D1A5DD0078B274 /* DittoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF807ED27D1A5DD0078B274 /* DittoManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14239542294D7FA500B1ECB8 /* EditProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
+		14239543294D7FA500B1ECB8 /* EditProductViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewModel.swift; sourceTree = "<group>"; };
+		14239547294D7FCF00B1ECB8 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		14239548294D7FCF00B1ECB8 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		1423954B294D80C700B1ECB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2DF807C927D158F30078B274 /* CombineMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF807CC27D158F30078B274 /* CombineMenuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineMenuApp.swift; sourceTree = "<group>"; };
-		2DF807CE27D158F30078B274 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		2DF807D027D158F40078B274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DF807D327D158F40078B274 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2DF807DF27D159660078B274 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		2DF807E127D159880078B274 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		2DF807E327D159AA0078B274 /* CategorizedProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedProducts.swift; sourceTree = "<group>"; };
 		2DF807E727D15A0F0078B274 /* ProductListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListItemView.swift; sourceTree = "<group>"; };
-		2DF807E927D181460078B274 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
 		2DF807ED27D1A5DD0078B274 /* DittoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,6 +53,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14239541294D7FA500B1ECB8 /* EditProduct */ = {
+			isa = PBXGroup;
+			children = (
+				14239542294D7FA500B1ECB8 /* EditProductView.swift */,
+				14239543294D7FA500B1ECB8 /* EditProductViewModel.swift */,
+			);
+			path = EditProduct;
+			sourceTree = "<group>";
+		};
+		14239546294D7FCF00B1ECB8 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				14239547294D7FCF00B1ECB8 /* MenuViewModel.swift */,
+				14239548294D7FCF00B1ECB8 /* MenuView.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 		2DF807C027D158F30078B274 = {
 			isa = PBXGroup;
 			children = (
@@ -67,11 +90,12 @@
 		2DF807CB27D158F30078B274 /* CombineMenu */ = {
 			isa = PBXGroup;
 			children = (
+				2DF807CC27D158F30078B274 /* CombineMenuApp.swift */,
 				2DF807EC27D1A5CF0078B274 /* Data */,
 				2DF807EB27D1A5C40078B274 /* Pages */,
-				2DF807CC27D158F30078B274 /* CombineMenuApp.swift */,
 				2DF807D027D158F40078B274 /* Assets.xcassets */,
 				2DF807D227D158F40078B274 /* Preview Content */,
+				1423954B294D80C700B1ECB8 /* Info.plist */,
 			);
 			path = CombineMenu;
 			sourceTree = "<group>";
@@ -87,9 +111,9 @@
 		2DF807EB27D1A5C40078B274 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				2DF807CE27D158F30078B274 /* MenuView.swift */,
+				14239541294D7FA500B1ECB8 /* EditProduct */,
+				14239546294D7FCF00B1ECB8 /* Menu */,
 				2DF807E727D15A0F0078B274 /* ProductListItemView.swift */,
-				2DF807E927D181460078B274 /* EditProductView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -182,10 +206,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DF807CF27D158F30078B274 /* MenuView.swift in Sources */,
-				2DF807EA27D181460078B274 /* EditProductView.swift in Sources */,
 				2DF807CD27D158F30078B274 /* CombineMenuApp.swift in Sources */,
+				14239545294D7FA500B1ECB8 /* EditProductViewModel.swift in Sources */,
+				14239544294D7FA500B1ECB8 /* EditProductView.swift in Sources */,
+				14239549294D7FCF00B1ECB8 /* MenuViewModel.swift in Sources */,
 				2DF807E427D159AA0078B274 /* CategorizedProducts.swift in Sources */,
+				1423954A294D7FCF00B1ECB8 /* MenuView.swift in Sources */,
 				2DF807EE27D1A5DD0078B274 /* DittoManager.swift in Sources */,
 				2DF807E027D159660078B274 /* Product.swift in Sources */,
 				2DF807E227D159880078B274 /* Category.swift in Sources */,
@@ -323,7 +349,7 @@
 				DEVELOPMENT_TEAM = 3T2VMFZPPQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = CombineMenu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -352,7 +378,7 @@
 				DEVELOPMENT_TEAM = 3T2VMFZPPQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = CombineMenu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -399,7 +425,7 @@
 			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = "2.0.0-alpha1";
+				minimumVersion = 3.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProductListItemView: View {
-
     var productName: String
     var productDescription: String
 
@@ -22,6 +21,7 @@ struct ProductListItemView: View {
     }
 }
 
+#if DEBUG
 struct ProductListItemView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -65,3 +65,4 @@ struct ProductListItemView_Previews: PreviewProvider {
         }
     }
 }
+#endif

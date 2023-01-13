@@ -10,13 +10,10 @@ import Foundation
 /**
  This is used with `combineLatest`
  */
-struct CategorizedProducts {
+struct CategorizedProducts: Identifiable {
     var category: Category
     var products: [Product]
-}
-
-extension CategorizedProducts: Identifiable {
     var id: String {
-        return self.category._id
+        category.id
     }
 }
