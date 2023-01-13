@@ -1,5 +1,5 @@
 
-import { init, Ditto, IdentityOnlinePlayground, Document } from '@dittolive/ditto'
+import { init, Ditto, Document } from '@dittolive/ditto'
 import * as readline from 'readline/promises'
 import { stdin as input, stdout as output } from 'node:process';
 
@@ -11,8 +11,7 @@ let tasks: Document[] = []
 async function main () {
   await init()
 
-  const identity: IdentityOnlinePlayground = { type: 'onlinePlayground', appID: 'YOUR_APP_ID', token: 'YOUR_TOKEN' }
-  ditto = new Ditto(identity)
+  ditto = new Ditto({ type: 'onlinePlayground', appID: 'YOUR_APP_ID', token: 'YOUR_TOKEN' })
   ditto.startSync()
 
   subscription = ditto.store.collection("tasks").find("isDeleted == false").subscribe()
