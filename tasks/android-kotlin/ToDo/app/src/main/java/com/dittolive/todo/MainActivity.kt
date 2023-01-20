@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
         // Create an instance of DittoSyncKit
         val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)
+        DittoLogger.minimumLogLevel = DittoLogLevel.DEBUG
         val ditto = Ditto(androidDependencies, DittoIdentity.OnlinePlayground(
             androidDependencies,
             "f2b5f038-6d00-433a-9176-6e84011da136",
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
                 // Retrieve the task at the row swiped
                 val task = adapter.tasks()[viewHolder.adapterPosition]
                 // Delete the task from DittoSyncKit
-                ditto.store.collection("tasks").findByID(task.id).remove()
+                ditto.store.collection("tasks").findById(task.id).remove()
             }
         }
 
@@ -87,7 +88,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
         // Listen for clicks to mark tasks [in]complete
         tasksAdapter.onItemClick = { task ->
-            ditto.store.collection("tasks").findByID(task.id).update { newTask ->
+            ditto.store.collection("tasks").findById(task.id).update { newTask ->
                 newTask!!["isCompleted"].set(!newTask["isCompleted"].booleanValue)
             }
         }
@@ -95,11 +96,6 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         // This function will create a "live-query" that will update
         // our RecyclerView
         setupTaskList()
-
-        // This will check if the app has location permissions
-        // to fully enable Bluetooth
-        checkLocationPermission()
-
         checkDittoPermission()
     }
 
@@ -120,7 +116,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         this.collection = this.ditto!!.store.collection("tasks")
         
         // We use observe to create a live query with a subscription to sync this query with other devices
-        this.subscription = collection!!.find("isDeleted == false").subscribe()
+        this.subscription = this.ditto!!.store.collection("tasks").findAll().subscribe()
 
         // We listen to changes to all data locally
         this.liveQuery = collection!!.findAll().observeLocal { docs, event ->
@@ -162,6 +158,16 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
             // We ignore the result - Ditto will automatically notice when the permission is granted
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
         }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // Regardless of the outcome, tell Ditto that permissions maybe changed
+        ditto?.refreshPermissions()
     }
 }
 
