@@ -17,10 +17,10 @@ class EditScreenViewModel: ViewModel() {
 
     fun setupWithTask(taskId: String?) {
         canDelete.postValue(taskId != null)
-        val taskId: String = taskId?.let { it } ?: return;
+        val taskId: String = taskId ?: return
         val doc: DittoDocument = TasksApplication.ditto!!.store["tasks"]
             .findById(DittoDocumentId(taskId))
-            .exec()?.let { it } ?: return;
+            .exec() ?: return
         val task = Task(doc)
         _id = task._id
         body.postValue(task.body)
@@ -31,16 +31,16 @@ class EditScreenViewModel: ViewModel() {
     fun save() {
         if (_id == null) {
             // save
-            TasksApplication.ditto!!.store["tasks"]
-                .upsert(mapOf(
+            TasksApplication.ditto?.store?.get("tasks")
+                ?.upsert(mapOf(
                     "body" to body.value,
                     "isCompleted" to isCompleted.value
                 ))
         } else {
             // update
-            TasksApplication.ditto!!.store["tasks"].findById(DittoDocumentId(_id!!))
-                .update { mutableDoc ->
-                    val mutableDoc = mutableDoc?.let { it } ?: return@update
+            TasksApplication.ditto?.store?.get("tasks")?.findById(DittoDocumentId(_id!!))
+                ?.update { mutableDoc ->
+                    val mutableDoc = mutableDoc ?: return@update
                     mutableDoc["body"].set(body.value ?: "")
                     mutableDoc["isCompleted"].set(isCompleted.value ?: "")
                 }
@@ -49,7 +49,7 @@ class EditScreenViewModel: ViewModel() {
 
     // 4.
     fun delete() {
-        TasksApplication.ditto!!.store["tasks"].upsert(mapOf(
+        TasksApplication.ditto?.store?.get("tasks")?.upsert(mapOf(
             "_id" to _id!!,
             "isDeleted" to true
         ))
