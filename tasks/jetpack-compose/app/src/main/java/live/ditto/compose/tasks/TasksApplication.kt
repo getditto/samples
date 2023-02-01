@@ -15,7 +15,7 @@ class TasksApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)
-        val identity = DittoIdentity.OfflinePlayground(appID = "YOUR_APP_ID", dependencies = androidDependencies)
+        val identity = DittoIdentity.OfflinePlayground(androidDependencies, "YOUR_APP_ID")
         ditto = Ditto(androidDependencies, identity)
     }
 
