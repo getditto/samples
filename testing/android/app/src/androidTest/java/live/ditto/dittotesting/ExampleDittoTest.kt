@@ -19,7 +19,8 @@ class ExampleDittoTest: DittoTestBase() {
             "make" to "toyota",
             "mileage" to 160000
         ))
-        val liveQuery = coll2.findByID(docId).observe { doc, event ->
+        val subscription = coll2.findByID(docId).subscribe()
+        val liveQuery = coll2.findByID(docId).observeLocal { doc, event ->
             if (!event.isInitial) {
                 assertEquals(doc!!["make"], "toyota")
                 ditto1.stopSync()

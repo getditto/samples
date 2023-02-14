@@ -9,13 +9,10 @@ import Foundation
 import DittoSwift
 
 class DittoManager {
-
     static var shared = DittoManager()
-
     let ditto: Ditto
 
     init() {
         ditto = Ditto()
     }
-
 }

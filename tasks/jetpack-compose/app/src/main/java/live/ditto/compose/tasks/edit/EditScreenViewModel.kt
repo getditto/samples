@@ -3,7 +3,7 @@ package live.ditto.compose.tasks.edit
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import live.ditto.DittoDocument
-import live.ditto.DittoDocumentID
+import live.ditto.DittoDocumentId
 import live.ditto.compose.tasks.TasksApplication
 import live.ditto.compose.tasks.data.Task
 
@@ -19,7 +19,7 @@ class EditScreenViewModel: ViewModel() {
         canDelete.postValue(taskId != null)
         val taskId: String = taskId?.let { it } ?: return;
         val doc: DittoDocument = TasksApplication.ditto!!.store["tasks"]
-            .findByID(DittoDocumentID(taskId))
+            .findById(DittoDocumentId(taskId))
             .exec()?.let { it } ?: return;
         val task = Task(doc)
         _id = task._id
@@ -38,7 +38,7 @@ class EditScreenViewModel: ViewModel() {
                 ))
         } else {
             // update
-            TasksApplication.ditto!!.store["tasks"].findByID(DittoDocumentID(_id!!))
+            TasksApplication.ditto!!.store["tasks"].findById(DittoDocumentId(_id!!))
                 .update { mutableDoc ->
                     val mutableDoc = mutableDoc?.let { it } ?: return@update
                     mutableDoc["body"].set(body.value ?: "")

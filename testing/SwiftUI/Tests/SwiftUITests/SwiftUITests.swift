@@ -17,7 +17,8 @@ final class SwiftUITests: XCTestCase {
     func testExample() throws {
         let initialResultExpectation = expectation(description: "Initial event received")
         let docID = try! ditto1.ditto!.store.collection("cars").upsert(["make": "toyota", "color": "red"])
-        let liveQuery = ditto2.ditto!.store.collection("cars").findByID(docID).observe { doc, event in
+        let subs = ditto2.ditto!.store.collection("cars").findByID(docID).subscribe()
+        let liveQuery = ditto2.ditto!.store.collection("cars").findByID(docID).observeLocal { doc, event in
             if (!event.isInitial) {
                 XCTAssertEqual(doc!.value["make"] as! String, "toyota")
                 initialResultExpectation.fulfill()
@@ -25,6 +26,7 @@ final class SwiftUITests: XCTestCase {
         }
         
         wait(for: [initialResultExpectation], timeout: 2)
+        subs.stop()
         liveQuery.stop()
         ditto1.stop()
         ditto2.stop()

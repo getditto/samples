@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01FB74702889ED8500EE2C74 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 01FB746F2889ED8500EE2C74 /* DittoObjC */; };
-		01FB74722889ED8500EE2C74 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 01FB74712889ED8500EE2C74 /* DittoSwift */; };
+		14239538294D4FC900B1ECB8 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 14239537294D4FC900B1ECB8 /* DittoObjC */; };
+		1423953A294D4FC900B1ECB8 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14239539294D4FC900B1ECB8 /* DittoSwift */; };
+		142395BA29523B8600B1ECB8 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395B929523B8600B1ECB8 /* ProductsViewModel.swift */; };
+		142395BC2952481B00B1ECB8 /* ProductListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395BB2952481B00B1ECB8 /* ProductListItemView.swift */; };
+		142395C02952612400B1ECB8 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395BF2952612400B1ECB8 /* EditProductView.swift */; };
+		142395C2295261B600B1ECB8 /* EditProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395C1295261B600B1ECB8 /* EditProductViewModel.swift */; };
+		142395C42952640C00B1ECB8 /* StaticKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395C32952640C00B1ECB8 /* StaticKeys.swift */; };
 		CC7B54F327ABF2DC00D82993 /* DittoCombineExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B54F227ABF2DC00D82993 /* DittoCombineExampleApp.swift */; };
-		CC7B54F527ABF2DC00D82993 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B54F427ABF2DC00D82993 /* ContentView.swift */; };
+		CC7B54F527ABF2DC00D82993 /* ProductsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B54F427ABF2DC00D82993 /* ProductsListView.swift */; };
 		CC7B54F727ABF2DD00D82993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7B54F627ABF2DD00D82993 /* Assets.xcassets */; };
 		CC7B54FA27ABF2DD00D82993 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7B54F927ABF2DD00D82993 /* Preview Assets.xcassets */; };
 		CC7B550127ABF38400D82993 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B550027ABF38400D82993 /* Models.swift */; };
@@ -18,10 +23,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		01FB74732889EFF100EE2C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		01FB74732889EFF100EE2C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		142395B929523B8600B1ECB8 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
+		142395BB2952481B00B1ECB8 /* ProductListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListItemView.swift; sourceTree = "<group>"; };
+		142395BF2952612400B1ECB8 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
+		142395C1295261B600B1ECB8 /* EditProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewModel.swift; sourceTree = "<group>"; };
+		142395C32952640C00B1ECB8 /* StaticKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticKeys.swift; sourceTree = "<group>"; };
 		CC7B54EF27ABF2DC00D82993 /* DittoCombineExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DittoCombineExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7B54F227ABF2DC00D82993 /* DittoCombineExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoCombineExampleApp.swift; sourceTree = "<group>"; };
-		CC7B54F427ABF2DC00D82993 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC7B54F427ABF2DC00D82993 /* ProductsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListView.swift; sourceTree = "<group>"; };
 		CC7B54F627ABF2DD00D82993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC7B54F927ABF2DD00D82993 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CC7B550027ABF38400D82993 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -33,14 +43,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01FB74702889ED8500EE2C74 /* DittoObjC in Frameworks */,
-				01FB74722889ED8500EE2C74 /* DittoSwift in Frameworks */,
+				14239538294D4FC900B1ECB8 /* DittoObjC in Frameworks */,
+				1423953A294D4FC900B1ECB8 /* DittoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		142395BD295260AF00B1ECB8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B550227ABF39100D82993 /* DittoManager.swift */,
+				CC7B550027ABF38400D82993 /* Models.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		142395BE295260C100B1ECB8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B54F427ABF2DC00D82993 /* ProductsListView.swift */,
+				142395B929523B8600B1ECB8 /* ProductsViewModel.swift */,
+				142395BB2952481B00B1ECB8 /* ProductListItemView.swift */,
+				142395BF2952612400B1ECB8 /* EditProductView.swift */,
+				142395C1295261B600B1ECB8 /* EditProductViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CC7B54E627ABF2DB00D82993 = {
 			isa = PBXGroup;
 			children = (
@@ -60,13 +91,13 @@
 		CC7B54F127ABF2DC00D82993 /* DittoCombineExample */ = {
 			isa = PBXGroup;
 			children = (
-				01FB74732889EFF100EE2C74 /* Info.plist */,
 				CC7B54F227ABF2DC00D82993 /* DittoCombineExampleApp.swift */,
-				CC7B54F427ABF2DC00D82993 /* ContentView.swift */,
-				CC7B550027ABF38400D82993 /* Models.swift */,
-				CC7B550227ABF39100D82993 /* DittoManager.swift */,
+				142395BD295260AF00B1ECB8 /* Data */,
+				142395BE295260C100B1ECB8 /* Views */,
+				142395C32952640C00B1ECB8 /* StaticKeys.swift */,
 				CC7B54F627ABF2DD00D82993 /* Assets.xcassets */,
 				CC7B54F827ABF2DD00D82993 /* Preview Content */,
+				01FB74732889EFF100EE2C74 /* Info.plist */,
 			);
 			path = DittoCombineExample;
 			sourceTree = "<group>";
@@ -96,8 +127,8 @@
 			);
 			name = DittoCombineExample;
 			packageProductDependencies = (
-				01FB746F2889ED8500EE2C74 /* DittoObjC */,
-				01FB74712889ED8500EE2C74 /* DittoSwift */,
+				14239537294D4FC900B1ECB8 /* DittoObjC */,
+				14239539294D4FC900B1ECB8 /* DittoSwift */,
 			);
 			productName = DittoCombineExample;
 			productReference = CC7B54EF27ABF2DC00D82993 /* DittoCombineExample.app */;
@@ -128,7 +159,7 @@
 			);
 			mainGroup = CC7B54E627ABF2DB00D82993;
 			packageReferences = (
-				01FB746E2889ED8500EE2C74 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
+				14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
 			);
 			productRefGroup = CC7B54F027ABF2DC00D82993 /* Products */;
 			projectDirPath = "";
@@ -156,10 +187,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				142395C2295261B600B1ECB8 /* EditProductViewModel.swift in Sources */,
 				CC7B550327ABF39100D82993 /* DittoManager.swift in Sources */,
+				142395C02952612400B1ECB8 /* EditProductView.swift in Sources */,
 				CC7B550127ABF38400D82993 /* Models.swift in Sources */,
-				CC7B54F527ABF2DC00D82993 /* ContentView.swift in Sources */,
+				142395C42952640C00B1ECB8 /* StaticKeys.swift in Sources */,
+				CC7B54F527ABF2DC00D82993 /* ProductsListView.swift in Sources */,
+				142395BA29523B8600B1ECB8 /* ProductsViewModel.swift in Sources */,
 				CC7B54F327ABF2DC00D82993 /* DittoCombineExampleApp.swift in Sources */,
+				142395BC2952481B00B1ECB8 /* ProductListItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,11 +333,11 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Uses WiFi to connect and sync with nearby devices";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,11 +366,11 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Uses WiFi to connect and sync with nearby devices";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -372,25 +408,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		01FB746E2889ED8500EE2C74 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
+		14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = "2.0.0-alpha1";
+				minimumVersion = 3.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		01FB746F2889ED8500EE2C74 /* DittoObjC */ = {
+		14239537294D4FC900B1ECB8 /* DittoObjC */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01FB746E2889ED8500EE2C74 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			package = 14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
 			productName = DittoObjC;
 		};
-		01FB74712889ED8500EE2C74 /* DittoSwift */ = {
+		14239539294D4FC900B1ECB8 /* DittoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01FB746E2889ED8500EE2C74 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			package = 14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
 			productName = DittoSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
