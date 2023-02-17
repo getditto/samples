@@ -26,7 +26,7 @@ class SolutionViewModel: ObservableObject {
             })
             .switchToLatest()
             .map({ (docs, _) in
-                return docs.map({ try! $0.typed(as: Flight.self).value })
+                return docs.map({ Flight(document: $0) })
             })
             .assign(to: \.flights, on: self)
             .store(in: &cancellables)

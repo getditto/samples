@@ -21,7 +21,7 @@ class ProblemViewModel: ObservableObject {
             DittoManager.shared.ditto.store.collection("flights").find("carrier == $args.carrier", args: ["carrier": carrier])
                 .liveQueryPublisher()
                 .sink { (docs, _) in
-                    self.flights = docs.map({ try! $0.typed(as: Flight.self).value })
+                    self.flights = docs.map({ Flight(document: $0) })
                 }
                 .store(in: &self.cancellables)
         }
