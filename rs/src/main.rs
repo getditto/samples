@@ -43,7 +43,8 @@ fn main() -> Result<(), DittoError> {
     let store = ditto.store();
     let collection = store.collection(&args.collection)?;
 
-    let _lq = collection.find_all().observe(event_handler)?;
+    let sub = collection.find_all().subscribe();
+    let _lq = collection.find_all().observe_local(event_handler)?;
     let res = collection.upsert(json!({
         "hello": "world"
     }));
