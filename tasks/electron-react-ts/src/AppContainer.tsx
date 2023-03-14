@@ -6,10 +6,17 @@ import App from './App'
 const APP_ID = 'live.ditto.tasks'
 const PATH = 'ditto-tasks'
 
+let ditto: Ditto
+let presenceObserver
+
 const AppContainer = () => {
   const createDittoInstance = () => {
     Logger.minimumLogLevel = 'Debug'
-    return new Ditto({ type: 'onlinePlayground', appID: APP_ID, token: TOKEN }, PATH)
+    ditto = new Ditto({ type: 'onlinePlayground', appID: APP_ID, token: TOKEN, enableDittoCloudSync: false }, PATH)
+    presenceObserver = ditto.presence.observe(peers => {
+      console.log('PEERS', peers)
+    })
+    return ditto
   }
 
   return (

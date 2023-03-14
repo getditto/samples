@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "npm run build && electron --enable-logging ./build/main.js",
-    "build": "NODE_ENV=production webpack",
+    "build": "webpack mode --production",
     "lint": "eslint --ext .tsx,.ts src && tsc --noEmit && prettier --check .",
     "build:mac:x64": "env-cmd electron-builder -m --x64 --publish never",
     "build:win:x64": "env-cmd electron-builder -w --x64 --publish never",
