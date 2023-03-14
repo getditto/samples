@@ -17,3 +17,30 @@ If the Bluetooth Low Energy P2P transport is enabled, the application might cras
 ## Bluetooth Low Energy on Linux
 
 Please refer to [the docs](https://docs.ditto.live/raspberrypi/installation) for instructions on how to enable Bluetooth Low Energy on Linux.
+
+
+## Windows integration
+
+Do not enable all peer to peer transports. In `src/App.tsx`, use:
+
+```js
+ditto.updateTransportConfig((t) => {
+	t.peerToPeer.bluetoothLE.isEnabled = true
+	t.peerToPeer.lan.isEnabled = true
+})
+```
+
+Push Win Key and type "Services", locate those services, start them and set Start type to Automatic.
+
+Services are:
+
+   - Function Discovery Provider Host
+
+   - Function Discovery Resource Publication
+
+   - SSDP Discovery
+
+   - UPnP Device Host
+
+
+

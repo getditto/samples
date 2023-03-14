@@ -19,11 +19,11 @@ const App = () => {
     }
 
     ditto.updateTransportConfig((t) => {
-      //t.setAllPeerToPeerEnabled(true)
+      t.setAllPeerToPeerEnabled(true)
       // Or selectively enable only some P2P tranports:
-      // t.peerToPeer.awdl.isEnabled = true
-      t.peerToPeer.bluetoothLE.isEnabled = true
-      t.peerToPeer.lan.isEnabled = true
+      //t.peerToPeer.awdl.isEnabled = true
+      //t.peerToPeer.bluetoothLE.isEnabled = true
+      //t.peerToPeer.lan.isEnabled = true
     })
     ditto.startSync()
 
