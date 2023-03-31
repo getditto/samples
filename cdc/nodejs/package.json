@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-cdc-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": { "node" : ">=16.0.0 <18.0.0" },
+  "scripts": {
+    "watch": "tsc -w",
+    "start": "node index.js",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getditto-shared/kafka-sdk-example-royal-carribean.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/getditto-shared/kafka-sdk-example-royal-carribean/issues"
+  },
+  "homepage": "https://github.com/getditto-shared/kafka-sdk-example-royal-carribean#readme",
+  "dependencies": {
+    "@dittolive/ditto": "^2.0.4",
+    "kafkajs": "^2.2.0",
+    "kafkajs-lz4": "^2.0.0-beta.0",
+    "typescript": "^4.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.15"
+  }
+}

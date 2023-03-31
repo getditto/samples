@@ -14,6 +14,7 @@ class TasksTableViewController: UITableViewController {
     var ditto: Ditto!
     var store: DittoStore!
     var liveQuery: DittoLiveQuery?
+    var subscription: DittoSubscription?
     var collection: DittoCollection!
 
     // This is the UITableView data source
@@ -45,7 +46,8 @@ class TasksTableViewController: UITableViewController {
     func setupTaskList() {
         // Query for all tasks
         // Observe changes with a live-query and update the UITableView
-        liveQuery = collection.findAll().observe { [weak self] docs, event in
+        subscription = collection.findAll().subscribe()
+        liveQuery = collection.findAll().observeLocal { [weak self] docs, event in
             guard let `self` = self else { return }
             switch event {
             case .update(let changes):

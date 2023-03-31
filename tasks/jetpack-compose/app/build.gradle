@@ -64,7 +64,7 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
     // Ditto
-    implementation "live.ditto:ditto:2.0.0-alpha1"
+    implementation "live.ditto:ditto:3.0.0"
     // RxJava3
     implementation 'androidx.compose.runtime:runtime-rxjava3:1.0.1'
     // Jetpack Compose View Model

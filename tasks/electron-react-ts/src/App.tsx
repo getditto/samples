@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 
 const COLLECTION = 'tasks'
-const OFFLINE_LICENSE_TOKEN = '<REPLACE_ME>'
 
 const App = () => {
   const [text, setText] = useState('')
@@ -19,7 +18,6 @@ const App = () => {
       return
     }
 
-    ditto.setOfflineOnlyLicenseToken(OFFLINE_LICENSE_TOKEN)
     ditto.updateTransportConfig((t) => {
       t.setAllPeerToPeerEnabled(true)
       // Or selectively enable only some P2P tranports:

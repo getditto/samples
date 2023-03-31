@@ -11,11 +11,12 @@ namespace Tasks
         bool isCompleted;
         bool isDeleted;
 
-        public Task(string _id, string body, bool isCompleted)
+        public Task(string _id, string body, bool isCompleted, bool isDeleted)
         {
             this._id = _id;
             this.body = body;
             this.isCompleted = isCompleted;
+            this.isDeleted = isDeleted;
         }
 
         public Task(string body, bool isCompleted)

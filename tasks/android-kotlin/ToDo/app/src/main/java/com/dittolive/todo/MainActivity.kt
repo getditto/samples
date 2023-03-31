@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
     private var ditto: Ditto? = null
     private var collection: DittoCollection? = null
     private var liveQuery: DittoLiveQuery? = null
+    private var subscription: DittoSubscription? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
                 // Retrieve the task at the row swiped
                 val task = adapter.tasks()[viewHolder.adapterPosition]
                 // Delete the task from DittoSyncKit
-                ditto.store.collection("tasks").findByID(task.id).remove()
+                ditto.store.collection("tasks").findById(task.id).remove()
             }
         }
 
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
         // Listen for clicks to mark tasks [in]complete
         tasksAdapter.onItemClick = { task ->
-            ditto.store.collection("tasks").findByID(task.id).update { newTask ->
+            ditto.store.collection("tasks").findById(task.id).update { newTask ->
                 newTask!!["isCompleted"].set(!newTask["isCompleted"].booleanValue)
             }
         }
@@ -117,9 +118,12 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
     fun setupTaskList() {
         // We will create a long-running live query to keep UI up-to-date
         this.collection = this.ditto!!.store.collection("tasks")
-
+        
         // We use observe to create a live query with a subscription to sync this query with other devices
-        this.liveQuery = collection!!.findAll().observe { docs, event ->
+        this.subscription = collection!!.find("isDeleted == false").subscribe()
+
+        // We listen to changes to all data locally
+        this.liveQuery = collection!!.findAll().observeLocal { docs, event ->
             val adapter = (this.viewAdapter as TasksAdapter)
             when (event) {
                 is DittoLiveQueryEvent.Update -> {

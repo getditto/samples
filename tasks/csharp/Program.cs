@@ -75,7 +75,7 @@ namespace Tasks
                     case string s when command.StartsWith("--toggle"):
                         string _idToToggle = s.Replace("--toggle ", "");
                         ditto.Store["tasks"]
-                            .FindById(new DittoDocumentID(_idToToggle))
+                            .FindById(new DittoDocumentId(_idToToggle))
                             .Update((mutableDoc) => {
                                 if (mutableDoc == null) return;
                                 mutableDoc["isCompleted"].Set(!mutableDoc["isCompleted"].BooleanValue);
@@ -84,7 +84,7 @@ namespace Tasks
                     case string s when command.StartsWith("--delete"):
                         string _idToDelete = s.Replace("--delete ", "");
                         ditto.Store["tasks"]
-                            .FindById(new DittoDocumentID(_idToDelete))
+                            .FindById(new DittoDocumentId(_idToDelete))
                             .Update((mutableDoc) => {
                                 if (mutableDoc == null) return;
                                 mutableDoc["isDeleted"].Set(true);
