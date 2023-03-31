@@ -42,30 +42,30 @@ int main()
 {
     std::cout << "\nWelcome to Ditto Tasks for C++\n";
 
-    auto identity = Identity();
-    Ditto *ditto = new Ditto(identity);
-
+    Ditto ditto;
+    auto identity =
+        Identity::OnlinePlayground("REPLACE_ME_WITH_YOUR_APP_ID",
+                                   "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN", true);
     try
     {
-        ditto->start_sync();
+
+        ditto = Ditto(identity);
+        ditto.set_minimum_log_level(LogLevel::debug);
+        ditto.start_sync();
     }
     catch (const DittoError &err)
     {
         // handle exception
     }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what();
-    }
 
-    ditto->store.collection("tasks").find_all().observe(LiveQueryEventHandler{
-        [&](std::vector<Document> docs, LiveQueryEvent event)
-        {
+
+    ditto.get_store().collection("tasks").find_all()
+            .observe_local([&](std::vector<Document> docs, LiveQueryEvent event) {
             // transform the vector of docs into the vector<Task>
             std::transform(docs.begin(), docs.end(), std::back_inserter(tasks),
                            [](Document &doc) -> Task
                            { return Task(doc); });
-        }});
+        });
 
     while (!isAskingToExit)
     {
@@ -79,8 +79,7 @@ int main()
         {
             for (auto &task : tasks)
             {
-                string formatted = format("_id:{0} to body:{1} isCompleted:{2}", task._id, task.body, task.isCompleted);
-                cout << formatted;
+                // process tasks
             }
         }
 
