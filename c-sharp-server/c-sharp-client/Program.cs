@@ -25,7 +25,6 @@ namespace Program {
         static Boolean isAskedToExit = false;
 
         public static void Main(string[] args) {
-            System.Console.WriteLine("HELLO");
             var appId = "f87f6d8c-1b51-46e2-83d6-d97825ebab71";
             DittoLogger.SetMinimumLogLevel(DittoLogLevel.Debug);
             var identity = DittoIdentity.OnlineWithAuthentication(
