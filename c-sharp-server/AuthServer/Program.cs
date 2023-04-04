@@ -23,9 +23,9 @@ ufsn3SiJc+wIIfvKDgarINP9yVahRANCAARnAF3RspwyFe53haYt1u2O3FD7yykf
 dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
 -----END PRIVATE KEY-----";
 
-            string sharedKey = "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgPaVGWK8oCXJhyIS9zz43iwg9NLT5mN5C6fQWGVmHvXyhRANCAAQsspkg5n7kw5g88vSr7teEuCpJdjZY0YNCxZUDWVOU/gj0NYsZ3pu59HP+KuX/9H4KFn75ZTLQi5puvkGLo/UJ";
+            string sharedKey = "YOUR_SHARED_KEY_HERE";
 
-            string license = "o2d1c2VyX2lkbnJhZUBkaXR0by5saXZlZmV4cGlyeXgYMjAyMy0wNi0wNVQwNjo1OTo1OS45OTlaaXNpZ25hdHVyZXhYaGNsQm80NktiL1F1UDN1QkkxRkJvalFZdkJleUg3aEE2VWJ2YjdTb1NqSU1NejJEUmxudTBseFU2SlNaOFo2Q0pid05sWThTeWZmcVZ1M0MyTzVyL1E9PQ==";
+            string license = "YOUR_LICENSE_HERE";
 
             var serverIdentity = DittoIdentity.SharedKey(
                 appId,
