@@ -10,7 +10,7 @@ Start the server:
 ```
 cd AuthServer
 dotnet run
-``
+```
 
 Start the client
 
