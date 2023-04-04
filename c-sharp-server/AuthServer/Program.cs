@@ -25,8 +25,8 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
 
             string sharedKey = "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgPaVGWK8oCXJhyIS9zz43iwg9NLT5mN5C6fQWGVmHvXyhRANCAAQsspkg5n7kw5g88vSr7teEuCpJdjZY0YNCxZUDWVOU/gj0NYsZ3pu59HP+KuX/9H4KFn75ZTLQi5puvkGLo/UJ";
 
-            string license = "o2d1c2VyX2lkbnJhZUBkaXR0by5saXZlZmV4cGlyeXgYMjAyMi0wOC0xMVQwNjo1OTo1OS45OTlaaXNpZ25hdHVyZXhYdEZIRlJFclU4aENVa0RGODIyeDF1em1mLzZmMDJIc29Ud0hJeDBkWTNHVStmQU9IOFIydSt0cVBSMUNkUmpWWEZwWTNkV3lUK0t0c3k2RmZOdzhjTnc9PQ==";
-            
+            string license = "o2d1c2VyX2lkbnJhZUBkaXR0by5saXZlZmV4cGlyeXgYMjAyMy0wNi0wNVQwNjo1OTo1OS45OTlaaXNpZ25hdHVyZXhYaGNsQm80NktiL1F1UDN1QkkxRkJvalFZdkJleUg3aEE2VWJ2YjdTb1NqSU1NejJEUmxudTBseFU2SlNaOFo2Q0pid05sWThTeWZmcVZ1M0MyTzVyL1E9PQ==";
+
             var serverIdentity = DittoIdentity.SharedKey(
                 appId,
                 sharedKey
@@ -47,7 +47,7 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
             */
             serverConfig.Listen.Http.IdentityProviderSigningKey = signingKey;
             serverConfig.Listen.Http.IdentityProviderVerifyingKeys.Add(verifyingKey);
-            ditto.SetTransportConfig(serverConfig);
+            ditto.TransportConfig = serverConfig;
 
             try
             {
@@ -76,6 +76,7 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
                     success.UserId = "bob";
                     success.ReadEverythingPermission = true;
                     success.WriteEverythingPermission = true;
+                    Console.WriteLine("Sign in success!");
                     args.Allow(success);
                 }
                 else
@@ -86,7 +87,9 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
 
             Console.WriteLine("Welcome to Ditto's Task App");
 
-            liveQuery = ditto.Store["tasks"].FindAll().Observe((docs, _event) => {
+            liveQuery = ditto.Store["tasks"].FindAll().ObserveLocal((docs, _event) => {
+
+                Console.WriteLine("Got new tasks");
                 tasks = docs.ConvertAll(d => new Task(d));
             });
 
@@ -108,7 +111,7 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
                     case string s when command.StartsWith("--toggle"):
                         string _idToToggle = s.Replace("--toggle ", "");
                         ditto.Store["tasks"]
-                            .FindById(new DittoDocumentID(_idToToggle))
+                            .FindById(new DittoDocumentId(_idToToggle))
                             .Update((mutableDoc) => {
                                 if (mutableDoc == null) return;
                                 mutableDoc["isCompleted"].Set(!mutableDoc["isCompleted"].BooleanValue);
@@ -117,7 +120,7 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
                     case string s when command.StartsWith("--delete"):
                         string _idToDelete = s.Replace("--delete ", "");
                         ditto.Store["tasks"]
-                            .FindById(new DittoDocumentID(_idToDelete))
+                            .FindById(new DittoDocumentId(_idToDelete))
                             .Remove();
                         break;
                     case { } when command.StartsWith("--list"):
