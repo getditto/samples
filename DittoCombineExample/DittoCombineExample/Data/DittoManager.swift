@@ -12,9 +12,8 @@ final class DittoManager {
             // Online Playground Authentication Token
             identity: .onlinePlayground(
                 appID: "REPLACE_ME_WITH_YOUR_APP_ID",
-                token: "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN",
-                // Disable syncing with the cloud here to demo offline features
-                enableDittoCloudSync: false)
+                token: "REPLACE_ME_WITH_YOUR_PLAYGROUND_TOKEN"
+            )
         )
 
         do {
