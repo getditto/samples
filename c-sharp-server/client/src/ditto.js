@@ -26,7 +26,7 @@ function getditto () {
     const config = new TransportConfig()
     config.connect.websocketURLs.push('ws://127.0.0.1:45002')
     ditto.setTransportConfig(config)
-    ditto.tryStartSync()
+    ditto.startSync()
     return ditto
 }
 
