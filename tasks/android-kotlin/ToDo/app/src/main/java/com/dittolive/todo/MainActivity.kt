@@ -6,9 +6,6 @@ import android.content.pm.PackageManager
 import android.graphics.*
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -17,13 +14,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.task_view.view.*
 import live.ditto.*
 import live.ditto.android.DefaultAndroidDittoDependencies
 import live.ditto.transports.DittoSyncPermissions
+import live.dittolive.todo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogListener {
+
+    private lateinit var binding: ActivityMainBinding
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -35,15 +34,17 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        setSupportActionBar(binding.toolbar)
 
         // Setup the layout
         viewManager = LinearLayoutManager(this)
         val tasksAdapter = TasksAdapter()
         viewAdapter = tasksAdapter
 
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
+        recyclerView = binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
                 // Retrieve the task at the row swiped
                 val task = adapter.tasks()[viewHolder.adapterPosition]
                 // Delete the task from DittoSyncKit
-                ditto.store.collection("tasks").findByID(task.id).remove()
+                ditto.store.collection("tasks").findById(task.id).remove()
             }
         }
 
@@ -81,13 +82,13 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
         // Respond to new task button click
-        addTaskButton.setOnClickListener { _ ->
+        binding.addTaskButton.setOnClickListener {
             showNewTaskUI()
         }
 
         // Listen for clicks to mark tasks [in]complete
         tasksAdapter.onItemClick = { task ->
-            ditto.store.collection("tasks").findByID(task.id).update { newTask ->
+            ditto.store.collection("tasks").findById(task.id).update { newTask ->
                 newTask!!["isCompleted"].set(!newTask["isCompleted"].booleanValue)
             }
         }
@@ -110,12 +111,12 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
     override fun onDialogCancel(dialog: DialogFragment) { }
 
-    fun showNewTaskUI() {
-        val newFragment = NewTaskDialogFragment.newInstance(R.string.add_new_task_dialog_title)
+    private fun showNewTaskUI() {
+        val newFragment = NewTaskDialogFragment.newInstance()
         newFragment.show(supportFragmentManager,"newTask")
     }
 
-    fun setupTaskList() {
+    private fun setupTaskList() {
         // We will create a long-running live query to keep UI up-to-date
         this.collection = this.ditto!!.store.collection("tasks")
         
@@ -146,14 +147,14 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         ditto!!.store.collection("tasks").find("isDeleted == true").evict()
     }
 
-    fun checkDittoPermission() {
+    private fun checkDittoPermission() {
         val missing = DittoSyncPermissions(this).missingPermissions()
         if (missing.isNotEmpty()) {
             this.requestPermissions(missing, 0)
         }
     }
 
-    fun checkLocationPermission() {
+    private fun checkLocationPermission() {
         // On Android, parts of Bluetooth LE and WiFi Direct require location permission
         // Ditto will operate without it but data sync may be impossible in certain scenarios
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -162,74 +163,6 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
             // We ignore the result - Ditto will automatically notice when the permission is granted
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
         }
-    }
-}
-
-class TasksAdapter: RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
-    private val tasks = mutableListOf<DittoDocument>()
-
-    var onItemClick: ((DittoDocument) -> Unit)? = null
-
-    class TaskViewHolder(v: View): RecyclerView.ViewHolder(v)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.task_view, parent, false)
-        return TaskViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val task = tasks[position]
-        holder.itemView.taskTextView.text = task["body"].stringValue
-        holder.itemView.taskCheckBox.isChecked = task["isCompleted"].booleanValue
-        holder.itemView.setOnClickListener {
-            // NOTE: Cannot use position as this is not accurate based on async updates
-            onItemClick?.invoke(tasks[holder.adapterPosition])
-        }
-    }
-
-    override fun getItemCount() = this.tasks.size
-
-    fun tasks(): List<DittoDocument> {
-        return this.tasks.toList()
-    }
-
-    fun set(tasks: List<DittoDocument>): Int {
-        this.tasks.clear()
-        this.tasks.addAll(tasks)
-        return this.tasks.size
-    }
-
-    fun inserts(indexes: List<Int>): Int {
-        for (index in indexes) {
-            this.notifyItemRangeInserted(index, 1)
-        }
-        return this.tasks.size
-    }
-
-    fun deletes(indexes: List<Int>): Int {
-        for (index in indexes) {
-            this.notifyItemRangeRemoved(index, 1)
-        }
-        return this.tasks.size
-    }
-
-    fun updates(indexes: List<Int>): Int {
-        for (index in indexes) {
-            this.notifyItemRangeChanged(index, 1)
-        }
-        return this.tasks.size
-    }
-
-    fun moves(moves: List<DittoLiveQueryMove>) {
-        for (move in moves) {
-            this.notifyItemMoved(move.from, move.to)
-        }
-    }
-
-    fun setInitial(tasks: List<DittoDocument>): Int {
-        this.tasks.addAll(tasks)
-        this.notifyDataSetChanged()
-        return this.tasks.size
     }
 }
 
