@@ -1,4 +1,4 @@
-import { Ditto } from '@dittolive/ditto'
+import { Ditto, Logger } from '@dittolive/ditto'
 import { DittoProvider } from '@dittolive/react-ditto'
 import React from 'react'
 import App from './App'
@@ -8,7 +8,8 @@ const PATH = 'ditto-tasks'
 
 const AppContainer = () => {
   const createDittoInstance = () => {
-    return new Ditto({ type: 'offlinePlayground', appID: APP_ID }, PATH)
+    Logger.minimumLogLevel = 'Debug'
+    return new Ditto({ type: 'onlinePlayground', appID: APP_ID, token: TOKEN }, PATH)
   }
 
   return (

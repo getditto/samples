@@ -1,0 +1,435 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14239538294D4FC900B1ECB8 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 14239537294D4FC900B1ECB8 /* DittoObjC */; };
+		1423953A294D4FC900B1ECB8 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14239539294D4FC900B1ECB8 /* DittoSwift */; };
+		142395BA29523B8600B1ECB8 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395B929523B8600B1ECB8 /* ProductsViewModel.swift */; };
+		142395BC2952481B00B1ECB8 /* ProductListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395BB2952481B00B1ECB8 /* ProductListItemView.swift */; };
+		142395C02952612400B1ECB8 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395BF2952612400B1ECB8 /* EditProductView.swift */; };
+		142395C2295261B600B1ECB8 /* EditProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395C1295261B600B1ECB8 /* EditProductViewModel.swift */; };
+		142395C42952640C00B1ECB8 /* StaticKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395C32952640C00B1ECB8 /* StaticKeys.swift */; };
+		CC7B54F327ABF2DC00D82993 /* DittoCombineExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B54F227ABF2DC00D82993 /* DittoCombineExampleApp.swift */; };
+		CC7B54F527ABF2DC00D82993 /* ProductsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B54F427ABF2DC00D82993 /* ProductsListView.swift */; };
+		CC7B54F727ABF2DD00D82993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7B54F627ABF2DD00D82993 /* Assets.xcassets */; };
+		CC7B54FA27ABF2DD00D82993 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7B54F927ABF2DD00D82993 /* Preview Assets.xcassets */; };
+		CC7B550127ABF38400D82993 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B550027ABF38400D82993 /* Models.swift */; };
+		CC7B550327ABF39100D82993 /* DittoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B550227ABF39100D82993 /* DittoManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		01FB74732889EFF100EE2C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		142395B929523B8600B1ECB8 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
+		142395BB2952481B00B1ECB8 /* ProductListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListItemView.swift; sourceTree = "<group>"; };
+		142395BF2952612400B1ECB8 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
+		142395C1295261B600B1ECB8 /* EditProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewModel.swift; sourceTree = "<group>"; };
+		142395C32952640C00B1ECB8 /* StaticKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticKeys.swift; sourceTree = "<group>"; };
+		CC7B54EF27ABF2DC00D82993 /* DittoCombineExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DittoCombineExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC7B54F227ABF2DC00D82993 /* DittoCombineExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoCombineExampleApp.swift; sourceTree = "<group>"; };
+		CC7B54F427ABF2DC00D82993 /* ProductsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListView.swift; sourceTree = "<group>"; };
+		CC7B54F627ABF2DD00D82993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC7B54F927ABF2DD00D82993 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CC7B550027ABF38400D82993 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		CC7B550227ABF39100D82993 /* DittoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC7B54EC27ABF2DB00D82993 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14239538294D4FC900B1ECB8 /* DittoObjC in Frameworks */,
+				1423953A294D4FC900B1ECB8 /* DittoSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		142395BD295260AF00B1ECB8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B550227ABF39100D82993 /* DittoManager.swift */,
+				CC7B550027ABF38400D82993 /* Models.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		142395BE295260C100B1ECB8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B54F427ABF2DC00D82993 /* ProductsListView.swift */,
+				142395B929523B8600B1ECB8 /* ProductsViewModel.swift */,
+				142395BB2952481B00B1ECB8 /* ProductListItemView.swift */,
+				142395BF2952612400B1ECB8 /* EditProductView.swift */,
+				142395C1295261B600B1ECB8 /* EditProductViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CC7B54E627ABF2DB00D82993 = {
+			isa = PBXGroup;
+			children = (
+				CC7B54F127ABF2DC00D82993 /* DittoCombineExample */,
+				CC7B54F027ABF2DC00D82993 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CC7B54F027ABF2DC00D82993 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B54EF27ABF2DC00D82993 /* DittoCombineExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC7B54F127ABF2DC00D82993 /* DittoCombineExample */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B54F227ABF2DC00D82993 /* DittoCombineExampleApp.swift */,
+				142395BD295260AF00B1ECB8 /* Data */,
+				142395BE295260C100B1ECB8 /* Views */,
+				142395C32952640C00B1ECB8 /* StaticKeys.swift */,
+				CC7B54F627ABF2DD00D82993 /* Assets.xcassets */,
+				CC7B54F827ABF2DD00D82993 /* Preview Content */,
+				01FB74732889EFF100EE2C74 /* Info.plist */,
+			);
+			path = DittoCombineExample;
+			sourceTree = "<group>";
+		};
+		CC7B54F827ABF2DD00D82993 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B54F927ABF2DD00D82993 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC7B54EE27ABF2DB00D82993 /* DittoCombineExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC7B54FD27ABF2DD00D82993 /* Build configuration list for PBXNativeTarget "DittoCombineExample" */;
+			buildPhases = (
+				CC7B54EB27ABF2DB00D82993 /* Sources */,
+				CC7B54EC27ABF2DB00D82993 /* Frameworks */,
+				CC7B54ED27ABF2DB00D82993 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DittoCombineExample;
+			packageProductDependencies = (
+				14239537294D4FC900B1ECB8 /* DittoObjC */,
+				14239539294D4FC900B1ECB8 /* DittoSwift */,
+			);
+			productName = DittoCombineExample;
+			productReference = CC7B54EF27ABF2DC00D82993 /* DittoCombineExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC7B54E727ABF2DB00D82993 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					CC7B54EE27ABF2DB00D82993 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = CC7B54EA27ABF2DB00D82993 /* Build configuration list for PBXProject "DittoCombineExample" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CC7B54E627ABF2DB00D82993;
+			packageReferences = (
+				14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
+			);
+			productRefGroup = CC7B54F027ABF2DC00D82993 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC7B54EE27ABF2DB00D82993 /* DittoCombineExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CC7B54ED27ABF2DB00D82993 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC7B54FA27ABF2DD00D82993 /* Preview Assets.xcassets in Resources */,
+				CC7B54F727ABF2DD00D82993 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC7B54EB27ABF2DB00D82993 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				142395C2295261B600B1ECB8 /* EditProductViewModel.swift in Sources */,
+				CC7B550327ABF39100D82993 /* DittoManager.swift in Sources */,
+				142395C02952612400B1ECB8 /* EditProductView.swift in Sources */,
+				CC7B550127ABF38400D82993 /* Models.swift in Sources */,
+				142395C42952640C00B1ECB8 /* StaticKeys.swift in Sources */,
+				CC7B54F527ABF2DC00D82993 /* ProductsListView.swift in Sources */,
+				142395BA29523B8600B1ECB8 /* ProductsViewModel.swift in Sources */,
+				CC7B54F327ABF2DC00D82993 /* DittoCombineExampleApp.swift in Sources */,
+				142395BC2952481B00B1ECB8 /* ProductListItemView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CC7B54FB27ABF2DD00D82993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CC7B54FC27ABF2DD00D82993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CC7B54FE27ABF2DD00D82993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DittoCombineExample/Preview Content\"";
+				DEVELOPMENT_TEAM = 3T2VMFZPPQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DittoCombineExample/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Uses WiFi to connect and sync with nearby devices";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = live.ditto.DittoCombineExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CC7B54FF27ABF2DD00D82993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DittoCombineExample/Preview Content\"";
+				DEVELOPMENT_TEAM = 3T2VMFZPPQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DittoCombineExample/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Uses WiFi to connect and sync with nearby devices";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = live.ditto.DittoCombineExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC7B54EA27ABF2DB00D82993 /* Build configuration list for PBXProject "DittoCombineExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC7B54FB27ABF2DD00D82993 /* Debug */,
+				CC7B54FC27ABF2DD00D82993 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC7B54FD27ABF2DD00D82993 /* Build configuration list for PBXNativeTarget "DittoCombineExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC7B54FE27ABF2DD00D82993 /* Debug */,
+				CC7B54FF27ABF2DD00D82993 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		14239537294D4FC900B1ECB8 /* DittoObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			productName = DittoObjC;
+		};
+		14239539294D4FC900B1ECB8 /* DittoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			productName = DittoSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CC7B54E727ABF2DB00D82993 /* Project object */;
+}
