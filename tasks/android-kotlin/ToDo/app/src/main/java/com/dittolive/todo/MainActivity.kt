@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
                 // Retrieve the task at the row swiped
                 val task = adapter.tasks()[viewHolder.adapterPosition]
                 // Delete the task from DittoSyncKit
-                ditto.store.collection("tasks").findByID(task.id).remove()
+                ditto.store.collection("tasks").findById(task.id).remove()
             }
         }
 
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
         // Listen for clicks to mark tasks [in]complete
         tasksAdapter.onItemClick = { task ->
-            ditto.store.collection("tasks").findByID(task.id).update { newTask ->
+            ditto.store.collection("tasks").findById(task.id).update { newTask ->
                 newTask!!["isCompleted"].set(!newTask["isCompleted"].booleanValue)
             }
         }

@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@dittolive/ditto": "^2.1.0",
-    "@dittolive/react-ditto": "^0.9.3",
+    "@dittolive/ditto": "^4.0.0",
+    "@dittolive/react-ditto": "^0.11.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
