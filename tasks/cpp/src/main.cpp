@@ -42,12 +42,12 @@ int main()
 {
     std::cout << "\nWelcome to Ditto Tasks for C++\n";
 
-    auto identity = Identity();
-    Ditto *ditto = new Ditto(identity);
+    auto identity = Identity::OnlinePlayground("APP_ID", "YOUR_PLAYGROUND_TOKEN", true);
+    Ditto ditto = Ditto(identity);
 
     try
     {
-        ditto->start_sync();
+        ditto.start_sync();
     }
     catch (const DittoError &err)
     {
@@ -58,14 +58,14 @@ int main()
         std::cerr << e.what();
     }
 
-    ditto->store.collection("tasks").find_all().observe(LiveQueryEventHandler{
-        [&](std::vector<Document> docs, LiveQueryEvent event)
+    ditto.get_store().collection("tasks").find_all()
+        .observe_local([&](std::vector<Document> docs, LiveQueryEvent event) 
         {
             // transform the vector of docs into the vector<Task>
             std::transform(docs.begin(), docs.end(), std::back_inserter(tasks),
                            [](Document &doc) -> Task
                            { return Task(doc); });
-        }});
+        });
 
     while (!isAskingToExit)
     {
