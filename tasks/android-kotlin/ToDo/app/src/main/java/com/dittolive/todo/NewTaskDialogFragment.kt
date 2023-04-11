@@ -40,6 +40,7 @@ class NewTaskDialogFragment: DialogFragment() {
         return builder.create()
     }
 
+    @Deprecated("Deprecated in Java")
     @Suppress("DEPRECATION")
     override fun onAttach(activity: Activity) { // 6
         super.onAttach(activity)
