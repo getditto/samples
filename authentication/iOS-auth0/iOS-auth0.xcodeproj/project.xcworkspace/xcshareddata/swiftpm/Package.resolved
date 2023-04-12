@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/auth0/Auth0.swift",
       "state" : {
-        "revision" : "9f2fc9352f92a8bdd729cccb73872ba8a50e5a01",
-        "version" : "1.39.0"
+        "revision" : "f60927196902e83934adc9407134994347f24db8",
+        "version" : "2.3.2"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getditto/DittoSwiftPackage",
       "state" : {
-        "revision" : "a09b6e3fcdb14efae847db85aa4ea69d74555aeb",
-        "version" : "2.0.0-alpha1"
+        "revision" : "ee0d49b588065ac6a4149c1df95b9d6bc5cc975a",
+        "version" : "4.0.1"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/auth0/JWTDecode.swift.git",
       "state" : {
-        "revision" : "3cd207fb9e943b6168a117baa3936c823204c2dc",
-        "version" : "2.6.3"
+        "revision" : "7918a343e674c7707e0be120bb4e21d679be014c",
+        "version" : "3.0.1"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/auth0/SimpleKeychain.git",
       "state" : {
-        "revision" : "b355c569efcd409e252ccbb500d9fc2713b4d64d",
-        "version" : "0.12.5"
+        "revision" : "7f7be4a7dfc9164c2c66f95193cec9df9ac47d58",
+        "version" : "1.0.1"
       }
     }
   ],
