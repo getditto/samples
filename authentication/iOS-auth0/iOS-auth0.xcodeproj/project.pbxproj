@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1449FFA629E4B2BD00B48A4C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449FFA529E4B2BD00B48A4C /* Helpers.swift */; };
-		1449FFA729E4B2BD00B48A4C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449FFA529E4B2BD00B48A4C /* Helpers.swift */; };
 		89BC14DF27D98338003C4C0A /* iOS_auth0App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BC14CF27D98337003C4C0A /* iOS_auth0App.swift */; };
 		89BC14E027D98338003C4C0A /* iOS_auth0App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BC14CF27D98337003C4C0A /* iOS_auth0App.swift */; };
 		89BC14E127D98338003C4C0A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BC14D027D98337003C4C0A /* ContentView.swift */; };
@@ -23,7 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1449FFA529E4B2BD00B48A4C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		89BC14CF27D98337003C4C0A /* iOS_auth0App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_auth0App.swift; sourceTree = "<group>"; };
 		89BC14D027D98337003C4C0A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89BC14D127D98338003C4C0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,7 +68,6 @@
 			children = (
 				89BC14CF27D98337003C4C0A /* iOS_auth0App.swift */,
 				89BC14D027D98337003C4C0A /* ContentView.swift */,
-				1449FFA529E4B2BD00B48A4C /* Helpers.swift */,
 				89BC14D127D98338003C4C0A /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -205,7 +201,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				89BC14E127D98338003C4C0A /* ContentView.swift in Sources */,
-				1449FFA629E4B2BD00B48A4C /* Helpers.swift in Sources */,
 				89BC14DF27D98338003C4C0A /* iOS_auth0App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,7 +210,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				89BC14E227D98338003C4C0A /* ContentView.swift in Sources */,
-				1449FFA729E4B2BD00B48A4C /* Helpers.swift in Sources */,
 				89BC14E027D98338003C4C0A /* iOS_auth0App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

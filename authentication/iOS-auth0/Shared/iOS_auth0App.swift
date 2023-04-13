@@ -8,11 +8,7 @@
 import SwiftUI
 
 @main
-struct iOS_auth0App: App {
-    /// This helper is not required for demonstrating Ditto authentication.
-    /// See Helpers.swift
-    private var cleanup = CleanupHelper()
-    
+struct iOS_auth0App: App {    
     var body: some Scene {
         WindowGroup {
             ContentView()

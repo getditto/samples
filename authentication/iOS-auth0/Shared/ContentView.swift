@@ -30,6 +30,12 @@ class AuthDelegate: DittoAuthenticationDelegate {
     }
 }
 
+extension Ditto {
+    struct Config {
+        static var appID = "YOUR_APP_ID_HERE"
+    }
+}
+
 class ProfileViewModel: ObservableObject {
     enum State {
         case isLoading
@@ -41,19 +47,38 @@ class ProfileViewModel: ObservableObject {
     @Published var ditto: Ditto?
     @Published private(set) var state = State.isLoading
     @Published var docs: [DittoDocument] = []
-    private var cancellables = Set<AnyCancellable>()
+    var authDelegate = AuthDelegate(token: "")
+    var carsPublisherCancellable: AnyCancellable? = AnyCancellable({})
+
+    func setCarsPublisher() {
+        guard let ditto = self.ditto else { return }
+        
+        carsPublisherCancellable = ditto.store.collection("cars")
+            .findAll()
+            .liveQueryPublisher()
+            .map { docs, _ in
+                docs
+            }
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] docs in
+                self?.docs = docs
+            }
+    }
     
     func logout() {
-        docs = []
-        state = .isLoading
-
         Task {
+            ditto?.store["cars"].findAll().evict()
+            
+            await MainActor.run {
+                carsPublisherCancellable = nil
+                docs = []
+                state = .isLoading
+                ditto?.stopSync()
+            }
+            
+            ditto?.auth?.logout()
+            
             do {
-                ditto?.auth?.logout(cleanup: { ditto in
-                    print("logout() ditto.auth.logout.cleanup closure - evict all from cars")
-                    ditto.store.collection("cars").findAll().evict()
-                })
-
                 try await Auth0.webAuth().clearSession()
             } catch {
                 print("Auth0 logout error: \(error.localizedDescription)")
@@ -66,11 +91,6 @@ class ProfileViewModel: ObservableObject {
             do {
                 let creds = try await Auth0.webAuth().scope("openid profile").start()
                 let _ = credentialsManager.store(credentials: creds)
-                
-                await MainActor.run {
-                    self.ditto?.stopSync()
-                    self.ditto = nil
-                }
                 
                 await getProfile()
             } catch {
@@ -86,49 +106,52 @@ class ProfileViewModel: ObservableObject {
         
         do {
             let creds = try await credentialsManager.credentials(withScope: "openid profile")
+            authDelegate.token = creds.accessToken
             
-            let accessToken = creds.accessToken
-            let identity = DittoIdentity.onlineWithAuthentication(
-                appID: Ditto.Config.appID,
-                authenticationDelegate: AuthDelegate(token: accessToken)
-            )
-            
-            let ditto = Ditto(
-                identity: identity,
-                persistenceDirectory: Ditto.newPersistenceDir
-            )
-            
-            do {
-                try ditto.startSync()
-            } catch {
-                print("\(#function): ditto.startSync() Error: \(error.localizedDescription)")
-            }
-            
-            await MainActor.run {[weak self] in
-                self?.ditto = ditto
+            if ditto == nil {
+                let identity = DittoIdentity.onlineWithAuthentication(
+                    appID: Ditto.Config.appID,
+                    authenticationDelegate: authDelegate
+                )
                 
-                let _ = ditto.store.collection("cars").findAll().observeLocal {[weak self] docs, event in
-                    self?.docs = docs
+                let ditto = Ditto(identity: identity)
+                
+                await MainActor.run {[weak self] in
+                    self?.ditto = ditto
+                    self?.setCarsPublisher()
                 }
+            } else {
+                authDelegate.authenticationRequired(authenticator: ditto!.auth!)
+                setCarsPublisher()
             }
             
             do {
-                let profile = try await Auth0.authentication().userInfo(withAccessToken: accessToken).start()
+                try ditto!.startSync()
+            } catch {
+                await MainActor.run { self.state = .failed(error) }
+                print("\(#function) Error: \(error.localizedDescription)")
+            }
+            
+            
+            do {
+                let profile = try await Auth0.authentication()
+                    .userInfo(withAccessToken: authDelegate.token)
+                    .start()
                 await MainActor.run { self.state = .loaded(profile) }
             } catch {
-                print("\(#function): Auth0.getProfile failed with error: \(error.localizedDescription)")
                 await MainActor.run { self.state = .failed(error) }
+                print("\(#function) Error: \(error.localizedDescription)")
             }
             
         } catch {
+            print("\(#function) Error: \(error.localizedDescription)")
             await MainActor.run { self.state = .failed(error) }
-            print("\(#function): Auth0.credentialsManger.credentials() Error: \(error.localizedDescription)")
         }
     }
     
     func addCar() {
-        try! ditto!.store.collection("cars").upsert([
-            "make": "Toyota"
+        try! ditto!.store["cars"].upsert([
+            "make": "Tesla"
         ] as [String: Any?])
     }
 }
@@ -160,7 +183,7 @@ struct ContentView: View {
                 .padding()
             }
             
-            Text("Cars:" + String(viewModel.docs.count))
+            Text("Cars: " + String(viewModel.docs.count))
         }
     }
 }
