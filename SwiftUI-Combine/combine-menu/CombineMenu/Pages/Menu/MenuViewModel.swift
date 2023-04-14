@@ -12,7 +12,6 @@ import SwiftUI
 class MenuViewModel: ObservableObject {
     @Published var categorizedProducts = [CategorizedProducts]()
     @Published var isPresentingProductView = false
-    private var cancellables = Set<AnyCancellable>()
     
     private let ditto = DittoManager.shared.ditto
     private var productsCollection: DittoCollection {
@@ -27,10 +26,10 @@ class MenuViewModel: ObservableObject {
 
     init() {
         let productsPublisher = productsCollection.findAll().liveQueryPublisher()
-            .tryMap({ $0.documents.map({ Product(document: $0) }) })
+            .tryMap { $0.documents.map { Product(document: $0) } }
 
         let categoriesPublisher = categoriesCollection.findAll().liveQueryPublisher()
-            .tryMap({ $0.documents.map({ Category(document: $0) }) })
+            .tryMap { $0.documents.map { Category(document: $0) } }
 
         categoriesPublisher.combineLatest(productsPublisher)
             .map { (categories, products) in
@@ -39,11 +38,10 @@ class MenuViewModel: ObservableObject {
                     return CategorizedProducts(category: category, products: filteredProducts)
                 })
             }
-            .catch({ _ in
+            .catch { _ in
                 Just([])
-            })
-            .assign(to: \.categorizedProducts, on: self)
-            .store(in: &cancellables)
+            }
+            .assign(to: &$categorizedProducts)
     }
 
     func presentProductEdit(productIdToEdit: String?, categoryIdForProductToAdd: String?) {
