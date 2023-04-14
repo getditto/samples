@@ -7,8 +7,20 @@ final class DittoManager {
     let ditto: Ditto
 
     private init() {
-        ditto = Ditto()
-        try! ditto.setOfflineOnlyLicenseToken("YOUR_OFFLINE_PORTAL_TOKEN")
+        self.ditto = Ditto(
+            // 1. Create an app in your Ditto Portal
+            // 2. Initialize identity with AppID and Online Playground Authentication Token
+            identity: .onlinePlayground(
+                appID: "YOUR_PORTAL_APP_ID",
+                token: "YOUR_PORTAL_PLAYGROUND_TOKEN"
+            )
+        )
+
+        do {
+          try ditto.startSync()
+        } catch {
+          print(error.localizedDescription)
+        }
     }
     
     func startSync() {

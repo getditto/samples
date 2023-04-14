@@ -1,6 +1,6 @@
 # Combine Menu
 
-An iOS enabled application that shows of Ditto usage with Apple's Combine Framework.
+This simple iOS application is a standalone example of Ditto usage with Apple's Combine Framework. (Note that this example does not replicate date between devices.)
 
 Learn more about the Publisher extension methods here:
 

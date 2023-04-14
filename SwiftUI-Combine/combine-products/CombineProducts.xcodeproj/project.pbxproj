@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14239538294D4FC900B1ECB8 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 14239537294D4FC900B1ECB8 /* DittoObjC */; };
-		1423953A294D4FC900B1ECB8 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14239539294D4FC900B1ECB8 /* DittoSwift */; };
+		141A2B7529E8EA4800BD1021 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 141A2B7429E8EA4800BD1021 /* DittoObjC */; };
+		141A2B7729E8EA4800BD1021 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 141A2B7629E8EA4800BD1021 /* DittoSwift */; };
 		142395BA29523B8600B1ECB8 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395B929523B8600B1ECB8 /* ProductsViewModel.swift */; };
 		142395BC2952481B00B1ECB8 /* ProductListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395BB2952481B00B1ECB8 /* ProductListItemView.swift */; };
 		142395C02952612400B1ECB8 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395BF2952612400B1ECB8 /* EditProductView.swift */; };
 		142395C2295261B600B1ECB8 /* EditProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395C1295261B600B1ECB8 /* EditProductViewModel.swift */; };
 		142395C42952640C00B1ECB8 /* StaticKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142395C32952640C00B1ECB8 /* StaticKeys.swift */; };
-		CC7B54F327ABF2DC00D82993 /* DittoCombineExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B54F227ABF2DC00D82993 /* DittoCombineExampleApp.swift */; };
+		CC7B54F327ABF2DC00D82993 /* CombineProductsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B54F227ABF2DC00D82993 /* CombineProductsApp.swift */; };
 		CC7B54F527ABF2DC00D82993 /* ProductsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B54F427ABF2DC00D82993 /* ProductsListView.swift */; };
 		CC7B54F727ABF2DD00D82993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7B54F627ABF2DD00D82993 /* Assets.xcassets */; };
 		CC7B54FA27ABF2DD00D82993 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7B54F927ABF2DD00D82993 /* Preview Assets.xcassets */; };
@@ -29,8 +29,8 @@
 		142395BF2952612400B1ECB8 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
 		142395C1295261B600B1ECB8 /* EditProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewModel.swift; sourceTree = "<group>"; };
 		142395C32952640C00B1ECB8 /* StaticKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticKeys.swift; sourceTree = "<group>"; };
-		CC7B54EF27ABF2DC00D82993 /* DittoCombineExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DittoCombineExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC7B54F227ABF2DC00D82993 /* DittoCombineExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoCombineExampleApp.swift; sourceTree = "<group>"; };
+		CC7B54EF27ABF2DC00D82993 /* CombineProducts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineProducts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC7B54F227ABF2DC00D82993 /* CombineProductsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineProductsApp.swift; sourceTree = "<group>"; };
 		CC7B54F427ABF2DC00D82993 /* ProductsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListView.swift; sourceTree = "<group>"; };
 		CC7B54F627ABF2DD00D82993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC7B54F927ABF2DD00D82993 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -43,8 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14239538294D4FC900B1ECB8 /* DittoObjC in Frameworks */,
-				1423953A294D4FC900B1ECB8 /* DittoSwift in Frameworks */,
+				141A2B7529E8EA4800BD1021 /* DittoObjC in Frameworks */,
+				141A2B7729E8EA4800BD1021 /* DittoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +75,7 @@
 		CC7B54E627ABF2DB00D82993 = {
 			isa = PBXGroup;
 			children = (
-				CC7B54F127ABF2DC00D82993 /* DittoCombineExample */,
+				CC7B54F127ABF2DC00D82993 /* CombineProducts */,
 				CC7B54F027ABF2DC00D82993 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,15 +83,15 @@
 		CC7B54F027ABF2DC00D82993 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CC7B54EF27ABF2DC00D82993 /* DittoCombineExample.app */,
+				CC7B54EF27ABF2DC00D82993 /* CombineProducts.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CC7B54F127ABF2DC00D82993 /* DittoCombineExample */ = {
+		CC7B54F127ABF2DC00D82993 /* CombineProducts */ = {
 			isa = PBXGroup;
 			children = (
-				CC7B54F227ABF2DC00D82993 /* DittoCombineExampleApp.swift */,
+				CC7B54F227ABF2DC00D82993 /* CombineProductsApp.swift */,
 				142395BD295260AF00B1ECB8 /* Data */,
 				142395BE295260C100B1ECB8 /* Views */,
 				142395C32952640C00B1ECB8 /* StaticKeys.swift */,
@@ -99,7 +99,7 @@
 				CC7B54F827ABF2DD00D82993 /* Preview Content */,
 				01FB74732889EFF100EE2C74 /* Info.plist */,
 			);
-			path = DittoCombineExample;
+			path = CombineProducts;
 			sourceTree = "<group>";
 		};
 		CC7B54F827ABF2DD00D82993 /* Preview Content */ = {
@@ -113,9 +113,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CC7B54EE27ABF2DB00D82993 /* DittoCombineExample */ = {
+		CC7B54EE27ABF2DB00D82993 /* CombineProducts */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC7B54FD27ABF2DD00D82993 /* Build configuration list for PBXNativeTarget "DittoCombineExample" */;
+			buildConfigurationList = CC7B54FD27ABF2DD00D82993 /* Build configuration list for PBXNativeTarget "CombineProducts" */;
 			buildPhases = (
 				CC7B54EB27ABF2DB00D82993 /* Sources */,
 				CC7B54EC27ABF2DB00D82993 /* Frameworks */,
@@ -125,13 +125,13 @@
 			);
 			dependencies = (
 			);
-			name = DittoCombineExample;
+			name = CombineProducts;
 			packageProductDependencies = (
-				14239537294D4FC900B1ECB8 /* DittoObjC */,
-				14239539294D4FC900B1ECB8 /* DittoSwift */,
+				141A2B7429E8EA4800BD1021 /* DittoObjC */,
+				141A2B7629E8EA4800BD1021 /* DittoSwift */,
 			);
 			productName = DittoCombineExample;
-			productReference = CC7B54EF27ABF2DC00D82993 /* DittoCombineExample.app */;
+			productReference = CC7B54EF27ABF2DC00D82993 /* CombineProducts.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -149,7 +149,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CC7B54EA27ABF2DB00D82993 /* Build configuration list for PBXProject "DittoCombineExample" */;
+			buildConfigurationList = CC7B54EA27ABF2DB00D82993 /* Build configuration list for PBXProject "CombineProducts" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -159,13 +159,13 @@
 			);
 			mainGroup = CC7B54E627ABF2DB00D82993;
 			packageReferences = (
-				14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
+				141A2B7329E8EA4800BD1021 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
 			);
 			productRefGroup = CC7B54F027ABF2DC00D82993 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CC7B54EE27ABF2DB00D82993 /* DittoCombineExample */,
+				CC7B54EE27ABF2DB00D82993 /* CombineProducts */,
 			);
 		};
 /* End PBXProject section */
@@ -194,7 +194,7 @@
 				142395C42952640C00B1ECB8 /* StaticKeys.swift in Sources */,
 				CC7B54F527ABF2DC00D82993 /* ProductsListView.swift in Sources */,
 				142395BA29523B8600B1ECB8 /* ProductsViewModel.swift in Sources */,
-				CC7B54F327ABF2DC00D82993 /* DittoCombineExampleApp.swift in Sources */,
+				CC7B54F327ABF2DC00D82993 /* CombineProductsApp.swift in Sources */,
 				142395BC2952481B00B1ECB8 /* ProductListItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,7 +253,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -308,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -325,14 +325,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DittoCombineExample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CombineProducts/Preview Content\"";
 				DEVELOPMENT_TEAM = 3T2VMFZPPQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DittoCombineExample/Info.plist;
+				INFOPLIST_FILE = CombineProducts/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Uses WiFi to connect and sync with nearby devices";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -343,7 +344,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = live.ditto.DittoCombineExample;
+				PRODUCT_BUNDLE_IDENTIFIER = live.ditto.CombineProducts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -358,14 +359,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DittoCombineExample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CombineProducts/Preview Content\"";
 				DEVELOPMENT_TEAM = 3T2VMFZPPQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DittoCombineExample/Info.plist;
+				INFOPLIST_FILE = CombineProducts/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Uses Bluetooth to connect and sync with nearby devices";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Uses WiFi to connect and sync with nearby devices";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -376,7 +378,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = live.ditto.DittoCombineExample;
+				PRODUCT_BUNDLE_IDENTIFIER = live.ditto.CombineProducts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -387,7 +389,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CC7B54EA27ABF2DB00D82993 /* Build configuration list for PBXProject "DittoCombineExample" */ = {
+		CC7B54EA27ABF2DB00D82993 /* Build configuration list for PBXProject "CombineProducts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC7B54FB27ABF2DD00D82993 /* Debug */,
@@ -396,7 +398,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CC7B54FD27ABF2DD00D82993 /* Build configuration list for PBXNativeTarget "DittoCombineExample" */ = {
+		CC7B54FD27ABF2DD00D82993 /* Build configuration list for PBXNativeTarget "CombineProducts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC7B54FE27ABF2DD00D82993 /* Debug */,
@@ -408,25 +410,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
+		141A2B7329E8EA4800BD1021 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				minimumVersion = 4.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		14239537294D4FC900B1ECB8 /* DittoObjC */ = {
+		141A2B7429E8EA4800BD1021 /* DittoObjC */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			package = 141A2B7329E8EA4800BD1021 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
 			productName = DittoObjC;
 		};
-		14239539294D4FC900B1ECB8 /* DittoSwift */ = {
+		141A2B7629E8EA4800BD1021 /* DittoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 14239536294D4FC900B1ECB8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			package = 141A2B7329E8EA4800BD1021 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
 			productName = DittoSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -1,8 +1,7 @@
 import SwiftUI
-//import 
 
 @main
-struct DittoCombineExampleApp: App {
+struct CombineProductsApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {

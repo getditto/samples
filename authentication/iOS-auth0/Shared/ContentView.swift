@@ -1,13 +1,14 @@
 //
 //  ContentView.swift
-//  Shared
+//  iOS-auth0
 //
 //  Created by Karissa McKelvey on 3/9/22.
 //
 
-import SwiftUI
 import Auth0
+import Combine
 import DittoSwift
+import SwiftUI
 
 class AuthDelegate: DittoAuthenticationDelegate {
     var token: String
@@ -15,14 +16,23 @@ class AuthDelegate: DittoAuthenticationDelegate {
     init (token: String) {
         self.token = token
     }
+    
     func authenticationRequired(authenticator: DittoAuthenticator) {
-        authenticator.loginWithToken(self.token, provider: "glitch") { err in
-            print("Login request completed. Error? \(err)")
+        authenticator.loginWithToken(self.token, provider: "glitch") { error in
+            if let err = error {
+                print("\(#function).authenticator.loginWithToken callback: Login request completed with error: \(err.localizedDescription)")
+            }
         }
     }
 
     func authenticationExpiringSoon(authenticator: DittoAuthenticator, secondsRemaining: Int64) {
         print("Auth token expiring in \(secondsRemaining)")
+    }
+}
+
+extension Ditto {
+    struct Config {
+        static var appID = "YOUR_APP_ID_HERE"
     }
 }
 
@@ -37,113 +47,143 @@ class ProfileViewModel: ObservableObject {
     @Published var ditto: Ditto?
     @Published private(set) var state = State.isLoading
     @Published var docs: [DittoDocument] = []
-    
-    func logout () {
-        Auth0
-            .webAuth()
-            .clearSession(federated: false) { result in
-                if result {
-                    if (self.ditto != nil) {
-                        self.ditto!.auth?.logout(cleanup: { ditto in
-                            ditto.store.collection("cars").findAll().evict()
-                        })
-                    }
-                    self.state = State.isLoading
-                }
-            }
-    }
-    
-    func login () {
-        Auth0
-            .webAuth()
-            .scope("openid profile")
-            .audience("https://dev-0zipncfu.us.auth0.com/userinfo")
-            .start { result in
-                switch result {
-                case .success(let credentials):
-                    print("Obtained credentials: \(credentials)")
-                    self.credentialsManager.store(credentials: credentials)
-                    self.getProfile()
-                case .failure(let error):
-                    print("Failed with: \(error)")
-                    self.state = State.failed(error)
-                }
-            }
-    }
-    
-    func getProfile () {
-        print("getting profile")
-        self.state = State.isLoading
-        credentialsManager.credentials { error, credentials in
-            guard error == nil, let credentials = credentials else {
-                // Handle error
-                self.state = State.failed(error as! Error)
-                return
-            }
-            
-            guard let accessToken = credentials.accessToken else {
-                // Handle Error
-                self.state = State.failed(error as! Error)
-                return
-            }
-        
-            let identity = DittoIdentity.onlineWithAuthentication(
-                appID: "YOUR_APP_ID_HERE",
-                authenticationDelegate: AuthDelegate(token: accessToken)
-            )
+    var authDelegate = AuthDelegate(token: "")
+    var carsPublisherCancellable: AnyCancellable? = AnyCancellable({})
 
-            let ditto = Ditto(identity: identity)
-            try! ditto.startSync()
+    func setCarsPublisher() {
+        guard let ditto = self.ditto else { return }
+        
+        carsPublisherCancellable = ditto.store.collection("cars")
+            .findAll()
+            .liveQueryPublisher()
+            .map { docs, _ in
+                docs
+            }
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] docs in
+                self?.docs = docs
+            }
+    }
+    
+    func logout() {
+        Task {
+            ditto?.store["cars"].findAll().evict()
             
-            self.ditto = ditto
-            let liveQuery = ditto.store.collection("cars").findAll().observeLocal { docs, event in
-                self.docs = docs
+            await MainActor.run {
+                carsPublisherCancellable = nil
+                docs = []
+                state = .isLoading
+                ditto?.stopSync()
             }
             
-            print("getting profile")
-            Auth0
-                .authentication()
-                .userInfo(withAccessToken: accessToken)
-                .start { result in
-                    switch(result) {
-                    case .success(let profile):
-                        self.state = State.loaded(profile)
-                        print("got profile")
-                    case .failure(let error):
-                        // Handle the error
-                        self.state = State.failed(error)
-                    }
-                }
+            ditto?.auth?.logout()
+            
+            do {
+                try await Auth0.webAuth().clearSession()
+            } catch {
+                print("Auth0 logout error: \(error.localizedDescription)")
+            }
         }
     }
     
-    func addCar () {
-        try! ditto!.store.collection("cars").upsert([
-            "_id": "boop",
-            "make": "Toyota"
-        ])
+    func login() {
+        Task {
+            do {
+                let creds = try await Auth0.webAuth().scope("openid profile").start()
+                let _ = credentialsManager.store(credentials: creds)
+                
+                await getProfile()
+            } catch {
+                await MainActor.run { self.state = .failed(error) }
+                print("Auth0 login error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getProfile() async {
+        
+        await MainActor.run { self.state = .isLoading }
+        
+        do {
+            let creds = try await credentialsManager.credentials(withScope: "openid profile")
+            authDelegate.token = creds.accessToken
+            
+            if ditto == nil {
+                let identity = DittoIdentity.onlineWithAuthentication(
+                    appID: Ditto.Config.appID,
+                    authenticationDelegate: authDelegate
+                )
+                
+                let ditto = Ditto(identity: identity)
+                
+                await MainActor.run {[weak self] in
+                    self?.ditto = ditto
+                    self?.setCarsPublisher()
+                }
+            } else {
+                authDelegate.authenticationRequired(authenticator: ditto!.auth!)
+                setCarsPublisher()
+            }
+            
+            do {
+                try ditto!.startSync()
+            } catch {
+                await MainActor.run { self.state = .failed(error) }
+                print("\(#function) Error: \(error.localizedDescription)")
+            }
+            
+            
+            do {
+                let profile = try await Auth0.authentication()
+                    .userInfo(withAccessToken: authDelegate.token)
+                    .start()
+                await MainActor.run { self.state = .loaded(profile) }
+            } catch {
+                await MainActor.run { self.state = .failed(error) }
+                print("\(#function) Error: \(error.localizedDescription)")
+            }
+            
+        } catch {
+            print("\(#function) Error: \(error.localizedDescription)")
+            await MainActor.run { self.state = .failed(error) }
+        }
+    }
+    
+    func addCar() {
+        try! ditto!.store["cars"].upsert([
+            "make": "Tesla"
+        ] as [String: Any?])
     }
 }
 
 struct ContentView: View {
-    @ObservedObject var viewModel: ProfileViewModel = ProfileViewModel()
+    @StateObject var viewModel: ProfileViewModel = ProfileViewModel()
     
     var body: some View {
-       
-        switch viewModel.state {
-        case .isLoading:
-            Button("Login", action: viewModel.login)
+        VStack {
+            switch viewModel.state {
+            case .isLoading:
+                Button("Login") { viewModel.login() }
+                    .padding()
+                
+            case .failed(let error):
+                Text("Error!\n\(error.localizedDescription)")
+                
+            case .loaded(let user):
+                Text(user.name ?? "Unknown")
+                
+                Button("Logout") {
+                    Task { viewModel.logout() }
+                }
                 .padding()
-        case .failed(let error):
-            Text("Error!")
-        case .loaded(let user):
-            Text(user.name ?? "Unknown")
-            Button("Logout", action: viewModel.logout).padding()
-            Button("Add car", action: viewModel.addCar).padding()
+                
+                Button("Add car") {
+                    viewModel.addCar()
+                }
+                .padding()
+            }
             
+            Text("Cars: " + String(viewModel.docs.count))
         }
-    
-        Text("Cars:" + String(viewModel.docs.count))
-        
     }
 }

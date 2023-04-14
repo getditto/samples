@@ -1,6 +1,6 @@
 //
 //  ProductsViewModel.swift
-//  DittoCombineExample
+//  CombineProducts
 //
 //  Created by Eric Turner on 12/20/22.
 //
@@ -46,7 +46,7 @@ class ProductsViewModel: ObservableObject {
             .catch { _ in
                 Just([])
             }
-            .print()
+//            .print()
             .assign(to: \.categorizedProducts, on: self)
             .store(in: &cancellables)
     }

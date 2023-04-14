@@ -58,7 +58,6 @@ int main()
         // handle exception
     }
 
-
     ditto.get_store().collection("tasks").find_all()
             .observe_local([&](std::vector<Document> docs, LiveQueryEvent event) {
             // transform the vector of docs into the vector<Task>

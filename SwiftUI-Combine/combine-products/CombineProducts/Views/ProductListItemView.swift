@@ -1,6 +1,6 @@
 //
 //  ProductListItemView.swift
-//  DittoCombineExample
+//  CombineProducts
 //
 //  Created by Eric Turner on 12/20/22.
 //

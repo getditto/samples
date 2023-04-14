@@ -13,7 +13,6 @@ class EditProductViewModel: ObservableObject {
     @Published var categories: [Category] = []
     @Published var name: String = ""
     @Published var detail: String = ""
-    private var cancellables = Set<AnyCancellable>()
     
     private var productIdToEdit: String?
     private var categoryIdForProductToAdd: String?
@@ -30,20 +29,18 @@ class EditProductViewModel: ObservableObject {
 
         let categoriesPublisher = ditto.store["categories"].findAll()
             .liveQueryPublisher()
-            .tryMap({ $0.documents.map({ Category(document: $0) }) })
-            .catch({ _ in Just([]) });
+            .tryMap { $0.documents.map { Category(document: $0) } }
+            .catch { _ in Just([]) }
 
         categoriesPublisher
-            .assign(to: \.categories, on: self)
-            .store(in: &cancellables);
+            .assign(to: &$categories)
 
         Just(categoryIdForProductToAdd)
             .combineLatest(categoriesPublisher.first())
-            .map({ (categoryId, allCategories) -> Category? in
+            .map { (categoryId, allCategories) -> Category? in
                 return allCategories.first(where: { $0.id == categoryId })
-            })
-            .assign(to: \.selectedCategory, on: self)
-            .store(in: &cancellables);
+            }
+            .assign(to: &$selectedCategory)
 
         guard let productIdToEdit,
               let doc = ditto.store["products"].findByID(productIdToEdit).exec()
