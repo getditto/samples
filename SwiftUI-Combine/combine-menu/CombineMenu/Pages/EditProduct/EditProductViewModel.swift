@@ -29,7 +29,7 @@ class EditProductViewModel: ObservableObject {
 
         let categoriesPublisher = ditto.store["categories"].findAll()
             .liveQueryPublisher()
-            .tryMap{ $0.documents.map { Category(document: $0) } }
+            .tryMap { $0.documents.map { Category(document: $0) } }
             .catch { _ in Just([]) }
 
         categoriesPublisher
