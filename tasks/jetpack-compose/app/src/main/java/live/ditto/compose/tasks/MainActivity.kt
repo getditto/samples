@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
 
         val ditto = TasksApplication.ditto
         try {
-            ditto!!.setOfflineOnlyLicenseToken("<REPLACE_ME>")
-            ditto!!.startSync()
+            ditto?.setOfflineOnlyLicenseToken("<REPLACE_ME>")
+            ditto?.startSync()
         } catch (e: DittoError) {
             Toast.makeText(
                 this@MainActivity,
@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
             Root()
         }
 
-        ditto!!.store["tasks"].find("isDeleted == true").evict()
+        ditto?.store?.get("tasks")?.find("isDeleted == true")?.evict()
         requestMissingPermissions()
     }
 
