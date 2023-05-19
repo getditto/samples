@@ -1,7 +1,0 @@
-node_modules
-*.pem
-*.crt
-*.cert
-*.p12
-*.key
-index.js
