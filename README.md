@@ -9,5 +9,5 @@
 1. [Core Data](/ditto-core-data)
 1. [Testing](/testing)
 1. [Authentication Server in C#](/c-sharp-server)
-1. [Change Data Capture](https://github.com/getditto/external-sync: Keep your Ditto database in sync with external systems, such as MongoDB.
+1. [Change Data Capture](https://github.com/getditto/external-sync): Keep your Ditto database in sync with external systems, such as MongoDB.
 
