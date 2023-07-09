@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
     override fun onDialogSave(dialog: DialogFragment, task:String) {
         // Add the task to Ditto
-        this.collection?.upsert(mapOf("body" to task, "isCompleted" to false))
+        this.collection?.upsert(mapOf("body" to task, "isCompleted" to false, "isDeleted" to false))
     }
 
     override fun onDialogCancel(dialog: DialogFragment) { }
