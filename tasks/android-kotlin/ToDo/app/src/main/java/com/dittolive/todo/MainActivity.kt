@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
         val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)
         val ditto = Ditto(androidDependencies, DittoIdentity.OnlinePlayground(
             androidDependencies,
-            "f2b5f038-6d00-433a-9176-6e84011da136",
-            "545717fe-6ffc-4e9f-ab47-7b500430a6ce",
+            "b11a1267-8d3c-4a24-bd98-3772fe28d298",
+            "c13f160a-606d-435b-85eb-c716b6aa76d3",
             enableDittoCloudSync = true)
         )
 
