@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
     override fun onDialogSave(dialog: DialogFragment, task:String) {
         // Add the task to Ditto
-        this.collection!!.upsert(mapOf("body" to task, "isCompleted" to false))
+        this.collection?.upsert(mapOf("body" to task, "isCompleted" to false))
     }
 
     override fun onDialogCancel(dialog: DialogFragment) { }
@@ -118,13 +118,13 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 
     private fun setupTaskList() {
         // We will create a long-running live query to keep UI up-to-date
-        this.collection = this.ditto!!.store.collection("tasks")
+        this.collection = this.ditto?.store?.collection("tasks")
         
         // We use observe to create a live query with a subscription to sync this query with other devices
-        this.subscription = collection!!.find("isDeleted == false").subscribe()
+        this.subscription = collection?.find("isDeleted == false")?.subscribe()
 
         // We listen to changes to all data locally
-        this.liveQuery = collection!!.findAll().observeLocal { docs, event ->
+        this.liveQuery = collection?.findAll()?.observeLocal { docs, event ->
             val adapter = (this.viewAdapter as TasksAdapter)
             when (event) {
                 is DittoLiveQueryEvent.Update -> {
@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
             }
         }
 
-        ditto!!.store.collection("tasks").find("isDeleted == true").evict()
+        ditto?.store?.collection("tasks")?.find("isDeleted == true")?.evict()
     }
 
     private fun checkDittoPermission() {
@@ -170,8 +170,8 @@ class MainActivity : AppCompatActivity(), NewTaskDialogFragment.NewTaskDialogLis
 abstract class SwipeToDeleteCallback(context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     private val deleteIcon = ContextCompat.getDrawable(context, android.R.drawable.ic_menu_delete)
-    private val intrinsicWidth = deleteIcon!!.intrinsicWidth
-    private val intrinsicHeight = deleteIcon!!.intrinsicHeight
+    private val intrinsicWidth = deleteIcon?.intrinsicWidth
+    private val intrinsicHeight = deleteIcon?.intrinsicHeight
     private val background = ColorDrawable()
     private val backgroundColor = Color.parseColor("#f44336")
     private val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
@@ -202,16 +202,22 @@ abstract class SwipeToDeleteCallback(context: Context) : ItemTouchHelper.SimpleC
         background.draw(c)
 
         // Calculate position of delete icon
-        val deleteIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
-        val deleteIconMargin = (itemHeight - intrinsicHeight) / 2
-        val deleteIconLeft = itemView.right - deleteIconMargin - intrinsicWidth
-        val deleteIconRight = itemView.right - deleteIconMargin
-        val deleteIconBottom = deleteIconTop + intrinsicHeight
+        intrinsicHeight?.let {
 
-        // Draw the delete icon
-        deleteIcon!!.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom)
-        deleteIcon.setTint(Color.parseColor("#ffffff"))
-        deleteIcon.draw(c)
+            val deleteIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
+            val deleteIconMargin = (itemHeight - intrinsicHeight) / 2
+
+            val deleteIconRight = itemView.right - deleteIconMargin
+            val deleteIconBottom = deleteIconTop + intrinsicHeight
+
+            intrinsicWidth?.let {
+                val deleteIconLeft = itemView.right - deleteIconMargin - intrinsicWidth
+                // Draw the delete icon
+                deleteIcon?.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom)
+            }
+        }
+        deleteIcon?.setTint(Color.parseColor("#ffffff"))
+        deleteIcon?.draw(c)
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
