@@ -31,7 +31,7 @@ class EditScreenViewModel: ViewModel() {
     fun save() {
         if (_id == null) {
             // save
-            ditto.store["tasks"]
+            ditto.store.collection("tasks")
                 .upsert(mapOf(
                     "body" to body.value,
                     "isCompleted" to isCompleted.value
@@ -39,7 +39,7 @@ class EditScreenViewModel: ViewModel() {
         } else {
             // update
             _id?.let { id ->
-                ditto.store["tasks"].findById(DittoDocumentId(id))
+                ditto.store.collection("tasks").findById(DittoDocumentId(id))
                     .update { dittoDocument ->
                         val mutableDoc = dittoDocument ?: return@update
                         mutableDoc["body"].set(body.value ?: "")

@@ -9,7 +9,7 @@ import live.ditto.compose.tasks.data.Task
 class TasksListScreenViewModel: ViewModel() {
     val tasks: MutableLiveData<List<Task>> = MutableLiveData(emptyList())
 
-    private val subscription = ditto.store["tasks"]
+    private val subscription = ditto.store.collection("tasks")
         .find("!isDeleted").subscribe()
     private val liveQuery = ditto.store["tasks"]
         .find("!isDeleted").observeLocal { docs, _ ->
@@ -17,7 +17,7 @@ class TasksListScreenViewModel: ViewModel() {
         }
 
     fun toggle(taskId: String) {
-        ditto.store["tasks"]
+        ditto.store.collection("tasks")
             .findById(DittoDocumentId(taskId))
             .update { dittoDocument ->
                 val mutableDoc = dittoDocument ?: return@update
