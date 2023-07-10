@@ -53,9 +53,6 @@ class EditScreenViewModel: ViewModel() {
 
     // 4.
     fun delete() {
-        ditto.store["tasks"].upsert(mapOf(
-            "_id" to _id,
-            "isDeleted" to true
-        ))
+        _id?.let { ditto.store.collection("tasks").findById(it).remove() }
     }
 }
