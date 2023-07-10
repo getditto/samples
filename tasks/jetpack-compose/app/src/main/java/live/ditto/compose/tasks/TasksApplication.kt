@@ -9,7 +9,7 @@ import live.ditto.android.DefaultAndroidDittoDependencies
 class TasksApplication: Application() {
 
     companion object {
-        var ditto: Ditto? = null;
+        var ditto: Ditto? = null
     }
 
     override fun onCreate() {
