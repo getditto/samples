@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import live.ditto.DittoError
+import live.ditto.compose.tasks.DittoHandler.Companion.ditto
 import live.ditto.compose.tasks.edit.EditScreen
 import live.ditto.compose.tasks.list.TasksListScreen
 import live.ditto.transports.DittoSyncPermissions
@@ -20,10 +21,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val ditto = TasksApplication.ditto
         try {
-            ditto?.setOfflineOnlyLicenseToken("<REPLACE_ME>")
-            ditto?.startSync()
+//            ditto?.setOfflineOnlyLicenseToken("<REPLACE_ME>")
+            ditto.startSync()
         } catch (e: DittoError) {
             Toast.makeText(
                 this@MainActivity,
@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
             Root()
         }
 
-        ditto?.store?.get("tasks")?.find("isDeleted == true")?.evict()
+        ditto.store.get("tasks").find("isDeleted == true").evict()
         requestMissingPermissions()
     }
 

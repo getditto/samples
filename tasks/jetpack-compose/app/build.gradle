@@ -22,6 +22,13 @@ android {
     }
 
     buildTypes {
+        debug{
+            def credsFile = rootProject.file("secure\\debug_creds.properties")
+            def prop = new Properties()
+            prop.load(new FileInputStream(credsFile))
+            buildConfigField('String', 'DITTO_APP_ID', prop['DITTO_APP_ID']) // always use single quotes here
+            buildConfigField('String', 'DITTO_LICENSE_TOKEN', prop['DITTO_LICENSE_TOKEN'])
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
