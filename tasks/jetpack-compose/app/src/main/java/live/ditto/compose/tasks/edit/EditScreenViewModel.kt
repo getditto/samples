@@ -34,7 +34,8 @@ class EditScreenViewModel: ViewModel() {
             ditto.store.collection("tasks")
                 .upsert(mapOf(
                     "body" to body.value,
-                    "isCompleted" to isCompleted.value
+                    "isCompleted" to isCompleted.value,
+                    "isDeleted" to false
                 ))
         } else {
             // update
