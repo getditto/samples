@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace "live.dittolive.tasks"
+    namespace "live.ditto.compose.tasks"
     compileSdk 33
 
     defaultConfig {
