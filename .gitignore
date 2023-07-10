@@ -176,3 +176,4 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+/tasks/jetpack-compose/secure/debug_creds.properties
