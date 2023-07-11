@@ -1,7 +1,13 @@
 package live.ditto.compose.tasks.list
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.*
+import androidx.compose.material.ExtendedFloatingActionButton
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButtonDefaults
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
@@ -15,14 +21,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import live.ditto.compose.tasks.R
-import live.ditto.compose.tasks.data.Task
 import live.ditto.compose.tasks.TaskRow
-import java.util.*
-
+import live.ditto.compose.tasks.data.Task
+import java.util.UUID
 
 @Composable
 fun TasksListScreen(navController: NavController) {
-    val tasksListViewModel: TasksListScreenViewModel = viewModel();
+    val tasksListViewModel: TasksListScreenViewModel = viewModel()
     val tasks: List<Task> by tasksListViewModel.tasks.observeAsState(emptyList())
 
     Scaffold(

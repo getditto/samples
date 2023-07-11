@@ -30,7 +30,7 @@ fun TaskRow(
     val iconId =
         if (task.isCompleted) R.drawable.ic_baseline_circle_24 else R.drawable.ic_outline_circle_24
     val color = if (task.isCompleted) R.color.blue_200 else R.color.gray
-    var textDecoration = if (task.isCompleted) TextDecoration.LineThrough else
+    val textDecoration = if (task.isCompleted) TextDecoration.LineThrough else
         TextDecoration.None
     Row(
         Modifier
