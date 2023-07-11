@@ -18,7 +18,7 @@ class TasksApplication: Application() {
 
     private fun setupDitto() {
         val androidDependencies = DefaultAndroidDittoDependencies(applicationContext)
-        // Create an instance of DittoSyncKit
+        // Create an instance of Ditto
        ditto = Ditto(androidDependencies, DittoIdentity.OnlinePlayground(
             androidDependencies,
             BuildConfig.DITTO_APP_ID,
