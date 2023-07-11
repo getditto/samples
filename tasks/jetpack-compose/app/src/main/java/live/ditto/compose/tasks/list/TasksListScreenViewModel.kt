@@ -3,24 +3,24 @@ package live.ditto.compose.tasks.list
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import live.ditto.DittoDocumentId
-import live.ditto.compose.tasks.TasksApplication
+import live.ditto.compose.tasks.DittoHandler.Companion.ditto
 import live.ditto.compose.tasks.data.Task
 
 class TasksListScreenViewModel: ViewModel() {
     val tasks: MutableLiveData<List<Task>> = MutableLiveData(emptyList())
 
-    val subscription = TasksApplication.ditto!!.store["tasks"]
+    private val subscription = ditto.store.collection("tasks")
         .find("!isDeleted").subscribe()
-    val liveQuery = TasksApplication.ditto!!.store["tasks"]
+    private val liveQuery = ditto.store["tasks"]
         .find("!isDeleted").observeLocal { docs, _ ->
             tasks.postValue(docs.map { Task(it) })
         }
 
     fun toggle(taskId: String) {
-        TasksApplication.ditto!!.store["tasks"]
+        ditto.store.collection("tasks")
             .findById(DittoDocumentId(taskId))
-            .update { mutableDoc ->
-                val mutableDoc = mutableDoc?.let { it } ?: return@update
+            .update { dittoDocument ->
+                val mutableDoc = dittoDocument ?: return@update
                 mutableDoc["isCompleted"].set(!mutableDoc["isCompleted"].booleanValue)
             }
     }

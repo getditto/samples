@@ -12,7 +12,7 @@ import live.ditto.compose.tasks.R
 @Composable
 fun EditScreen(navController: NavController, taskId: String?) {
     val editScreenViewModel: EditScreenViewModel = viewModel()
-    editScreenViewModel.setupWithTask(taskId = taskId)
+    editScreenViewModel.setupWithTask(id = taskId)
 
     val topBarTitle = if (taskId == null) "New Task" else "Edit Task"
 
