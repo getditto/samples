@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         try {
-//            ditto?.setOfflineOnlyLicenseToken("<REPLACE_ME>")
             ditto.startSync()
         } catch (e: DittoError) {
             Toast.makeText(
