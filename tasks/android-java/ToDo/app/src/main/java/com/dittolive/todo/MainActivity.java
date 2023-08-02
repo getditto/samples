@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
         // Create an instance of DittoSyncKit
         DittoDependencies androidDependencies = new DefaultAndroidDittoDependencies(this.context);
         DittoIdentity identity = new DittoIdentity.OnlinePlayground(androidDependencies, "REPLACE_ME_WITH_YOUR_APP_ID", "YOUR_PLAYGROUND_TOKEN_HERE");
-        Ditto ditto = new Ditto(androidDependencies, identity);
+        final Ditto ditto = new Ditto(androidDependencies, identity);
 
         this.ditto = ditto;
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                 DittoDocument task = tasksAdapter.tasks().get(viewHolder.getAdapterPosition());
-                ditto.store.collection("tasks").findByID(task.id).remove();
+                ditto.store.collection("tasks").findById(task.id).remove();
             }
         };
 
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
         }
 
         // We use observe to create a live query and a subscription to sync this query with other devices
-        this.liveQuery = collection.findAll().sort("dateCreated", DittoSortDirection.Ascending).observe(new LiveQueryHandler());
+        this.liveQuery = collection.findAll().sort("dateCreated", DittoSortDirection.Ascending).observeLocal(new LiveQueryHandler());
     }
 
     void checkLocationPermission() {
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialogFrag
             }
         }
 
-        ditto.store.collection("tasks").findByID(task.id).update(new DocumentUpdater());
+        ditto.store.collection("tasks").findById(task.id).update(new DocumentUpdater());
     }
 }
 
