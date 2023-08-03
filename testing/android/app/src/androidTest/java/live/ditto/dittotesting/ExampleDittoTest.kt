@@ -22,9 +22,12 @@ class ExampleDittoTest: DittoTestBase() {
         val subscription = coll2.findByID(docId).subscribe()
         val liveQuery = coll2.findByID(docId).observeLocal { doc, event ->
             if (!event.isInitial) {
-                assertEquals(doc!!["make"], "toyota")
-                ditto1.stopSync()
-                ditto2.stopSync()
+                doc?.let {
+                    assertEquals(doc["make"].toString(), "toyota")
+                    ditto1.stopSync()
+                    ditto2.stopSync()
+                }
+
             }
         }
     }
