@@ -19,8 +19,8 @@ class ExampleDittoTest: DittoTestBase() {
             "make" to "toyota",
             "mileage" to 160000
         ))
-        val subscription = coll2.findById(docId).subscribe()
-        val liveQuery = coll2.findById(docId).observeLocal { doc, event ->
+        coll2.findById(docId).subscribe()
+        coll2.findById(docId).observeLocal { doc, event ->
             if (!event.isInitial) {
                 doc?.let {
                     assertEquals(doc["make"].toString(), "toyota")
