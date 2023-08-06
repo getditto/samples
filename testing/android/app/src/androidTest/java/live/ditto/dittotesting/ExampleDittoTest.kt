@@ -10,8 +10,8 @@ class ExampleDittoTest: DittoTestBase() {
         val ditto1 = getDitto(dependenciesWithCustomDirectory(File(getWorkDir(), "ditto1")))
         val ditto2 = getDitto(dependenciesWithCustomDirectory(File(getWorkDir(), "ditto2")))
 
-        ditto1.tryStartSync()
-        ditto2.tryStartSync()
+        ditto1.startSync()
+        ditto2.startSync()
 
         val coll1 = ditto1.store.collection("cars")
         val coll2 = ditto2.store.collection("cars")
@@ -19,8 +19,8 @@ class ExampleDittoTest: DittoTestBase() {
             "make" to "toyota",
             "mileage" to 160000
         ))
-        val subscription = coll2.findByID(docId).subscribe()
-        val liveQuery = coll2.findByID(docId).observeLocal { doc, event ->
+        val subscription = coll2.findById(docId).subscribe()
+        val liveQuery = coll2.findById(docId).observeLocal { doc, event ->
             if (!event.isInitial) {
                 doc?.let {
                     assertEquals(doc["make"].toString(), "toyota")
