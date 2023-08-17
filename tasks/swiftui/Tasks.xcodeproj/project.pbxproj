@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		01E97339292EE51800224948 /* NameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E97338292EE51800224948 /* NameScreen.swift */; };
 		01E9733B292EEB8300224948 /* DittoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9733A292EEB8300224948 /* DittoManager.swift */; };
-		0E27A28928D91B64008AD6C1 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 0E27A28828D91B64008AD6C1 /* DittoObjC */; };
-		0E27A28B28D91B64008AD6C1 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E27A28A28D91B64008AD6C1 /* DittoSwift */; };
 		2DE79F1026D8B2F5003F9F80 /* TasksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79F0F26D8B2F5003F9F80 /* TasksApp.swift */; };
 		2DE79F1226D8B2F5003F9F80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79F1126D8B2F5003F9F80 /* ContentView.swift */; };
 		2DE79F1426D8B2F6003F9F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE79F1326D8B2F6003F9F80 /* Assets.xcassets */; };
@@ -19,6 +17,7 @@
 		2DE79F2126D8C344003F9F80 /* TasksListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79F2026D8C344003F9F80 /* TasksListScreen.swift */; };
 		2DE79F2326D8CFB8003F9F80 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79F2226D8CFB8003F9F80 /* TaskRow.swift */; };
 		2DE79F2526D93B82003F9F80 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79F2426D93B82003F9F80 /* EditScreen.swift */; };
+		8CFCA3712A85321B00BA2F41 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8CFCA3702A85321B00BA2F41 /* DittoSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E27A28928D91B64008AD6C1 /* DittoObjC in Frameworks */,
-				0E27A28B28D91B64008AD6C1 /* DittoSwift in Frameworks */,
+				8CFCA3712A85321B00BA2F41 /* DittoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +106,7 @@
 			);
 			name = Tasks;
 			packageProductDependencies = (
-				0E27A28828D91B64008AD6C1 /* DittoObjC */,
-				0E27A28A28D91B64008AD6C1 /* DittoSwift */,
+				8CFCA3702A85321B00BA2F41 /* DittoSwift */,
 			);
 			productName = Tasks;
 			productReference = 2DE79F0C26D8B2F5003F9F80 /* Tasks.app */;
@@ -139,7 +136,7 @@
 			);
 			mainGroup = 2DE79F0326D8B2F5003F9F80;
 			packageReferences = (
-				0E27A28728D91B64008AD6C1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
+				8CFCA36F2A85321B00BA2F41 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
 			);
 			productRefGroup = 2DE79F0D26D8B2F5003F9F80 /* Products */;
 			projectDirPath = "";
@@ -304,7 +301,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Tasks/Preview Content\"";
-				DEVELOPMENT_TEAM = 3T2VMFZPPQ;
+				DEVELOPMENT_TEAM = KYUNTCYL2V;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Tasks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -326,7 +323,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Tasks/Preview Content\"";
-				DEVELOPMENT_TEAM = 3T2VMFZPPQ;
+				DEVELOPMENT_TEAM = KYUNTCYL2V;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Tasks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -365,25 +362,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0E27A28728D91B64008AD6C1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
+		8CFCA36F2A85321B00BA2F41 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = "3.0.0-alpha2";
+				kind = exactVersion;
+				version = 4.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0E27A28828D91B64008AD6C1 /* DittoObjC */ = {
+		8CFCA3702A85321B00BA2F41 /* DittoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0E27A28728D91B64008AD6C1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
-			productName = DittoObjC;
-		};
-		0E27A28A28D91B64008AD6C1 /* DittoSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0E27A28728D91B64008AD6C1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
+			package = 8CFCA36F2A85321B00BA2F41 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
 			productName = DittoSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
