@@ -69,6 +69,11 @@ class DittoManager: ObservableObject {
         config.connect.webSocketURLs.insert("wss://\(appID).cloud-dev.ditto.live")
         config.enableAllPeerToPeer()
         ditto.transportConfig = config
+        
+        // enable smallPeerInfo
+        // don't change syncScope from .bigPeerOnly default
+        ditto.smallPeerInfo.isEnabled = true
+        
         //------------------------------------------------------------------------------------------
         // update to v4 AddWins
         do {
