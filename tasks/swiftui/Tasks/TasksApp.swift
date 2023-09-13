@@ -19,14 +19,14 @@ struct TasksApp: App {
     var body: some Scene {
         WindowGroup {
             TasksListScreen()
-                .onAppear(perform: {
-                    do {
-                        try DittoManager.shared.ditto.startSync()
-                    } catch (let err){
-                        isPresentingAlert = true
-                        errorMessage = err.localizedDescription
-                    }
-                })
+//                .onAppear(perform: {
+//                    do {
+//                        try DittoManager.shared.ditto.startSync()
+//                    } catch (let err){
+//                        isPresentingAlert = true
+//                        errorMessage = err.localizedDescription
+//                    }
+//                })
                 .alert(isPresented: $isPresentingAlert) {
                     Alert(title: Text("Uh Oh"), message: Text("There was an error trying to start the sync. Here's the error \(errorMessage) Ditto will continue working as a local database."), dismissButton: .default(Text("Got it!")))
                 }

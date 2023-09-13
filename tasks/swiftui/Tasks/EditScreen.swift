@@ -9,7 +9,6 @@ import SwiftUI
 import DittoSwift
 
 class EditScreenViewModel: ObservableObject {
-
     @Published var canDelete: Bool = false
     @Published var body: String = ""
     @Published var isCompleted: Bool = false
@@ -28,6 +27,7 @@ class EditScreenViewModel: ObservableObject {
 
     func save() {
         if let _id = _id {
+            print("EditScreen.save(): CALLED TO UPDATE TASK")
             // the user is attempting to update
             DittoManager.shared.ditto.store["tasks"].findByID(_id).update({ mutableDoc in
                 mutableDoc?["isCompleted"].set(self.isCompleted)
@@ -39,12 +39,14 @@ class EditScreenViewModel: ObservableObject {
                 "body": body,
                 "isCompleted": isCompleted,
                 "isDeleted": false,
-                "invitationIds": [:]
+                "invitationIds": [:] as [String:Any?]
             ]
             
             if (userId != "") {
                 task["invitationIds"] = [userId: true]
             }
+            
+            print("EditScreen.save(): CREATE NEW TASK")
             try! DittoManager.shared.ditto.store["tasks"].upsert(task)
         }
     }

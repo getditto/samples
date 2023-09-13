@@ -39,7 +39,7 @@ struct TaskRow: View {
             }
             Spacer()
             Text(task.invitationIds.keys.reduce("", { x, y in
-                x +  (y ?? "") + ", "
+                x +  y + ", "
             })).foregroundColor(Color.gray)
             
             Text("+").onTapGesture {

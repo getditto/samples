@@ -12,6 +12,7 @@ class TasksListScreenViewModel: ObservableObject {
     @Published var tasks = [Task]()
     @Published var isPresentingEditScreen: Bool = false
     @Published var isPresentingNameScreen: Bool = false
+    @Published var isPresentingSettingsScreen: Bool = false
     @Published var userId: String = ""
     
     private(set) var taskToEdit: Task? = nil
@@ -60,7 +61,7 @@ class TasksListScreenViewModel: ObservableObject {
         DittoManager.shared.ditto.store["tasks"].findByID(task._id)
             .update { mutableDoc in
                 guard let mutableDoc = mutableDoc else { return }
-                var userId = TasksListScreenViewModel.randomFakeFirstName()
+                let userId = TasksListScreenViewModel.randomFakeFirstName()
                 mutableDoc["invitationIds"][userId] = true
             }
     }
@@ -78,6 +79,10 @@ class TasksListScreenViewModel: ObservableObject {
     func clickedGear() {
         taskToEdit = nil
         isPresentingNameScreen = true
+    }
+    
+    func clickedSettings() {
+        isPresentingSettingsScreen = true
     }
 }
 
@@ -97,6 +102,11 @@ struct TasksListScreen: View {
                 }
             }
             .navigationTitle("Tasks - SwiftUI")
+            .navigationBarItems(leading: Button(action: {
+                viewModel.clickedSettings()
+            }, label: {
+                Image(systemName: "gearshape")
+            }))
             .navigationBarItems(trailing: Button(action: {
                 viewModel.clickedPlus()
             }, label: {
@@ -107,6 +117,9 @@ struct TasksListScreen: View {
             }, label: {
                 Image(systemName: "gear")
             }))
+            .sheet(isPresented: $viewModel.isPresentingSettingsScreen) {
+                DittoToolsListView()
+            }
             .sheet(isPresented: $viewModel.isPresentingEditScreen, content: {
                 EditScreen(task: viewModel.taskToEdit, userId: viewModel.userId).onDisappear {
                     viewModel.createQuery()

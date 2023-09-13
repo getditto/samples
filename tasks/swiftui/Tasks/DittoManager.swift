@@ -5,26 +5,124 @@
 //  Created by Rae McKelvey on 11/23/22.
 //
 
-import Foundation
+import Combine
 import DittoSwift
+import DittoExportLogs
 
+// Change these to the values set up in your portal-dev app
+let authToken = "password"
+let authProvider = "auth-webhook"
+let appID = "8edded63-8c68-4acc-92ad-e4206cd415b7"
 
-class DittoManager {
+//------------------------------------------------------------------------------------------
+// TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+class AuthDelegate: DittoAuthenticationDelegate {
+    func authenticationRequired(authenticator: DittoAuthenticator) {
+        authenticator.login(
+            token: authToken,
+            provider: authProvider
+        )  { clientInfo, err in
+            print("Login request completed \(err == nil ? "successfully!" : "with error: \(err.debugDescription)")")
+        }
+    }
+
+    func authenticationExpiringSoon(authenticator: DittoAuthenticator, secondsRemaining: Int64) {
+        authenticator.login(
+            token: authToken,
+            provider: authProvider
+        )  { clientInfo, err in
+            print("Login request completed \(err == nil ? "successfully!" : "with error: \(err.debugDescription)")")
+        }
+    }
+}
+//------------------------------------------------------------------------------------------
+
+class DittoManager: ObservableObject {
+    @Published var loggingOption: DittoLogger.LoggingOptions = .debug
+    private static let defaultLoggingOption: DittoLogger.LoggingOptions = .error
+    private var cancellables = Set<AnyCancellable>()
     
     var ditto: Ditto
     
     static var shared = DittoManager()
     
     init() {
-        self.ditto = Ditto(
-            identity: .onlinePlayground(
-                appID: "b11a1267-8d3c-4a24-bd98-3772fe28d298",
-                token: "c13f160a-606d-435b-85eb-c716b6aa76d3"
+        
+        // make sure our log level is set _before_ starting ditto.
+        self.loggingOption = Self.storedLoggingOption()
+
+        //------------------------------------------------------------------------------------------
+        // TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+        let authDelegate = AuthDelegate()
+
+        print("DittoManager.init(): initialize Ditto instance")
+        self.ditto = Ditto(identity:
+            .onlineWithAuthentication(
+                appID: appID,
+                authenticationDelegate: authDelegate,
+                enableDittoCloudSync: false,
+                customAuthURL: URL(string: "https://\(appID).cloud-dev.ditto.live")
             )
         )
         
-        //try! ditto.setOfflineOnlyLicenseToken("o2d1c2VyX2lkbnJhZUBkaXR0by5saXZlZmV4cGlyeXgYMjAyMi0xMi0yNFQwNzo1OTo1OS45OTlaaXNpZ25hdHVyZXhYMnJMQmZkZjZnVnZOTGFKSmpRQmcyYmNFRUR2WUswa0pHQlNFTmJOUFhuR1lFcHFyMkJzSHZteFlaQmRZRTExUEdBc2FZS2h0TTh2Qm9KaWNEVjF4Z3c9PQ==")
+        var config = DittoTransportConfig()
+        config.connect.webSocketURLs.insert("wss://\(appID).cloud-dev.ditto.live")
+        config.enableAllPeerToPeer()
+        ditto.transportConfig = config
+        //------------------------------------------------------------------------------------------
+        // update to v4 AddWins
+        do {
+            try ditto.disableSyncWithV3()
+        } catch let error {
+            print("ERROR: disableSyncWithV3() failed with error \"\(error)\"")
+        }
+        
+        // Prevent Xcode previews from syncing: non-preview simulators and real devices can sync
+        let isPreview: Bool = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+        if !isPreview {
+            print("DittoManager.init(): ditto.startSync()")
+            try! ditto.startSync()
+        }
+    }
+}
+
+extension DittoManager {
+    enum UserDefaultsKeys: String {
+        case loggingOption = "live.ditto.CountDataFetch.userDefaults.loggingOption"
+    }
+}
+
+extension DittoManager {
+    fileprivate func storedLoggingOption() -> DittoLogger.LoggingOptions {
+        return Self.storedLoggingOption()
     }
     
+    // static function for use in init() at launch
+    fileprivate static func storedLoggingOption() -> DittoLogger.LoggingOptions {
+        if let logOption = UserDefaults.standard.object(
+            forKey: UserDefaultsKeys.loggingOption.rawValue
+        ) as? Int {
+            return DittoLogger.LoggingOptions(rawValue: logOption)!
+        } else { //returns the defaultLoggingOption defined above
+            return DittoLogger.LoggingOptions(rawValue: defaultLoggingOption.rawValue)!
+        }
+    }
     
+    fileprivate func saveLoggingOption(_ option: DittoLogger.LoggingOptions) {
+        UserDefaults.standard.set(option.rawValue, forKey: UserDefaultsKeys.loggingOption.rawValue)
+    }
+
+    fileprivate func resetLogging() {
+        let logOption = Self.storedLoggingOption()
+        switch logOption {
+        case .disabled:
+            DittoLogger.enabled = false
+        default:
+            DittoLogger.enabled = true
+            DittoLogger.minimumLogLevel = DittoLogLevel(rawValue: logOption.rawValue)!
+            if let logFileURL = DittoLogManager.shared.logFileURL {
+                DittoLogger.setLogFileURL(logFileURL)
+            }
+        }
+    }
 }
