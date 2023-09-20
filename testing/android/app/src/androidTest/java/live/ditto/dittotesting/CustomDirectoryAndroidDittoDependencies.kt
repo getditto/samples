@@ -7,7 +7,7 @@ import java.io.File
 /**
  * Implementation of `AndroidDittoDependencies` which uses a custom `persistenceDirectory`.
  */
-data class CustomDirectoryAndroidDittoDependencies constructor(
+data class CustomDirectoryAndroidDittoDependencies(
     private val androidDittoDependencies: DefaultAndroidDittoDependencies,
     private val customDir: File
 ): AndroidDittoDependencies {
