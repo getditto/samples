@@ -144,9 +144,13 @@ struct TasksListScreen: View {
                     })
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    
                     Menu {
                         Button("New Task") {
                             viewModel.clickedPlus()
+                        }
+                        Button("Users") {
+                            viewModel.clickedGear()
                         }
                         Button("Small Peer Info") {
                             viewModel.clickedSmallPeerInfo()
