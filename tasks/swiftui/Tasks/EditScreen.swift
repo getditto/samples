@@ -13,7 +13,6 @@ class EditScreenViewModel: ObservableObject {
     @Published var body: String = ""
     @Published var isCompleted: Bool = false
     var userId: String = ""
-
     private let _id: String?
 
     init(task: Task?, userId: String) {
@@ -58,11 +57,9 @@ class EditScreenViewModel: ObservableObject {
         }
 //        ditto.store["tasks"].findByID(_id).evict()
     }
-
 }
 
 struct EditScreen: View {
-
     @Environment(\.presentationMode) private var presentationMode
     @ObservedObject var viewModel: EditScreenViewModel
 
@@ -106,6 +103,7 @@ struct EditScreen: View {
         }
     }
 }
+
 
 struct EditScreen_Previews: PreviewProvider {
     static var previews: some View {

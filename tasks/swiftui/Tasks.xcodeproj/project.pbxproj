@@ -11,6 +11,7 @@
 		01E9733B292EEB8300224948 /* DittoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9733A292EEB8300224948 /* DittoManager.swift */; };
 		0E27A28928D91B64008AD6C1 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 0E27A28828D91B64008AD6C1 /* DittoObjC */; };
 		0E27A28B28D91B64008AD6C1 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E27A28A28D91B64008AD6C1 /* DittoSwift */; };
+		142FBD4D2ACDF9750026224D /* MetadataScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142FBD4C2ACDF9750026224D /* MetadataScreen.swift */; };
 		14492C872AB252710009DBD6 /* DittoDataBrowser in Frameworks */ = {isa = PBXBuildFile; productRef = 14492C862AB252710009DBD6 /* DittoDataBrowser */; };
 		14492C892AB252710009DBD6 /* DittoDiskUsage in Frameworks */ = {isa = PBXBuildFile; productRef = 14492C882AB252710009DBD6 /* DittoDiskUsage */; };
 		14492C8B2AB252710009DBD6 /* DittoExportData in Frameworks */ = {isa = PBXBuildFile; productRef = 14492C8A2AB252710009DBD6 /* DittoExportData */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		01E97338292EE51800224948 /* NameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameScreen.swift; sourceTree = "<group>"; };
 		01E9733A292EEB8300224948 /* DittoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoManager.swift; sourceTree = "<group>"; };
+		142FBD4C2ACDF9750026224D /* MetadataScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataScreen.swift; sourceTree = "<group>"; };
 		14492C932AB252A30009DBD6 /* DittoToolsListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DittoToolsListItem.swift; sourceTree = "<group>"; };
 		14492C942AB252A30009DBD6 /* DittoToolsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DittoToolsListView.swift; sourceTree = "<group>"; };
 		2DE79F0C26D8B2F5003F9F80 /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +99,7 @@
 				2DE79F2026D8C344003F9F80 /* TasksListScreen.swift */,
 				2DE79F2226D8CFB8003F9F80 /* TaskRow.swift */,
 				2DE79F2426D93B82003F9F80 /* EditScreen.swift */,
+				142FBD4C2ACDF9750026224D /* MetadataScreen.swift */,
 				01E97338292EE51800224948 /* NameScreen.swift */,
 				14492C922AB252A30009DBD6 /* DittoToolsScreen */,
 				2DE79F1326D8B2F6003F9F80 /* Assets.xcassets */,
@@ -202,6 +205,7 @@
 				2DE79F2326D8CFB8003F9F80 /* TaskRow.swift in Sources */,
 				2DE79F1F26D8BFD4003F9F80 /* Task.swift in Sources */,
 				01E9733B292EEB8300224948 /* DittoManager.swift in Sources */,
+				142FBD4D2ACDF9750026224D /* MetadataScreen.swift in Sources */,
 				14492C962AB252A30009DBD6 /* DittoToolsListItem.swift in Sources */,
 				2DE79F2126D8C344003F9F80 /* TasksListScreen.swift in Sources */,
 				14492C972AB252A30009DBD6 /* DittoToolsListView.swift in Sources */,

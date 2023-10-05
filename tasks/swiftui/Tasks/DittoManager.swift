@@ -75,6 +75,7 @@ class DittoManager: ObservableObject {
         ditto.smallPeerInfo.isEnabled = true
         
         //------------------------------------------------------------------------------------------
+        
         // update to v4 AddWins
         do {
             try ditto.disableSyncWithV3()
@@ -85,9 +86,14 @@ class DittoManager: ObservableObject {
         // Prevent Xcode previews from syncing: non-preview simulators and real devices can sync
         let isPreview: Bool = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
         if !isPreview {
-            print("DittoManager.init(): ditto.startSync()")
             try! ditto.startSync()
         }
+    }
+}
+
+extension DittoManager {
+    func updateSmallPeerInfoMetadata(_ dict: [String: Any]) {
+        try? ditto.smallPeerInfo.setMetadata(dict)
     }
 }
 
@@ -95,9 +101,7 @@ extension DittoManager {
     enum UserDefaultsKeys: String {
         case loggingOption = "live.ditto.CountDataFetch.userDefaults.loggingOption"
     }
-}
 
-extension DittoManager {
     fileprivate func storedLoggingOption() -> DittoLogger.LoggingOptions {
         return Self.storedLoggingOption()
     }

@@ -8,15 +8,28 @@
 import SwiftUI
 import DittoSwift
 
+//------------------------------------------------------------------------------------------
+// TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+extension TasksListScreenViewModel {
+    func clickedSmallPeerInfo() {
+        isPresentingMetadataScreen = true
+    }
+}
+//------------------------------------------------------------------------------------------
+
 class TasksListScreenViewModel: ObservableObject {
     @Published var tasks = [Task]()
     @Published var isPresentingEditScreen: Bool = false
     @Published var isPresentingNameScreen: Bool = false
     @Published var isPresentingSettingsScreen: Bool = false
-    @Published var userId: String = ""
-    
+    @Published var userId: String = ""    
     private(set) var taskToEdit: Task? = nil
-
+    
+    //------------------------------------------------------------------------------------------
+    // TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+    @Published var isPresentingMetadataScreen = false
+    //------------------------------------------------------------------------------------------
+    
     var liveQuery: DittoLiveQuery?
     var subscription: DittoSubscription?
 
@@ -102,6 +115,10 @@ struct TasksListScreen: View {
                 }
             }
             .navigationTitle("Tasks - SwiftUI")
+            //------------------------------------------------------------------------------------------
+            // TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+
+            /* orig
             .navigationBarItems(leading: Button(action: {
                 viewModel.clickedSettings()
             }, label: {
@@ -117,6 +134,29 @@ struct TasksListScreen: View {
             }, label: {
                 Image(systemName: "gear")
             }))
+            */
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        viewModel.clickedSettings()
+                    }, label: {
+                        Image(systemName: "gearshape")
+                    })
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button("New Task") {
+                            viewModel.clickedPlus()
+                        }
+                        Button("Small Peer Info") {
+                            viewModel.clickedSmallPeerInfo()
+                        }
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            //------------------------------------------------------------------------------------------
             .sheet(isPresented: $viewModel.isPresentingSettingsScreen) {
                 DittoToolsListView()
             }
@@ -130,6 +170,12 @@ struct TasksListScreen: View {
                     viewModel.createQuery()
                 }
             })
+            //------------------------------------------------------------------------------------------
+            // TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+            .sheet(isPresented: $viewModel.isPresentingMetadataScreen, content: {
+                MetadataScreen()
+            })
+            //------------------------------------------------------------------------------------------
         }
     }
 }
