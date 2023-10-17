@@ -12,3 +12,6 @@
 
 ## Getting Started Template Todo Tasks App
 1. [Electron, React, and Typescript](https://github.com/getditto/template-app-electron-react-ts-todo)
+2. [Swift](https://github.com/getditto/template-app-swift-todo)
+3. [C#](https://github.com/getditto/template-app-csharp-todo)
+4. [Xamarin-iOS](https://github.com/getditto/template-app-xamarin-ios-todo)
