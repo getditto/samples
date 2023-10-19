@@ -15,3 +15,5 @@
 2. [Swift](https://github.com/getditto/template-app-swift-todo)
 3. [C#](https://github.com/getditto/template-app-csharp-todo)
 4. [Xamarin-iOS](https://github.com/getditto/template-app-xamarin-ios-todo)
+5. [Nodejs](https://github.com/getditto/template-app-nodejs-todo)
+6. [Jetpack Compose, Kotlin](https://github.com/getditto/template-app-jetpack-compose-kotlin-todo)
