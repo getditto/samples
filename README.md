@@ -3,7 +3,6 @@
 
 ### Table of contents
 
-1. [Basic ToDo tasks list](/tasks)
 1. [Authentication](https://github.com/getditto/sample-authentication-permissions): Permissions, roles, and integration with Auth0 or your own authentication platform.
 1. [Testing](/testing)
 1. [Authentication Server in C#](/c-sharp-server)
