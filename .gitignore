@@ -177,3 +177,7 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 /tasks/jetpack-compose/secure/debug_creds.properties
+
+cpp/main
+libditto.a
+Ditto.tar.gz
