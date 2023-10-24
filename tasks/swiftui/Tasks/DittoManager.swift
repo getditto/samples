@@ -93,7 +93,12 @@ class DittoManager: ObservableObject {
 
 extension DittoManager {
     func updateSmallPeerInfoMetadata(_ dict: [String: Any]) {
-        try? ditto.smallPeerInfo.setMetadata(dict)
+        do {
+            try ditto.smallPeerInfo.setMetadata(dict)
+            print("DM.\(#function): smallPeerInfo.metadata set to \(ditto.smallPeerInfo.metadata)")
+        } catch {
+            print("DM.\(#function): Error setting smallPeerInfo.metadata: \(error.localizedDescription)")
+        }
     }
 }
 
