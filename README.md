@@ -19,4 +19,4 @@
 6. [Xamarin-iOS](https://github.com/getditto/template-app-xamarin-ios-todo)
 7. [Nodejs](https://github.com/getditto/template-app-nodejs-todo)
 8. [Jetpack Compose, Kotlin](https://github.com/getditto/template-app-jetpack-compose-kotlin-todo)
-9. [Combine](https://github.com/getditto/Combine-Sample)
+9. [Combine](https://github.com/getditto/Sample-app-Combine)
