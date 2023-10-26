@@ -14,7 +14,7 @@
 1. [Electron, React, and Typescript](https://github.com/getditto/template-app-electron-react-ts-todo)
 2. [Swift](https://github.com/getditto/template-app-swift-todo)
 3. [C#](https://github.com/getditto/template-app-csharp-todo)
-4. [C++](https://github.com/getditto/samples/tree/main/cpp)
+4. [C++](https://github.com/getditto/template-app-cpp-todo)
 5. [QT Widgets](https://github.com/getditto/samples/tree/main/qt-widgets)
 6. [Xamarin-iOS](https://github.com/getditto/template-app-xamarin-ios-todo)
 7. [Nodejs](https://github.com/getditto/template-app-nodejs-todo)
