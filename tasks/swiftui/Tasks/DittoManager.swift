@@ -73,7 +73,7 @@ class DittoManager: ObservableObject {
         // enable smallPeerInfo
         // don't change syncScope from .bigPeerOnly default
         ditto.smallPeerInfo.isEnabled = true
-        
+        ditto.smallPeerInfo.syncScope = .bigPeerOnly
         //------------------------------------------------------------------------------------------
         
         // update to v4 AddWins
