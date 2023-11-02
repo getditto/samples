@@ -9,7 +9,7 @@ import SwiftUI
 import DittoSwift
 
 //------------------------------------------------------------------------------------------
-// TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+// TEST smallPeerInfo with v4.4.4 on portal-dev.ditto.live
 extension TasksListScreenViewModel {
     func clickedSmallPeerInfo() {
         isPresentingMetadataScreen = true
@@ -26,7 +26,7 @@ class TasksListScreenViewModel: ObservableObject {
     private(set) var taskToEdit: Task? = nil
     
     //------------------------------------------------------------------------------------------
-    // TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+    // TEST smallPeerInfo with v4.4.4 on portal-dev.ditto.live
     @Published var isPresentingMetadataScreen = false
     //------------------------------------------------------------------------------------------
     
@@ -116,7 +116,7 @@ struct TasksListScreen: View {
             }
             .navigationTitle("Tasks - SwiftUI")
             //------------------------------------------------------------------------------------------
-            // TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+            // TEST smallPeerInfo with v4.4.4 on portal-dev.ditto.live
 
             /* orig
             .navigationBarItems(leading: Button(action: {
@@ -175,7 +175,7 @@ struct TasksListScreen: View {
                 }
             })
             //------------------------------------------------------------------------------------------
-            // TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+            // TEST smallPeerInfo with v4.4.4 on portal-dev.ditto.live
             .sheet(isPresented: $viewModel.isPresentingMetadataScreen, content: {
                 MetadataScreen()
             })

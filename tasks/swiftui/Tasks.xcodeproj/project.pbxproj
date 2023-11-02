@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,12 +12,12 @@
 		0E27A28928D91B64008AD6C1 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 0E27A28828D91B64008AD6C1 /* DittoObjC */; };
 		0E27A28B28D91B64008AD6C1 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E27A28A28D91B64008AD6C1 /* DittoSwift */; };
 		142FBD4D2ACDF9750026224D /* MetadataScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142FBD4C2ACDF9750026224D /* MetadataScreen.swift */; };
-		14492C872AB252710009DBD6 /* DittoDataBrowser in Frameworks */ = {isa = PBXBuildFile; productRef = 14492C862AB252710009DBD6 /* DittoDataBrowser */; };
-		14492C892AB252710009DBD6 /* DittoDiskUsage in Frameworks */ = {isa = PBXBuildFile; productRef = 14492C882AB252710009DBD6 /* DittoDiskUsage */; };
-		14492C8B2AB252710009DBD6 /* DittoExportData in Frameworks */ = {isa = PBXBuildFile; productRef = 14492C8A2AB252710009DBD6 /* DittoExportData */; };
-		14492C8D2AB252710009DBD6 /* DittoExportLogs in Frameworks */ = {isa = PBXBuildFile; productRef = 14492C8C2AB252710009DBD6 /* DittoExportLogs */; };
-		14492C8F2AB252710009DBD6 /* DittoPeersList in Frameworks */ = {isa = PBXBuildFile; productRef = 14492C8E2AB252710009DBD6 /* DittoPeersList */; };
-		14492C912AB252710009DBD6 /* DittoPresenceViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 14492C902AB252710009DBD6 /* DittoPresenceViewer */; };
+		143AA95A2AF45DD600F29B81 /* DittoDataBrowser in Frameworks */ = {isa = PBXBuildFile; productRef = 143AA9592AF45DD600F29B81 /* DittoDataBrowser */; };
+		143AA95C2AF45DD600F29B81 /* DittoDiskUsage in Frameworks */ = {isa = PBXBuildFile; productRef = 143AA95B2AF45DD600F29B81 /* DittoDiskUsage */; };
+		143AA95E2AF45DD600F29B81 /* DittoExportData in Frameworks */ = {isa = PBXBuildFile; productRef = 143AA95D2AF45DD600F29B81 /* DittoExportData */; };
+		143AA9602AF45DD600F29B81 /* DittoExportLogs in Frameworks */ = {isa = PBXBuildFile; productRef = 143AA95F2AF45DD600F29B81 /* DittoExportLogs */; };
+		143AA9622AF45DD600F29B81 /* DittoPeersList in Frameworks */ = {isa = PBXBuildFile; productRef = 143AA9612AF45DD600F29B81 /* DittoPeersList */; };
+		143AA9642AF45DD600F29B81 /* DittoPresenceViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 143AA9632AF45DD600F29B81 /* DittoPresenceViewer */; };
 		14492C962AB252A30009DBD6 /* DittoToolsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14492C932AB252A30009DBD6 /* DittoToolsListItem.swift */; };
 		14492C972AB252A30009DBD6 /* DittoToolsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14492C942AB252A30009DBD6 /* DittoToolsListView.swift */; };
 		2DE79F1026D8B2F5003F9F80 /* TasksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79F0F26D8B2F5003F9F80 /* TasksApp.swift */; };
@@ -51,13 +51,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14492C8F2AB252710009DBD6 /* DittoPeersList in Frameworks */,
-				14492C872AB252710009DBD6 /* DittoDataBrowser in Frameworks */,
+				143AA9622AF45DD600F29B81 /* DittoPeersList in Frameworks */,
+				143AA95A2AF45DD600F29B81 /* DittoDataBrowser in Frameworks */,
 				0E27A28928D91B64008AD6C1 /* DittoObjC in Frameworks */,
-				14492C892AB252710009DBD6 /* DittoDiskUsage in Frameworks */,
-				14492C8B2AB252710009DBD6 /* DittoExportData in Frameworks */,
-				14492C8D2AB252710009DBD6 /* DittoExportLogs in Frameworks */,
-				14492C912AB252710009DBD6 /* DittoPresenceViewer in Frameworks */,
+				143AA95C2AF45DD600F29B81 /* DittoDiskUsage in Frameworks */,
+				143AA95E2AF45DD600F29B81 /* DittoExportData in Frameworks */,
+				143AA9602AF45DD600F29B81 /* DittoExportLogs in Frameworks */,
+				143AA9642AF45DD600F29B81 /* DittoPresenceViewer in Frameworks */,
 				0E27A28B28D91B64008AD6C1 /* DittoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,12 +136,12 @@
 			packageProductDependencies = (
 				0E27A28828D91B64008AD6C1 /* DittoObjC */,
 				0E27A28A28D91B64008AD6C1 /* DittoSwift */,
-				14492C862AB252710009DBD6 /* DittoDataBrowser */,
-				14492C882AB252710009DBD6 /* DittoDiskUsage */,
-				14492C8A2AB252710009DBD6 /* DittoExportData */,
-				14492C8C2AB252710009DBD6 /* DittoExportLogs */,
-				14492C8E2AB252710009DBD6 /* DittoPeersList */,
-				14492C902AB252710009DBD6 /* DittoPresenceViewer */,
+				143AA9592AF45DD600F29B81 /* DittoDataBrowser */,
+				143AA95B2AF45DD600F29B81 /* DittoDiskUsage */,
+				143AA95D2AF45DD600F29B81 /* DittoExportData */,
+				143AA95F2AF45DD600F29B81 /* DittoExportLogs */,
+				143AA9612AF45DD600F29B81 /* DittoPeersList */,
+				143AA9632AF45DD600F29B81 /* DittoPresenceViewer */,
 			);
 			productName = Tasks;
 			productReference = 2DE79F0C26D8B2F5003F9F80 /* Tasks.app */;
@@ -173,7 +173,7 @@
 			mainGroup = 2DE79F0326D8B2F5003F9F80;
 			packageReferences = (
 				0E27A28728D91B64008AD6C1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
-				14492C852AB252710009DBD6 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */,
+				143AA9582AF45DD600F29B81 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */,
 			);
 			productRefGroup = 2DE79F0D26D8B2F5003F9F80 /* Products */;
 			projectDirPath = "";
@@ -411,11 +411,11 @@
 				minimumVersion = 4.4.0;
 			};
 		};
-		14492C852AB252710009DBD6 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */ = {
+		143AA9582AF45DD600F29B81 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:getditto/DittoSwiftTools.git";
+			repositoryURL = "https://github.com/getditto/DittoSwiftTools.git";
 			requirement = {
-				branch = et/clean_v4;
+				branch = et/4.4.0_release;
 				kind = branch;
 			};
 		};
@@ -432,34 +432,34 @@
 			package = 0E27A28728D91B64008AD6C1 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
 			productName = DittoSwift;
 		};
-		14492C862AB252710009DBD6 /* DittoDataBrowser */ = {
+		143AA9592AF45DD600F29B81 /* DittoDataBrowser */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 14492C852AB252710009DBD6 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
+			package = 143AA9582AF45DD600F29B81 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
 			productName = DittoDataBrowser;
 		};
-		14492C882AB252710009DBD6 /* DittoDiskUsage */ = {
+		143AA95B2AF45DD600F29B81 /* DittoDiskUsage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 14492C852AB252710009DBD6 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
+			package = 143AA9582AF45DD600F29B81 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
 			productName = DittoDiskUsage;
 		};
-		14492C8A2AB252710009DBD6 /* DittoExportData */ = {
+		143AA95D2AF45DD600F29B81 /* DittoExportData */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 14492C852AB252710009DBD6 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
+			package = 143AA9582AF45DD600F29B81 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
 			productName = DittoExportData;
 		};
-		14492C8C2AB252710009DBD6 /* DittoExportLogs */ = {
+		143AA95F2AF45DD600F29B81 /* DittoExportLogs */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 14492C852AB252710009DBD6 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
+			package = 143AA9582AF45DD600F29B81 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
 			productName = DittoExportLogs;
 		};
-		14492C8E2AB252710009DBD6 /* DittoPeersList */ = {
+		143AA9612AF45DD600F29B81 /* DittoPeersList */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 14492C852AB252710009DBD6 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
+			package = 143AA9582AF45DD600F29B81 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
 			productName = DittoPeersList;
 		};
-		14492C902AB252710009DBD6 /* DittoPresenceViewer */ = {
+		143AA9632AF45DD600F29B81 /* DittoPresenceViewer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 14492C852AB252710009DBD6 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
+			package = 143AA9582AF45DD600F29B81 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */;
 			productName = DittoPresenceViewer;
 		};
 /* End XCSwiftPackageProductDependency section */

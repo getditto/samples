@@ -9,13 +9,14 @@ import Combine
 import DittoSwift
 import DittoExportLogs
 
-// Change these to the values set up in your portal-dev app
+// FOR INTERNAL USE ONLY: currently set to Eric's TasksV4Personal dev portal app
+// Change to your portal-dev app creds if desired
 let authToken = "password"
 let authProvider = "auth-webhook"
 let appID = "8edded63-8c68-4acc-92ad-e4206cd415b7"
 
 //------------------------------------------------------------------------------------------
-// TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+// TEST smallPeerInfo with v4.4.4 on portal-dev.ditto.live
 class AuthDelegate: DittoAuthenticationDelegate {
     func authenticationRequired(authenticator: DittoAuthenticator) {
         authenticator.login(
@@ -39,7 +40,7 @@ class AuthDelegate: DittoAuthenticationDelegate {
 
 class DittoManager: ObservableObject {
     @Published var loggingOption: DittoLogger.LoggingOptions = .debug
-    private static let defaultLoggingOption: DittoLogger.LoggingOptions = .error
+    private static let defaultLoggingOption: DittoLogger.LoggingOptions = .debug//.error
     private var cancellables = Set<AnyCancellable>()
     
     var ditto: Ditto
@@ -48,11 +49,10 @@ class DittoManager: ObservableObject {
     
     init() {
         
-        // make sure our log level is set _before_ starting ditto.
-        self.loggingOption = Self.storedLoggingOption()
-
+        self.loggingOption = Self.storedLoggingOption()        
+        
         //------------------------------------------------------------------------------------------
-        // TEST smallPeerInfo with v4.4.0 on portal-dev.ditto.live
+        // TEST smallPeerInfo with v4.4.4 on portal-dev.ditto.live
         let authDelegate = AuthDelegate()
 
         print("DittoManager.init(): initialize Ditto instance")
@@ -83,6 +83,9 @@ class DittoManager: ObservableObject {
             print("ERROR: disableSyncWithV3() failed with error \"\(error)\"")
         }
         
+        // make sure log level is set _before_ starting ditto.
+        resetLogging()
+
         // Prevent Xcode previews from syncing: non-preview simulators and real devices can sync
         let isPreview: Bool = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
         if !isPreview {
@@ -104,7 +107,7 @@ extension DittoManager {
 
 extension DittoManager {
     enum UserDefaultsKeys: String {
-        case loggingOption = "live.ditto.CountDataFetch.userDefaults.loggingOption"
+        case loggingOption = "live.ditto.Tasks-smallPeerInfo.loggingOption"
     }
 
     fileprivate func storedLoggingOption() -> DittoLogger.LoggingOptions {
