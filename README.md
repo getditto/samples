@@ -14,6 +14,7 @@
 1. [Swift](https://github.com/getditto/template-app-swift-todo)
 1. [C#](https://github.com/getditto/template-app-csharp-todo)
 1. [C++](https://github.com/getditto/template-app-cpp-todo)
+1. [.NET MAUI](https://github.com/getditto/template-app-maui-tasks-app)
 1. [Xamarin-iOS](https://github.com/getditto/template-app-xamarin-ios-todo)
 1. [Xamarin-Android](https://github.com/getditto/template-app-xamarin-android-todo)
 1. [Nodejs](https://github.com/getditto/template-app-nodejs-todo)
