@@ -3,33 +3,43 @@ import DittoSwift
 
 
 final class SwiftUITests: XCTestCase {
-   
+
     var ditto1: DittoInstance!
     var ditto2: DittoInstance!
-    
+
     override func setUp() {
-        self.ditto1 = DittoInstance(appID: "test-app")
-        self.ditto2 = DittoInstance(appID: "test-app")
-        try! self.ditto1.ditto?.tryStartSync()
-        try! self.ditto2.ditto?.tryStartSync()
+        self.ditto1 = DittoInstance()
+        self.ditto2 = DittoInstance()
+        try! self.ditto1.ditto?.startSync()
+        try! self.ditto2.ditto?.startSync()
     }
-    
-    func testExample() throws {
-        let initialResultExpectation = expectation(description: "Initial event received")
-        let docID = try! ditto1.ditto!.store.collection("cars").upsert(["make": "toyota", "color": "red"])
-        let subs = ditto2.ditto!.store.collection("cars").findByID(docID).subscribe()
-        let liveQuery = ditto2.ditto!.store.collection("cars").findByID(docID).observeLocal { doc, event in
-            if (!event.isInitial) {
-                XCTAssertEqual(doc!.value["make"] as! String, "toyota")
-                initialResultExpectation.fulfill()
+
+    func testExample() async throws {
+        let exeption = expectation(description: "doc inserted")
+        let collectionName = "cars"
+
+        // Inserting a car into 'ditto1' store
+        let car = ["make": "toyota", "color": "red"]
+        try await ditto1!.ditto!.store.execute(
+            query: "INSERT INTO \(collectionName) DOCUMENTS (:car)",
+            arguments: ["car": car]
+        )
+
+        let selectQuery = "SELECT * FROM \(collectionName)"
+
+        // Registering a subscription from 'ditto2'
+        try ditto2.ditto!.sync.registerSubscription(query: selectQuery)
+
+        // Registering a result observer on 'ditto2' store
+        try ditto2.ditto!.store.registerObserver(query: selectQuery) { result in
+            print("@@ Result:", result.items.count)
+            if let value = result.items.first?.value {
+                XCTAssertEqual(value["make"] as! String, "toyota")
+                exeption.fulfill()
             }
         }
-        
-        wait(for: [initialResultExpectation], timeout: 2)
-        subs.stop()
-        liveQuery.stop()
-        ditto1.stop()
-        ditto2.stop()
+
+        await fulfillment(of: [exeption], timeout: 5)
     }
 }
 
@@ -49,9 +59,11 @@ func topLevelDittoDir() -> URL {
 public class DittoInstance {
     internal var ditto: Ditto?
     private let instanceDir: URL
-    
-    public init(appID: String) {
-        
+
+    public init() {
+        let appID = "YOUR_LICENSE_HERE"
+        let onlinePlaygroundToken = "YOUR_LICENSE_HERE"
+
         // No need for cleanup, as the TestsSetup class is configured as NSPrincipalClass
         // and will delete topLevelDittoDir() before any test job is run
         let instanceDir = topLevelDittoDir()
@@ -60,13 +72,13 @@ public class DittoInstance {
 
         self.instanceDir = instanceDir
         self.ditto = Ditto(
-            identity: .offlinePlayground(appID: appID, persistenceDirectory: instanceDir),
+            identity: .onlinePlayground(appID: appID, token: onlinePlaygroundToken),
             persistenceDirectory: instanceDir
         )
-        let testLicense = "YOUR_LICENSE_HERE"
-        try! self.ditto!.setOfflineOnlyLicenseToken(testLicense)
+
+        try! self.ditto!.disableSyncWithV3()
     }
-    
+
     public func stop() {
         self.ditto!.stopSync()
         self.ditto = nil
