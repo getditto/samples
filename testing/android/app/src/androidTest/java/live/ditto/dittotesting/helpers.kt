@@ -27,5 +27,7 @@ fun getDitto(
         false
     ),
 ): Ditto {
-    return Ditto(dependencies, identity)
+    val ditto = Ditto(dependencies, identity)
+    ditto.disableSyncWithV3()
+    return ditto
 }

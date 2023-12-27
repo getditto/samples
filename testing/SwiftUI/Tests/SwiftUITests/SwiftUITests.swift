@@ -32,7 +32,6 @@ final class SwiftUITests: XCTestCase {
 
         // Registering a result observer on 'ditto2' store
         try ditto2.ditto!.store.registerObserver(query: selectQuery) { result in
-            print("@@ Result:", result.items.count)
             if let value = result.items.first?.value {
                 XCTAssertEqual(value["make"] as! String, "toyota")
                 exeption.fulfill()
