@@ -3,6 +3,7 @@ package live.ditto.dittotesting
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.File
+import java.util.concurrent.CountDownLatch
 
 class ExampleDittoTest: DittoTestBase() {
     @Test
@@ -20,15 +21,23 @@ class ExampleDittoTest: DittoTestBase() {
             "mileage" to 160000
         ))
         coll2.findById(docId).subscribe()
+
+        val count = CountDownLatch(1)
+        var make = ""
+
         coll2.findById(docId).observeLocal { doc, event ->
             if (!event.isInitial) {
                 doc?.let {
-                    assertEquals(doc["make"].toString(), "toyota")
+                    make = doc["make"].value.toString()
+                    count.countDown()
+
                     ditto1.stopSync()
                     ditto2.stopSync()
                 }
-
             }
         }
+
+        count.await()
+        assertEquals(make, "toyota")
     }
 }

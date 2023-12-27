@@ -72,7 +72,7 @@ public class DittoInstance {
 
         self.instanceDir = instanceDir
         self.ditto = Ditto(
-            identity: .onlinePlayground(appID: appID, token: onlinePlaygroundToken),
+            identity: .onlinePlayground(appID: appID, token: onlinePlaygroundToken, enableDittoCloudSync: false),
             persistenceDirectory: instanceDir
         )
 
