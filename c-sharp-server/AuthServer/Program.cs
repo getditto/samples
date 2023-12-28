@@ -6,9 +6,6 @@ namespace AuthServer {
 
     class App {
         static Ditto ditto;
-        static bool isAskedToExit = false;
-        static List<Task> tasks = new List<Task>();
-        static DittoLiveQuery liveQuery;
 
         public static void Main(string[] args) {
             string appId = "f87f6d8c-1b51-46e2-83d6-d97825ebab71";
@@ -23,9 +20,9 @@ ufsn3SiJc+wIIfvKDgarINP9yVahRANCAARnAF3RspwyFe53haYt1u2O3FD7yykf
 dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
 -----END PRIVATE KEY-----";
 
-            string sharedKey = "YOUR_SHARED_KEY_HERE";
+            string sharedKey = "YOUR_SHARED_KEY";
 
-            string license = "YOUR_LICENSE_HERE";
+            string license = "YOUR_OFFLINE_LICENSE_TOKEN";
 
             var serverIdentity = DittoIdentity.SharedKey(
                 appId,
@@ -53,6 +50,8 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
             {
                 ditto.SetOfflineOnlyLicenseToken(license);
                 ditto.StartSync();
+                Console.WriteLine("Ditto launched!");
+                Console.WriteLine("Waiting for auth requests...");
             }
             catch (DittoException ex)
             {
@@ -85,80 +84,10 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
                 }
             };
 
-            Console.WriteLine("Welcome to Ditto's Task App");
 
-            liveQuery = ditto.Store["tasks"].FindAll().ObserveLocal((docs, _event) => {
+            // This while loop is to keep the program running
+            while (true) { }
 
-                Console.WriteLine("Got new tasks");
-                tasks = docs.ConvertAll(d => new Task(d));
-            });
-
-            ListCommands();
-
-            while (!isAskedToExit)
-            {
-
-                Console.Write("\nYour command: ");
-                string command = Console.ReadLine();
-
-                switch (command)
-                {
-
-                    case string s when command.StartsWith("--insert"):
-                        string taskBody = s.Replace("--insert ", "");
-                        ditto.Store["tasks"].Upsert(new Task(taskBody, false).ToDictionary());
-                        break;
-                    case string s when command.StartsWith("--toggle"):
-                        string _idToToggle = s.Replace("--toggle ", "");
-                        ditto.Store["tasks"]
-                            .FindById(new DittoDocumentId(_idToToggle))
-                            .Update((mutableDoc) => {
-                                if (mutableDoc == null) return;
-                                mutableDoc["isCompleted"].Set(!mutableDoc["isCompleted"].BooleanValue);
-                            });
-                        break;
-                    case string s when command.StartsWith("--delete"):
-                        string _idToDelete = s.Replace("--delete ", "");
-                        ditto.Store["tasks"]
-                            .FindById(new DittoDocumentId(_idToDelete))
-                            .Remove();
-                        break;
-                    case { } when command.StartsWith("--list"):
-                        tasks.ForEach(task =>
-                        {
-                            Console.WriteLine(task.ToString());
-                        });
-                        break;
-                    case { } when command.StartsWith("--exit"):
-                        Console.WriteLine("Good bye!");
-                        isAskedToExit = true;
-                        break;
-                    default:
-                        Console.WriteLine("Unknown command");
-                        ListCommands();
-                        break;
-                }
-            }
-
-        }
-
-        public static void ListCommands()
-        {
-            Console.WriteLine("************* Commands *************");
-            Console.WriteLine("--insert my new task");
-            Console.WriteLine("   Inserts a task");
-            Console.WriteLine("   Example: \"--insert Get Milk\"");
-            Console.WriteLine("--toggle myTaskTd");
-            Console.WriteLine("   Toggles the isComplete property to the opposite value");
-            Console.WriteLine("   Example: \"--toggle 1234abc\"");
-            Console.WriteLine("--delete myTaskTd");
-            Console.WriteLine("   Deletes a task");
-            Console.WriteLine("   Example: \"--delete 1234abc\"");
-            Console.WriteLine("--list");
-            Console.WriteLine("   List the current tasks");
-            Console.WriteLine("--exit");
-            Console.WriteLine("   Exits the program");
-            Console.WriteLine("************* Commands *************");
         }
     }
 }
