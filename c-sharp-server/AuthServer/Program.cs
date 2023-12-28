@@ -29,6 +29,7 @@ dLG6xOlHPRR2xiDYj6Oq4CV3gCfsiJJc1o/Y58u6lPsVIj4i3vHJAENd
                 sharedKey
             );
             ditto = new Ditto(serverIdentity);
+            ditto.DisableSyncWithV3();
             ditto.DeviceName = "TestServer";
 
             // Server is an HTTP/WebSocket server only

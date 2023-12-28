@@ -17,14 +17,13 @@ class AuthDelegate : IDittoAuthenticationDelegate
     }
 }
 
-namespace Program {
+namespace Program
+{
 
     class App {
         static Ditto ditto;
 
         static IDisposable dittoAuthObserver;
-        static DittoSubscription subscription;
-        static DittoLiveQuery liveQuery;
         static List<Task> tasks;
         static Boolean isAskedToExit = false;
 
@@ -37,6 +36,7 @@ namespace Program {
                 "http://127.0.0.1:45002");
 
             ditto = new Ditto(identity);
+            ditto.DisableSyncWithV3();
             ditto.Auth.Logout();
             DittoTransportConfig transportConfig = new DittoTransportConfig();
             transportConfig.Connect.WebsocketUrls.Add("ws://127.0.0.1:45002");
@@ -51,14 +51,21 @@ namespace Program {
                 }
             });
 
-            subscription = ditto.Store["tasks"].FindAll().Subscribe();
             Console.WriteLine("\nWelcome to Ditto's Task App");
 
-            liveQuery = ditto.Store["tasks"].FindAll().ObserveLocal((docs, _event) => {
-                tasks = docs.ConvertAll(d => new Task(d));
+            string query = "SELECT * FROM tasks WHERE isDeleted == false";
+
+            ditto.Sync.RegisterSubscription(query);
+
+            ditto.Store.RegisterObserver(query, (result) =>
+            {
+                tasks = result.Items.ConvertAll(item => Task.JsonToTask(item.JsonString()));
             });
 
+            await ditto.Store.ExecuteAsync("EVICT FROM tasks WHERE isDeleted == true");
+
             ListCommands();
+
 
             while (!isAskedToExit)
             {
@@ -81,24 +88,28 @@ namespace Program {
 
                     case string s when command.StartsWith("--insert"):
                         string taskBody = s.Replace("--insert ", "");
-                        ditto.Store["tasks"].Upsert(new Task(taskBody, false).ToDictionary());
+                        var task = new Task(taskBody, false).ToDictionary();
+                        await ditto.Store.ExecuteAsync("INSERT INTO tasks DOCUMENTS (:task)", new Dictionary<string, object> { { "task", task } });
                         break;
 
                     case string s when command.StartsWith("--toggle"):
                         string _idToToggle = s.Replace("--toggle ", "");
-                        ditto.Store["tasks"]
-                            .FindById(new DittoDocumentId(_idToToggle))
-                            .Update((mutableDoc) => {
-                                if (mutableDoc == null) return;
-                                mutableDoc["isCompleted"].Set(!mutableDoc["isCompleted"].BooleanValue);
-                            });
+                        var isCompleted = tasks.First(t => t._id == _idToToggle).isCompleted;
+                        await ditto.Store.ExecuteAsync(
+                            "UPDATE tasks " +
+                            "SET isCompleted = :newValue " +
+                            "WHERE _id == :id",
+                            new Dictionary<string, object> {{ "newValue", !isCompleted }, { "id", _idToToggle }});
                         break;
 
                     case string s when command.StartsWith("--delete"):
                         string _idToDelete = s.Replace("--delete ", "");
-                        ditto.Store["tasks"]
-                            .FindById(new DittoDocumentId(_idToDelete))
-                            .Remove();
+                        var isDeleted = tasks.First(t => t._id == _idToDelete).isDeleted;
+                        await ditto.Store.ExecuteAsync(
+                            "UPDATE tasks " +
+                            "SET isDeleted = :newValue " +
+                            "WHERE _id == :id",
+                            new Dictionary<string, object> {{ "newValue", !isDeleted }, { "id", _idToDelete }});
                         break;
 
                     case { } when command.StartsWith("--list"):
