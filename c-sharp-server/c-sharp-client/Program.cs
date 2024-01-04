@@ -43,7 +43,7 @@ namespace Program
             ditto.TransportConfig = transportConfig;
             ditto.StartSync();
 
-            dittoAuthObserver = ditto.Auth.ObserveStatus((status) => {
+            using var dittoAuthObserver = ditto.Auth.ObserveStatus((status) => {
                 if (status.IsAuthenticated) {
                     Console.WriteLine($"\nAuth success!");
                 } else {
