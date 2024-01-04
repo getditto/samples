@@ -1,21 +1,28 @@
 # C# Authentication Server
 
-See full tutorial at https://docs.ditto.live/csharp/quick-tips/authserver
+See full tutorial at https://docs.ditto.live/csharp/authentication-server
 
 ## Usage
 
-Start the server:
+- Start the C# auth server:
+    - Use the keys generated from the tutorial above before start
 
+    ```bash
+    cd AuthServer
+    dotnet run
+    ```
 
-```
-cd AuthServer
-dotnet run
-```
+- Start the JS client (Web browser):
 
-Start the client
+    ```bash
+    cd js-client
+    npm i
+    npm start
+    ```
 
-```
-cd client
-npm i
-npm start
-```
+- Start the C# client (CLI):
+
+    ```bash
+    cd c-sharp-client
+    dotnet run
+    ```

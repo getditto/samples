@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using DittoSDK;
+using System.Text.Json;
 
 namespace Program
 {
-
     public struct Task
     {
-        string _id;
-        string body;
-        bool isCompleted;
+        public string _id { get; set; }
+        public string body { get; set; }
+        public bool isCompleted { get; set; }
+        public bool isDeleted { get; set; }
 
-        // 3
-        public Task(string _id, string body, bool isCompleted)
+        public static Task JsonToTask(string jsonString)
         {
-            this._id = _id;
-            this.body = body;
-            this.isCompleted = isCompleted;
+            return JsonSerializer.Deserialize<Task>(jsonString);
         }
 
         public Task(string body, bool isCompleted)
@@ -24,22 +21,14 @@ namespace Program
             this._id = Guid.NewGuid().ToString();
             this.body = body;
             this.isCompleted = isCompleted;
+            this.isDeleted = false;
         }
 
-        public Task(DittoDocument document)
-        {
-            this._id = document["_id"].StringValue;
-            this.body = document["body"].StringValue;
-            this.isCompleted = document["isCompleted"].BooleanValue;
-        }
-
-        // 4.
         public override string ToString()
         {
-            return $"Task _id: {_id}, body: {body}, isCompleted: {isCompleted}";
+            return $"Task _id: {_id}, body: {body}, isCompleted: {isCompleted}, isDeleted: {isDeleted}";
         }
 
-        // 5.
         public Dictionary<string, object> ToDictionary()
         {
             return new Dictionary<string, object>
@@ -47,8 +36,8 @@ namespace Program
                 { "_id", _id },
                 { "body", body },
                 { "isCompleted", isCompleted },
+                { "isDeleted", isDeleted },
             };
         }
-        // 5.
     }
 }
