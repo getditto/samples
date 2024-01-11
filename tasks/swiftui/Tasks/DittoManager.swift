@@ -13,7 +13,7 @@ import DittoExportLogs
 // Change to your portal-dev app creds if desired
 let authToken = "password"
 let authProvider = "auth-webhook"
-let appID = "8edded63-8c68-4acc-92ad-e4206cd415b7"
+let appID = "8edded63-8c68-4acc-92ad-e4206cd415b7" // Tasksv4Personal portal-dev
 
 //------------------------------------------------------------------------------------------
 // TEST smallPeerInfo with v4.4.4 on portal-dev.ditto.live
@@ -60,7 +60,6 @@ class DittoManager: ObservableObject {
             .onlineWithAuthentication(
                 appID: appID,
                 authenticationDelegate: authDelegate,
-                enableDittoCloudSync: false,
                 customAuthURL: URL(string: "https://\(appID).cloud-dev.ditto.live")
             )
         )

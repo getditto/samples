@@ -408,15 +408,15 @@
 			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.4.0;
+				minimumVersion = 4.5.1;
 			};
 		};
 		143AA9582AF45DD600F29B81 /* XCRemoteSwiftPackageReference "DittoSwiftTools" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getditto/DittoSwiftTools.git";
 			requirement = {
-				branch = et/4.4.0_release;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
