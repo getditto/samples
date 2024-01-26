@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftUI",
-    platforms: [ .iOS(.v11), .macOS(.v11) ],
+    platforms: [ .iOS(.v15), .macOS(.v11) ],
     products: [
     ],
     dependencies: [
@@ -18,7 +18,6 @@ let package = Package(
         .testTarget(
             name: "SwiftUITests",
             dependencies: [
-                .product(name: "DittoObjC", package: "DittoSwiftPackage"),
                 .product(name: "DittoSwift", package: "DittoSwiftPackage")
             ]
         )

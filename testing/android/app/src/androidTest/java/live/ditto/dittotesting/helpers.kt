@@ -16,17 +16,18 @@ fun clearUpDittoDirectories(context: Context, customDir: String? = null) {
     clearUpDirectory(dittoDir)
 }
 
-const val testLicense = "YOUR_LICENSE_HERE"
-
 @JvmOverloads
 fun getDitto(
     dependencies: DittoDependencies,
-    identity: DittoIdentity = DittoIdentity.OfflinePlayground(dependencies),
-    offlineLicense: String? = testLicense,
+    identity: DittoIdentity = DittoIdentity.OnlinePlayground(
+        dependencies,
+        // Get these values from https://portal.ditto.live
+        "YOUR_APP_ID",
+        "YOUR_PLAYGROUND_TOKEN",
+        false
+    ),
 ): Ditto {
     val ditto = Ditto(dependencies, identity)
-    offlineLicense?.let {
-        ditto.setOfflineOnlyLicenseToken(it)
-    }
+    ditto.disableSyncWithV3()
     return ditto
 }
