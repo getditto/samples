@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-dittolive-ditto = "=4.1.1"
-dittolive-ditto-sys = "=4.1.1"
+dittolive-ditto = "=4.7.1-rc.3"
+dittolive-ditto-sys = "=4.7.1-rc.3"
 structopt = "0.3.26"
 serde_json = "1.0"
