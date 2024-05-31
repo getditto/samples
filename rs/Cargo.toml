@@ -1,10 +1,18 @@
 [package]
-name = "rs"
+name = "template-ditto-rust"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "template-ditto-rust"
+path = "src/bin/main.rs"
+
 [dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive", "env"] }
+serde_json = "1"
+
+# Ditto
 dittolive-ditto = "=4.7.1-rc.3"
 dittolive-ditto-sys = "=4.7.1-rc.3"
-structopt = "0.3.26"
-serde_json = "1.0"
+dotenv = "0.15.0"
